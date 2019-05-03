@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataSource name="PostgreSQL - department@localhost">
+  <database-model serializer="dbm" rdbms="POSTGRES" format-version="4.8">
+    <root id="1">
+      <ServerVersion>9.6.8</ServerVersion>
+    </root>
+    <database id="2" parent="1" name="blog">
+      <ObjectId>24577</ObjectId>
+    </database>
+    <database id="3" parent="1" name="department">
+      <ObjectId>32794</ObjectId>
+      <Current>1</Current>
+      <Visible>1</Visible>
+    </database>
+    <database id="4" parent="1" name="postgres">
+      <ObjectId>12401</ObjectId>
+      <Comment>default administrative connection database</Comment>
+    </database>
+    <database id="5" parent="1" name="testApp">
+      <ObjectId>32844</ObjectId>
+    </database>
+    <role id="6" parent="1" name="blog">
+      <ObjectId>24576</ObjectId>
+      <SuperRole>1</SuperRole>
+      <Inherit>1</Inherit>
+      <CreateRole>1</CreateRole>
+      <CreateDb>1</CreateDb>
+      <CanLogin>1</CanLogin>
+      <ConnectionLimit>-1</ConnectionLimit>
+    </role>
+    <role id="7" parent="1" name="depart">
+      <ObjectId>32793</ObjectId>
+      <SuperRole>1</SuperRole>
+      <Inherit>1</Inherit>
+      <CreateRole>1</CreateRole>
+      <CreateDb>1</CreateDb>
+      <CanLogin>1</CanLogin>
+      <ConnectionLimit>-1</ConnectionLimit>
+    </role>
+    <role id="8" parent="1" name="pg_signal_backend">
+      <ObjectId>4200</ObjectId>
+      <Inherit>1</Inherit>
+      <ConnectionLimit>-1</ConnectionLimit>
+    </role>
+    <role id="9" parent="1" name="postgres">
+      <ObjectId>10</ObjectId>
+      <SuperRole>1</SuperRole>
+      <Inherit>1</Inherit>
+      <CreateRole>1</CreateRole>
+      <CreateDb>1</CreateDb>
+      <CanLogin>1</CanLogin>
+      <Replication>1</Replication>
+      <ConnectionLimit>-1</ConnectionLimit>
+      <BypassRls>1</BypassRls>
+    </role>
+    <role id="10" parent="1" name="testApp">
+      <ObjectId>32843</ObjectId>
+      <SuperRole>1</SuperRole>
+      <Inherit>1</Inherit>
+      <CreateRole>1</CreateRole>
+      <CreateDb>1</CreateDb>
+      <CanLogin>1</CanLogin>
+      <ConnectionLimit>-1</ConnectionLimit>
+    </role>
+    <schema id="11" parent="3" name="information_schema">
+      <ObjectId>12113</ObjectId>
+    </schema>
+    <schema id="12" parent="3" name="pg_catalog">
+      <ObjectId>11</ObjectId>
+      <Comment>system catalog schema</Comment>
+    </schema>
+    <schema id="13" parent="3" name="pg_temp_1">
+      <ObjectId>11848</ObjectId>
+    </schema>
+    <schema id="14" parent="3" name="pg_toast">
+      <ObjectId>99</ObjectId>
+      <Comment>reserved schema for TOAST tables</Comment>
+    </schema>
+    <schema id="15" parent="3" name="pg_toast_temp_1">
+      <ObjectId>11849</ObjectId>
+    </schema>
+    <schema id="16" parent="3" name="public">
+      <ObjectId>2200</ObjectId>
+      <Comment>standard public schema</Comment>
+      <IntrospectionTimestamp>2019-05-03.00:27:00.779</IntrospectionTimestamp>
+      <IntrospectionStateNumber>1860</IntrospectionStateNumber>
+      <Current>1</Current>
+      <Visible>1</Visible>
+    </schema>
+    <sequence id="17" parent="16" name="department_id_seq">
+      <ObjectId>32855</ObjectId>
+      <StateNumber>1855</StateNumber>
+      <SequenceIdentity>1</SequenceIdentity>
+      <CacheSize>1</CacheSize>
+    </sequence>
+    <sequence id="18" parent="16" name="employee_id_seq">
+      <ObjectId>32866</ObjectId>
+      <StateNumber>1860</StateNumber>
+      <SequenceIdentity>1</SequenceIdentity>
+      <CacheSize>1</CacheSize>
+    </sequence>
+    <table id="19" parent="16" name="department">
+      <ObjectId>32795</ObjectId>
+      <StateNumber>1855</StateNumber>
+    </table>
+    <table id="20" parent="16" name="employee">
+      <ObjectId>32826</ObjectId>
+      <StateNumber>1855</StateNumber>
+    </table>
+    <column id="21" parent="19" name="id">
+      <Position>1</Position>
+      <DataType>bigint|0s</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>1855</StateNumber>
+      <DefaultExpression>nextval((&apos;public.department_id_seq&apos;::text)::regclass)</DefaultExpression>
+      <TypeId>20</TypeId>
+    </column>
+    <column id="22" parent="19" name="name_depart">
+      <Position>2</Position>
+      <DataType>varchar(50)|0s</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>1805</StateNumber>
+      <TypeId>1043</TypeId>
+    </column>
+    <column id="23" parent="19" name="count_employee">
+      <Position>3</Position>
+      <DataType>bigint|0s</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>1809</StateNumber>
+      <DefaultExpression>0</DefaultExpression>
+      <TypeId>20</TypeId>
+    </column>
+    <index id="24" parent="19" name="department_pkey">
+      <ObjectId>32857</ObjectId>
+      <ColNames>id</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <index id="25" parent="19" name="department_name_depart_key">
+      <ObjectId>32839</ObjectId>
+      <ColNames>name_depart</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <index id="26" parent="19" name="department_seq">
+      <ObjectId>32859</ObjectId>
+      <ColNames>id</ColNames>
+    </index>
+    <key id="27" parent="19" name="department_pkey">
+      <ObjectId>32858</ObjectId>
+      <ColNames>id</ColNames>
+      <UnderlyingIndexName>department_pkey</UnderlyingIndexName>
+      <Primary>1</Primary>
+    </key>
+    <key id="28" parent="19" name="department_name_depart_key">
+      <ObjectId>32840</ObjectId>
+      <ColNames>name_depart</ColNames>
+      <UnderlyingIndexName>department_name_depart_key</UnderlyingIndexName>
+    </key>
+    <column id="29" parent="20" name="id">
+      <Position>1</Position>
+      <DataType>bigint|0s</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>1860</StateNumber>
+      <DefaultExpression>nextval((&apos;public.employee_id_seq&apos;::text)::regclass)</DefaultExpression>
+      <TypeId>20</TypeId>
+    </column>
+    <column id="30" parent="20" name="id_department">
+      <Position>2</Position>
+      <DataType>bigint|0s</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>1815</StateNumber>
+      <TypeId>20</TypeId>
+    </column>
+    <column id="31" parent="20" name="name">
+      <Position>3</Position>
+      <DataType>varchar(50)|0s</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>1815</StateNumber>
+      <TypeId>1043</TypeId>
+    </column>
+    <column id="32" parent="20" name="surname">
+      <Position>4</Position>
+      <DataType>varchar(50)|0s</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>1815</StateNumber>
+      <TypeId>1043</TypeId>
+    </column>
+    <column id="33" parent="20" name="email">
+      <Position>5</Position>
+      <DataType>varchar(120)|0s</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>1820</StateNumber>
+      <TypeId>1043</TypeId>
+    </column>
+    <column id="34" parent="20" name="date">
+      <Position>6</Position>
+      <DataType>timestamp(0)|0s</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>1815</StateNumber>
+      <DefaultExpression>now()</DefaultExpression>
+      <TypeId>1114</TypeId>
+    </column>
+    <index id="35" parent="20" name="employee_pkey">
+      <ObjectId>32868</ObjectId>
+      <ColNames>id</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <index id="36" parent="20" name="employee_email_key">
+      <ObjectId>32841</ObjectId>
+      <ColNames>email</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <index id="37" parent="20" name="employee_seq">
+      <ObjectId>32870</ObjectId>
+      <ColNames>id</ColNames>
+    </index>
+    <index id="38" parent="20" name="employee_id_dep">
+      <ObjectId>32837</ObjectId>
+      <ColNames>id_department</ColNames>
+    </index>
+    <key id="39" parent="20" name="employee_pkey">
+      <ObjectId>32869</ObjectId>
+      <ColNames>id</ColNames>
+      <UnderlyingIndexName>employee_pkey</UnderlyingIndexName>
+      <Primary>1</Primary>
+    </key>
+    <key id="40" parent="20" name="employee_email_key">
+      <ObjectId>32842</ObjectId>
+      <ColNames>email</ColNames>
+      <UnderlyingIndexName>employee_email_key</UnderlyingIndexName>
+    </key>
+    <foreign-key id="41" parent="20" name="employee_fk">
+      <ObjectId>32860</ObjectId>
+      <ColNames>id_department</ColNames>
+      <RefTableId>32795</RefTableId>
+      <RefColPositions>1</RefColPositions>
+      <RefTableName>department</RefTableName>
+      <RefKeyName>department_pkey</RefKeyName>
+      <RefColNames>id</RefColNames>
+      <OnDelete>restrict</OnDelete>
+      <OnUpdate>cascade</OnUpdate>
+    </foreign-key>
+  </database-model>
+</dataSource>
