@@ -11,7 +11,7 @@
     <title>Title</title>
 </head>
 <body>
-<h3>Delete OK</h3>
+<h3>Can't remove. Department have employee. </h3>
 
 <a href="department"> List Department</a>
 </body>

@@ -19,17 +19,14 @@
             <td align="center"> ${employee.name} </td>
             <td align="center"> ${employee.surname} </td>
             <td> ${employee.email} </td>
-            <td align="center"> date</td>
+            <td align="center"> ${employee.createDate}</td>
             <td><a href="editEmployee?emailEmployee=${employee.email}"/>Edit</td>
             <td><a href="removeEmployee?emailEmployee=${employee.email}"/>Remove</td>
         </tr>
     </c:forEach>
-
-    <tr>
-        <a href="/addNewEmployee?nameDepartment=${sessionScope.nameDepartFromDepartment}"> Add new employee </a>
-    </tr>
     </tbody>
 </table>
+<p><a href="/addNewEmployee?nameDepartment=${sessionScope.nameDepartFromDepartment}"> Add new employee </a></p>
 <a href="/department"> Back </a>
 </body>
 </html>

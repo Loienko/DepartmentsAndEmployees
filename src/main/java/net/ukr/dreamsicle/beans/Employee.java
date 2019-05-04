@@ -1,51 +1,34 @@
 package net.ukr.dreamsicle.beans;
 
 import java.io.Serializable;
-import java.util.Objects;
+import java.util.Date;
 
 public class Employee implements Serializable {
     private String name;
     private String surname;
     private String email;
-    private String create_date;
+    private String createDate;
 
 
     public Employee() {
 
     }
 
-    public Employee(String name, String surname, String email, String create_date) {
+
+    public String getCreateDate() {
+        return createDate;
+    }
+
+    public void setCreateDate(String createDate) {
+        this.createDate = createDate;
+    }
+
+    public Employee(String name, String surname, String email, String createDate) {
 
         this.name = name;
         this.surname = surname;
         this.email = email;
-        this.create_date = create_date;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Employee employee = (Employee) o;
-        return Objects.equals(name, employee.name) &&
-                Objects.equals(surname, employee.surname) &&
-                Objects.equals(email, employee.email) &&
-                Objects.equals(create_date, employee.create_date);
-    }
-
-    @Override
-    public int hashCode() {
-
-        return Objects.hash(name, surname, email, create_date);
-    }
-
-    public String getCreate_date() {
-
-        return create_date;
-    }
-
-    public void setCreate_date(String create_date) {
-        this.create_date = create_date;
+        this.createDate = createDate;
     }
 
     public String getName() {
@@ -75,6 +58,6 @@ public class Employee implements Serializable {
 
     @Override
     public String toString() {
-        return "name = " + name + ", surname = " + surname + ", email = " + email + ", create_date = " + create_date;
+        return "name = " + name + ", surname = " + surname + ", email = " + email + ", createDate = " + createDate;
     }
 }

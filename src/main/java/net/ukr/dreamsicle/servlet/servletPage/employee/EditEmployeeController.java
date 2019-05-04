@@ -40,10 +40,12 @@ public class EditEmployeeController extends AbstractServlet {
         String updateNameEmployee = req.getParameter("updateNameEmployee");
         String updateSurnameEmployee = req.getParameter("updateSurnameEmployee");
         String updateEmailEmployee = req.getParameter("updateEmailEmployee");
+        String updateDateEmployee = req.getParameter("updateDateEmployee");
+
 
         Connection connection = new DBConnection().getConnection();
         DBUtilsEmployee dbUtilsEmployee = new DBUtilsEmployee();
-        Employee employeeUpdate = new Employee(updateNameEmployee, updateSurnameEmployee, updateEmailEmployee, "");
+        Employee employeeUpdate = new Employee(updateNameEmployee, updateSurnameEmployee, updateEmailEmployee, getDateFormat(updateDateEmployee));
 
         try {
             dbUtilsEmployee.updateEmployee(connection, employeeUpdate, emailEmployeeParameter);
@@ -51,5 +53,14 @@ public class EditEmployeeController extends AbstractServlet {
             e.printStackTrace();
         }
         resp.sendRedirect(req.getContextPath() + "/employee");
+    }
+
+    private String getDateFormat(String dateEmployee) {
+        String[] split = dateEmployee.split("-");
+        StringBuffer stringBuffer = new StringBuffer();
+        for (int i = split.length - 1; i >= 0; i--) {
+            stringBuffer.append(split[i]).append(".");
+        }
+        return stringBuffer.substring(0, stringBuffer.length() - 1);
     }
 }

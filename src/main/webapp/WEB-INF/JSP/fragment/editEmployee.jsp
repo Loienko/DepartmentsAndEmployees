@@ -27,6 +27,12 @@
             </td>
         </tr>
         <tr>
+            <td align="center">Date</td>
+            <td>
+                <input type="date" name="updateDateEmployee" value="${employeeForUpdate.createDate}">
+            </td>
+        </tr>
+        <tr>
             <td align="right" colspan="2">
                 <a href="/employee">Cancel</a>
                 <input type="submit" value="Add">

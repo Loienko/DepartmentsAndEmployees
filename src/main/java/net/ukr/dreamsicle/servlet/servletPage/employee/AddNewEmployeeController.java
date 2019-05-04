@@ -35,8 +35,7 @@ public class AddNewEmployeeController extends AbstractServlet {
         String emailEmployee = req.getParameter("emailEmployee");
         String dateEmployee = req.getParameter("dateEmployee");
 
-
-        Employee employeeAddNewEmployee = new Employee(nameEmployee, surnameEmployee, emailEmployee, dateEmployee);
+        Employee employeeAddNewEmployee = new Employee(nameEmployee, surnameEmployee, emailEmployee, getDateFormat(dateEmployee));
 
         try {
             dbUtilsEmployee.addNewEmployee(connection, employeeAddNewEmployee, parameterNameDepartment);
@@ -46,7 +45,15 @@ public class AddNewEmployeeController extends AbstractServlet {
 
         req.setAttribute("employeeAddNewEmployee", employeeAddNewEmployee);
 
-//        forwardToPage("department.jsp", req, resp);
         resp.sendRedirect(req.getContextPath() + "/employee");
+    }
+
+    private String getDateFormat(String dateEmployee) {
+        String[] split = dateEmployee.split("-");
+        StringBuffer stringBuffer = new StringBuffer();
+        for (int i = split.length-1; i >= 0; i--) {
+            stringBuffer.append(split[i]).append(".");
+        }
+        return stringBuffer.substring(0, stringBuffer.length() - 1);
     }
 }

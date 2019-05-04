@@ -1,4 +1,3 @@
-<%@ page import="java.util.Date" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" trimDirectiveWhitespaces="true" %>
 
 <!DOCTYPE html>
@@ -33,7 +32,7 @@
             <td align=" center">Date
             </td>
             <td>
-                <input type="date" name="dateEmployee" value=<%= new Date()%>>
+                <input type="date" name="dateEmployee">
             </td>
         </tr>
         <tr>

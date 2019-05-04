@@ -14,15 +14,17 @@ public class DBUtilsEmployee {
         DBConnection dbConnection = new DBConnection();
         try {
 //            dbUtilsEmployee.removeEmployee(dbConnection.getConnection(), "asd");
-            dbUtilsEmployee.addNewEmployee(dbConnection.getConnection(), new Employee("Yurii", "Loienko", "dreghghffffms", "sdf"), "Design");
-//            dbUtilsEmployee.updateEmployee(dbConnection.getConnection(), new Employee(3, 3, "Evil", "Reptile", "annutockha777@gmail.com", new Timestamp(new Date().getTime())));
+//            dbUtilsEmployee.addNewEmployee(dbConnection.getConnection(), new Employee(), "Design");
+            dbUtilsEmployee.updateEmployee(dbConnection.getConnection(), new Employee("Evil", "Reptile", "annutockha777@gmail.com", "04-05-2019"), "2");
         } catch (SQLException e) {
             e.printStackTrace();
         }
+
+
     }
 
     public void addNewEmployee(Connection connection, Employee employee, String idDepartment) throws SQLException {
-        String sqlQuery = "INSERT INTO employee(id_department ,name, surname, email) VALUES (?, ?, ?, ?)";
+        String sqlQuery = "INSERT INTO employee(id_department ,name, surname, email, date) VALUES (?, ?, ?, ?, ?)";
 
         int anInt = getAnInt(connection, idDepartment);
 
@@ -32,6 +34,7 @@ public class DBUtilsEmployee {
         preparedStatement.setString(2, employee.getName());
         preparedStatement.setString(3, employee.getSurname());
         preparedStatement.setString(4, employee.getEmail());
+        preparedStatement.setString(5, employee.getCreateDate());
         preparedStatement.executeUpdate();
         preparedStatement.close();
     }
@@ -49,14 +52,15 @@ public class DBUtilsEmployee {
     }
 
     public void updateEmployee(Connection connection, Employee employee, String emailEmployeeParameter) throws SQLException {
-        String sqlQuery = "Update employee set name = ?, surname= ?, email=? WHERE email = ?";
+        String sqlQuery = "Update employee set name = ?, surname= ?, email=?, date = ? WHERE email = ?";
 
         PreparedStatement preparedStatement = connection.prepareStatement(sqlQuery);
 
         preparedStatement.setString(1, employee.getName());
         preparedStatement.setString(2, employee.getSurname());
         preparedStatement.setString(3, employee.getEmail());
-        preparedStatement.setString(4, emailEmployeeParameter);
+        preparedStatement.setString(4, employee.getCreateDate());
+        preparedStatement.setString(5, emailEmployeeParameter);
         preparedStatement.executeUpdate();
         preparedStatement.close();
     }
@@ -72,7 +76,7 @@ public class DBUtilsEmployee {
     }
 
     public Employee findEmployeeForUpdate(Connection connection, String emailEmployeeParameter) throws SQLException {
-        String sqlQuery = "SELECT name, surname, email FROM employee WHERE email = ?";
+        String sqlQuery = "SELECT name, surname, email, date FROM employee WHERE email = ?";
         Employee employeeList = new Employee();
 
         PreparedStatement preparedStatement = connection.prepareStatement(sqlQuery);
@@ -83,6 +87,7 @@ public class DBUtilsEmployee {
             employeeList.setName(resultSet.getString("name"));
             employeeList.setSurname(resultSet.getString("surname"));
             employeeList.setEmail(resultSet.getString("email"));
+            employeeList.setCreateDate(resultSet.getString("date"));
         }
         return employeeList;
     }

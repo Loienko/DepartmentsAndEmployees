@@ -34,13 +34,11 @@ public class DBUtilsDepartment {
         String sqlQuery = "INSERT INTO department(name_depart, count_employee) VALUES (?, ?)";
 
         PreparedStatement preparedStatement = connection.prepareStatement(sqlQuery);
-//        preparedStatement.setInt(1, department.getId());
         preparedStatement.setString(1, department.getName_depart());
         preparedStatement.setInt(2, department.getCount_employee());
         preparedStatement.executeUpdate();
         connection.close();
     }
-
 
     public void updateDepartment(Connection connection, String department, String nameDepartForChange) throws SQLException {
         String sqlQuery = "Update department set name_depart = '" + nameDepartForChange + "' WHERE name_depart = '" + department + "'";
@@ -48,15 +46,11 @@ public class DBUtilsDepartment {
         PreparedStatement preparedStatement = connection.prepareStatement(sqlQuery);
 
         Statement statement = connection.createStatement();
-//        statement.executeQuery();
         statement.executeUpdate(sqlQuery);
-
-//        preparedStatement.setString(1, nameDepartForChange);
 
         preparedStatement.executeUpdate();
         connection.close();
     }
-
 
     public void deleteDepartment(Connection connection, String nameDepartForDelete) throws SQLException {
         String sqlQuery = "DELETE FROM department WHERE name_depart = ?";
@@ -109,9 +103,10 @@ public class DBUtilsDepartment {
             employee.setName(resultSet.getString("name"));
             employee.setSurname(resultSet.getString("surname"));
             employee.setEmail(resultSet.getString("email"));
-            employee.setCreate_date(resultSet.getString("date"));
+            employee.setCreateDate(resultSet.getString("date"));
             list.add(employee);
         }
+
         connection.close();
         return list;
     }
