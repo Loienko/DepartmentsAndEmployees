@@ -1,3 +1,5 @@
+<%--@elvariable id="department" type="net.ukr.dreamsicle.beans.Department"--%>
+<%@ page import="static net.ukr.dreamsicle.consts.Constants.REGEX_CHECK_VALID_NAME_SURNAME_DEPARTMENT" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" trimDirectiveWhitespaces="true" %>
 
 <!DOCTYPE html>
@@ -13,7 +15,9 @@
         <tr>
             <td>Specify the name of the department:</td>
             <td>
-                <input type="text" name="newNameDepartment" value="${department.name_depart}">
+                <input type="text" placeholder="Department"
+                       pattern=<%=REGEX_CHECK_VALID_NAME_SURNAME_DEPARTMENT%> name="newNameDepartment"
+                       value="${department.name_depart}">
             </td>
         </tr>
         <tr>

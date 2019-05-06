@@ -1,3 +1,5 @@
+<%@ page import="static net.ukr.dreamsicle.consts.Constants.REGEX_CHECK_VALID_NAME_SURNAME_EMPLOYEE" %>
+<%@ page import="static net.ukr.dreamsicle.consts.Constants.REGEX_CHECK_VALID_EMAIL_ADDRESS" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -11,19 +13,22 @@
         <tr>
             <td align="center">Name</td>
             <td align="center">
-                <input type="text" name="updateNameEmployee" value="${employeeForUpdate.name}">
+                <input type="text" pattern=<%=REGEX_CHECK_VALID_NAME_SURNAME_EMPLOYEE%> name="updateNameEmployee"
+                       value="${employeeForUpdate.name}">
             </td>
         </tr>
         <tr>
             <td align="center">Surname</td>
             <td>
-                <input type="text" name="updateSurnameEmployee" value="${employeeForUpdate.surname}">
+                <input type="text" pattern=<%=REGEX_CHECK_VALID_NAME_SURNAME_EMPLOYEE%> name="updateSurnameEmployee"
+                       value="${employeeForUpdate.surname}">
             </td>
         </tr>
         <tr>
             <td align="center">Email</td>
             <td>
-                <input type="text" name="updateEmailEmployee" value="${employeeForUpdate.email}">
+                <input type="email" pattern=<%=REGEX_CHECK_VALID_EMAIL_ADDRESS%> name="updateEmailEmployee"
+                       value="${employeeForUpdate.email}">
             </td>
         </tr>
         <tr>

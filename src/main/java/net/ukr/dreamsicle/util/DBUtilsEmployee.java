@@ -12,15 +12,14 @@ public class DBUtilsEmployee {
     public static void main(String[] args) {
         DBUtilsEmployee dbUtilsEmployee = new DBUtilsEmployee();
         DBConnection dbConnection = new DBConnection();
-        try {
 //            dbUtilsEmployee.removeEmployee(dbConnection.getConnection(), "asd");
 //            dbUtilsEmployee.addNewEmployee(dbConnection.getConnection(), new Employee(), "Design");
-            dbUtilsEmployee.updateEmployee(dbConnection.getConnection(), new Employee("Evil", "Reptile", "annutockha777@gmail.com", "04-05-2019"), "2");
+//            dbUtilsEmployee.updateEmployee(dbConnection.getConnection(), new Employee("Evil", "Reptile", "annutockha777@gmail.com", "04-05-2019"), "2");
+        try {
+            dbUtilsEmployee.isValidEmailByDB(dbConnection.getConnection(), "dreamsicle@ukr.net");
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
-
     }
 
     public void addNewEmployee(Connection connection, Employee employee, String idDepartment) throws SQLException {
@@ -54,31 +53,37 @@ public class DBUtilsEmployee {
     public void updateEmployee(Connection connection, Employee employee, String emailEmployeeParameter) throws SQLException {
         String sqlQuery = "Update employee set name = ?, surname= ?, email=?, date = ? WHERE email = ?";
 
-        PreparedStatement preparedStatement = connection.prepareStatement(sqlQuery);
+        if (!emailEmployeeParameter.isEmpty() && !emailEmployeeParameter.contains("")) {
+            PreparedStatement preparedStatement = connection.prepareStatement(sqlQuery);
 
-        preparedStatement.setString(1, employee.getName());
-        preparedStatement.setString(2, employee.getSurname());
-        preparedStatement.setString(3, employee.getEmail());
-        preparedStatement.setString(4, employee.getCreateDate());
-        preparedStatement.setString(5, emailEmployeeParameter);
-        preparedStatement.executeUpdate();
-        preparedStatement.close();
-    }
-
-    public void removeEmployee(Connection connection, String remove) throws SQLException {
-        String sqlQuery = "DELETE FROM employee WHERE email = ?";
-
-        PreparedStatement preparedStatement = connection.prepareStatement(sqlQuery);
-
-        preparedStatement.setString(1, remove);
-        preparedStatement.executeUpdate();
+            preparedStatement.setString(1, employee.getName());
+            preparedStatement.setString(2, employee.getSurname());
+            preparedStatement.setString(3, employee.getEmail());
+            preparedStatement.setString(4, employee.getCreateDate());
+            preparedStatement.setString(5, emailEmployeeParameter);
+            preparedStatement.executeUpdate();
+        }
         connection.close();
     }
 
-    public Employee findEmployeeForUpdate(Connection connection, String emailEmployeeParameter) throws SQLException {
+    public void removeEmployee(Connection connection, String remove) throws SQLException {
+
+        String sqlQuery = "DELETE FROM employee WHERE email = ?";
+
+        if (!remove.isEmpty() && !remove.contains("")) {
+            PreparedStatement preparedStatement = connection.prepareStatement(sqlQuery);
+
+            preparedStatement.setString(1, remove);
+            preparedStatement.executeUpdate();
+        }
+        connection.close();
+    }
+
+    public Employee findEmployeeForUpdate(Connection connection, String emailEmployeeParameter) throws Exception {
         String sqlQuery = "SELECT name, surname, email, date FROM employee WHERE email = ?";
         Employee employeeList = new Employee();
 
+//        if (!emailEmployeeParameter.isEmpty() && !emailEmployeeParameter.contains("")) {
         PreparedStatement preparedStatement = connection.prepareStatement(sqlQuery);
 
         preparedStatement.setString(1, emailEmployeeParameter);
@@ -89,6 +94,27 @@ public class DBUtilsEmployee {
             employeeList.setEmail(resultSet.getString("email"));
             employeeList.setCreateDate(resultSet.getString("date"));
         }
+//        } else {
+//            throw new AppException("");
+//        }
+        connection.close();
         return employeeList;
+    }
+
+    public boolean isValidEmailByDB(Connection connection, String emailForCheck) throws SQLException {
+        boolean aBoolean = false;
+        if (emailForCheck != null && emailForCheck.length() != 0) {
+            String sqlQuery = "SELECT count(email) FROM employee WHERE email = '" + emailForCheck + "'";
+
+            PreparedStatement preparedStatement = connection.prepareStatement(sqlQuery);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                aBoolean = resultSet.getBoolean(1);
+            }
+        } else {
+
+        }
+        connection.close();
+        return aBoolean;
     }
 }

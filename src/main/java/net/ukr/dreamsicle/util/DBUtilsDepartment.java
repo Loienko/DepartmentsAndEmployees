@@ -30,14 +30,19 @@ public class DBUtilsDepartment {
         }
     }
 
-    public void addNewDepartment(Connection connection, Department department) throws SQLException {
+    public void addNewDepartment(Connection connection, Department department) {
         String sqlQuery = "INSERT INTO department(name_depart, count_employee) VALUES (?, ?)";
 
-        PreparedStatement preparedStatement = connection.prepareStatement(sqlQuery);
-        preparedStatement.setString(1, department.getName_depart());
-        preparedStatement.setInt(2, department.getCount_employee());
-        preparedStatement.executeUpdate();
-        connection.close();
+        try (PreparedStatement preparedStatement = connection.prepareStatement(sqlQuery)) {
+            preparedStatement.setString(1, department.getName_depart());
+            preparedStatement.setInt(2, department.getCount_employee());
+            preparedStatement.executeUpdate();
+            connection.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+
     }
 
     public void updateDepartment(Connection connection, String department, String nameDepartForChange) throws SQLException {
@@ -62,21 +67,24 @@ public class DBUtilsDepartment {
         connection.close();
     }
 
-    public List<Department> getListDepartment(Connection connection) throws SQLException {
+    public List<Department> getListDepartment(Connection connection) {
         String sqlQuery = "SELECT * FROM department ORDER BY name_depart";
-
-        PreparedStatement preparedStatement = connection.prepareStatement(sqlQuery);
-        getCountTable(connection);
-        ResultSet resultSet = preparedStatement.executeQuery();
         List<Department> list = new ArrayList<>();
 
-        while (resultSet.next()) {
-            Department department = new Department();
-            department.setName_depart(resultSet.getString(2));
-            department.setCount_employee(resultSet.getInt(3));
-            list.add(department);
+        try (PreparedStatement preparedStatement = connection.prepareStatement(sqlQuery)) {
+            getCountTable(connection);
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()) {
+                Department department = new Department();
+                department.setName_depart(resultSet.getString(2));
+                department.setCount_employee(resultSet.getInt(3));
+                list.add(department);
+            }
+            connection.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
-        connection.close();
         return list;
     }
 

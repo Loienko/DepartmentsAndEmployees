@@ -11,7 +11,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.Connection;
-import java.sql.SQLException;
 
 @WebServlet("/addNewDepartment")
 public class AddNewDepartmentController extends AbstractServlet {
@@ -31,15 +30,10 @@ public class AddNewDepartmentController extends AbstractServlet {
 
         Department departmentAddNewDepart = new Department(0, newNameDepartment, 0);
 
-        try {
-            dbUtilsDepartment.addNewDepartment(connection, departmentAddNewDepart);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+        dbUtilsDepartment.addNewDepartment(connection, departmentAddNewDepart);
 
         req.setAttribute("departmentAddNewDepart", departmentAddNewDepart);
 
-//        forwardToPage("department.jsp", req, resp);
         resp.sendRedirect(req.getContextPath() + "/department");
     }
 }

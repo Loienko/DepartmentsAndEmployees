@@ -4,6 +4,7 @@ import net.ukr.dreamsicle.beans.Employee;
 import net.ukr.dreamsicle.connection.DBConnection;
 import net.ukr.dreamsicle.servlet.AbstractServlet;
 import net.ukr.dreamsicle.util.DBUtilsEmployee;
+import net.ukr.dreamsicle.validation.ValidEmailAddress;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -16,6 +17,9 @@ import java.sql.SQLException;
 
 @WebServlet("/addNewEmployee")
 public class AddNewEmployeeController extends AbstractServlet {
+
+    private ValidEmailAddress validEmailAddress = new ValidEmailAddress();
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String parameterNameDepartment = req.getParameter("nameDepartment");
@@ -26,14 +30,22 @@ public class AddNewEmployeeController extends AbstractServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        req.setCharacterEncoding("UTF-8");
         DBUtilsEmployee dbUtilsEmployee = new DBUtilsEmployee();
         Connection connection = new DBConnection().getConnection();
+        String errorEmail = "";
 
         String parameterNameDepartment = (String) req.getSession().getAttribute("parameterNameDepartment");
         String nameEmployee = req.getParameter("nameEmployee");
         String surnameEmployee = req.getParameter("surnameEmployee");
         String emailEmployee = req.getParameter("emailEmployee");
         String dateEmployee = req.getParameter("dateEmployee");
+
+        if (validEmailAddress.isValidEmailAddress(emailEmployee)) {
+            errorEmail = "";
+        } else {
+            errorEmail = "regular";
+        }
 
         Employee employeeAddNewEmployee = new Employee(nameEmployee, surnameEmployee, emailEmployee, getDateFormat(dateEmployee));
 
@@ -51,7 +63,7 @@ public class AddNewEmployeeController extends AbstractServlet {
     private String getDateFormat(String dateEmployee) {
         String[] split = dateEmployee.split("-");
         StringBuffer stringBuffer = new StringBuffer();
-        for (int i = split.length-1; i >= 0; i--) {
+        for (int i = split.length - 1; i >= 0; i--) {
             stringBuffer.append(split[i]).append(".");
         }
         return stringBuffer.substring(0, stringBuffer.length() - 1);

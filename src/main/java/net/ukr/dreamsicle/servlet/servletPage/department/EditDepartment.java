@@ -36,6 +36,7 @@ public class EditDepartment extends AbstractServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        req.setCharacterEncoding("UTF-8");
         String nameUpdateDepartment = req.getParameter("nameUpdateDepartment");
 
         Connection connection = new DBConnection().getConnection();

@@ -4,6 +4,7 @@ import net.ukr.dreamsicle.beans.Employee;
 import net.ukr.dreamsicle.connection.DBConnection;
 import net.ukr.dreamsicle.servlet.AbstractServlet;
 import net.ukr.dreamsicle.util.DBUtilsEmployee;
+import net.ukr.dreamsicle.validation.ValidEmailAddress;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -16,6 +17,7 @@ import java.sql.SQLException;
 @WebServlet("/editEmployee")
 public class EditEmployeeController extends AbstractServlet {
     String emailEmployeeParameter;
+    private ValidEmailAddress validEmailAddress = new ValidEmailAddress();
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -27,8 +29,7 @@ public class EditEmployeeController extends AbstractServlet {
 
         try {
             employeeForUpdate = dbUtilsEmployee.findEmployeeForUpdate(connection, emailEmployeeParameter);
-
-        } catch (SQLException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
         req.setAttribute("employeeForUpdate", employeeForUpdate);
@@ -37,11 +38,17 @@ public class EditEmployeeController extends AbstractServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        req.setCharacterEncoding("UTF-8");
         String updateNameEmployee = req.getParameter("updateNameEmployee");
         String updateSurnameEmployee = req.getParameter("updateSurnameEmployee");
         String updateEmailEmployee = req.getParameter("updateEmailEmployee");
         String updateDateEmployee = req.getParameter("updateDateEmployee");
 
+        /*if (validEmailAddress.isValidEmailAddress(updateEmailEmployee)) {
+
+        } else {
+
+        }*/
 
         Connection connection = new DBConnection().getConnection();
         DBUtilsEmployee dbUtilsEmployee = new DBUtilsEmployee();
