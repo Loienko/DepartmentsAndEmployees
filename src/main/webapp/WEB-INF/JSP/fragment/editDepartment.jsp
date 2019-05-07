@@ -1,4 +1,3 @@
-<%--@elvariable id="departmentForUpdate" type="net.ukr.dreamsicle.beans.Department"--%>
 <%@ page import="static net.ukr.dreamsicle.consts.Constants.REGEX_CHECK_VALID_NAME_SURNAME_DEPARTMENT" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>

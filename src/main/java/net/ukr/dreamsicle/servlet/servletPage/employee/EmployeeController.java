@@ -2,6 +2,7 @@ package net.ukr.dreamsicle.servlet.servletPage.employee;
 
 import net.ukr.dreamsicle.beans.Employee;
 import net.ukr.dreamsicle.connection.DBConnection;
+import net.ukr.dreamsicle.exception.ApplicationException;
 import net.ukr.dreamsicle.servlet.AbstractServlet;
 import net.ukr.dreamsicle.util.DBUtilsDepartment;
 
@@ -11,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -19,11 +21,8 @@ public class EmployeeController extends AbstractServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         List<Employee> employeeList = null;
-
-        DBConnection dbConnection = new DBConnection();
-        DBUtilsDepartment dbUtilsDepartment = new DBUtilsDepartment();
-
         HttpSession session = req.getSession();
+        boolean check = false;
 
         String nameDepartFromDepartment = req.getParameter("name_depart");
         if (nameDepartFromDepartment != null) {
@@ -33,14 +32,30 @@ public class EmployeeController extends AbstractServlet {
             nameDepartFromDepartment = (String) session.getAttribute("nameDepartFromDepartment");
         }
 
-        try {
-            employeeList = dbUtilsDepartment.getEmployeeListFromDepartmentType(dbConnection.getConnection(), nameDepartFromDepartment);
-        } catch (SQLException e) {
-            e.printStackTrace();
+        if (!nameDepartFromDepartment.isEmpty()) {
+            Connection connection = new DBConnection().getConnection();
+            DBUtilsDepartment dbUtilsDepartment = new DBUtilsDepartment();
+            try {
+                if (!connection.isClosed()) {
+                    employeeList = dbUtilsDepartment.getEmployeeListFromDepartmentType(connection, nameDepartFromDepartment);
+                } else {
+                    check = true;
+                    forwardToPage("error.jsp", req, resp);
+                }
+            } catch (SQLException e) {
+                check = true;
+                e.printStackTrace();
+//                throw new ApplicationException("Can't execute db command: " + e.getMessage(), e);
+                forwardToPage("error.jsp", req, resp);
+            }
         }
 
-        req.setAttribute("employeeList", employeeList);
-        forwardToPage("employee.jsp", req, resp);
+        if (!check) {
+            req.setAttribute("employeeList", employeeList);
+            forwardToPage("employee.jsp", req, resp);
+        } else {
+            forwardToPage("error.jsp", req, resp);
+        }
     }
 
     @Override

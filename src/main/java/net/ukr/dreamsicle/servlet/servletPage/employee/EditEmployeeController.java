@@ -2,6 +2,7 @@ package net.ukr.dreamsicle.servlet.servletPage.employee;
 
 import net.ukr.dreamsicle.beans.Employee;
 import net.ukr.dreamsicle.connection.DBConnection;
+import net.ukr.dreamsicle.exception.ApplicationException;
 import net.ukr.dreamsicle.servlet.AbstractServlet;
 import net.ukr.dreamsicle.util.DBUtilsEmployee;
 import net.ukr.dreamsicle.validation.ValidEmailAddress;
@@ -23,14 +24,21 @@ public class EditEmployeeController extends AbstractServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         emailEmployeeParameter = req.getParameter("emailEmployee");
         req.setAttribute("emailEmployeeParameter", emailEmployeeParameter);
-        Connection connection = new DBConnection().getConnection();
-        DBUtilsEmployee dbUtilsEmployee = new DBUtilsEmployee();
+
         Employee employeeForUpdate = null;
 
-        try {
-            employeeForUpdate = dbUtilsEmployee.findEmployeeForUpdate(connection, emailEmployeeParameter);
-        } catch (Exception e) {
-            e.printStackTrace();
+        if (emailEmployeeParameter.isEmpty()) {
+            forwardToPage("error.jsp", req, resp);
+        } else {
+            Connection connection = new DBConnection().getConnection();
+            DBUtilsEmployee dbUtilsEmployee = new DBUtilsEmployee();
+            try {
+                employeeForUpdate = dbUtilsEmployee.findEmployeeForUpdate(connection, emailEmployeeParameter);
+            } catch (Exception e) {
+                e.printStackTrace();
+//                throw new ApplicationException("Can't execute db command: " + e.getMessage(), e);
+                forwardToPage("error.jsp", req, resp);
+            }
         }
         req.setAttribute("employeeForUpdate", employeeForUpdate);
         forwardToFragment("editEmployee.jsp", req, resp);
@@ -57,7 +65,9 @@ public class EditEmployeeController extends AbstractServlet {
         try {
             dbUtilsEmployee.updateEmployee(connection, employeeUpdate, emailEmployeeParameter);
         } catch (SQLException e) {
+//            throw new ApplicationException("Can't execute db command: " + e.getMessage(), e);
             e.printStackTrace();
+            forwardToPage("error.jsp", req, resp);
         }
         resp.sendRedirect(req.getContextPath() + "/employee");
     }

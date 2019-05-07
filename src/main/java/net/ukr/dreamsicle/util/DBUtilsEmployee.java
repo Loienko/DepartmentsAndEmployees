@@ -26,7 +26,6 @@ public class DBUtilsEmployee {
         String sqlQuery = "INSERT INTO employee(id_department ,name, surname, email, date) VALUES (?, ?, ?, ?, ?)";
 
         int anInt = getAnInt(connection, idDepartment);
-
         PreparedStatement preparedStatement = connection.prepareStatement(sqlQuery);
 
         preparedStatement.setInt(1, anInt);
@@ -53,29 +52,24 @@ public class DBUtilsEmployee {
     public void updateEmployee(Connection connection, Employee employee, String emailEmployeeParameter) throws SQLException {
         String sqlQuery = "Update employee set name = ?, surname= ?, email=?, date = ? WHERE email = ?";
 
-        if (!emailEmployeeParameter.isEmpty() && !emailEmployeeParameter.contains("")) {
-            PreparedStatement preparedStatement = connection.prepareStatement(sqlQuery);
+        PreparedStatement preparedStatement = connection.prepareStatement(sqlQuery);
 
-            preparedStatement.setString(1, employee.getName());
-            preparedStatement.setString(2, employee.getSurname());
-            preparedStatement.setString(3, employee.getEmail());
-            preparedStatement.setString(4, employee.getCreateDate());
-            preparedStatement.setString(5, emailEmployeeParameter);
-            preparedStatement.executeUpdate();
-        }
+        preparedStatement.setString(1, employee.getName());
+        preparedStatement.setString(2, employee.getSurname());
+        preparedStatement.setString(3, employee.getEmail());
+        preparedStatement.setString(4, employee.getCreateDate());
+        preparedStatement.setString(5, emailEmployeeParameter);
+        preparedStatement.executeUpdate();
         connection.close();
     }
 
     public void removeEmployee(Connection connection, String remove) throws SQLException {
 
         String sqlQuery = "DELETE FROM employee WHERE email = ?";
+        PreparedStatement preparedStatement = connection.prepareStatement(sqlQuery);
 
-        if (!remove.isEmpty() && !remove.contains("")) {
-            PreparedStatement preparedStatement = connection.prepareStatement(sqlQuery);
-
-            preparedStatement.setString(1, remove);
-            preparedStatement.executeUpdate();
-        }
+        preparedStatement.setString(1, remove);
+        preparedStatement.executeUpdate();
         connection.close();
     }
 
@@ -83,7 +77,6 @@ public class DBUtilsEmployee {
         String sqlQuery = "SELECT name, surname, email, date FROM employee WHERE email = ?";
         Employee employeeList = new Employee();
 
-//        if (!emailEmployeeParameter.isEmpty() && !emailEmployeeParameter.contains("")) {
         PreparedStatement preparedStatement = connection.prepareStatement(sqlQuery);
 
         preparedStatement.setString(1, emailEmployeeParameter);
@@ -94,25 +87,18 @@ public class DBUtilsEmployee {
             employeeList.setEmail(resultSet.getString("email"));
             employeeList.setCreateDate(resultSet.getString("date"));
         }
-//        } else {
-//            throw new AppException("");
-//        }
         connection.close();
         return employeeList;
     }
 
     public boolean isValidEmailByDB(Connection connection, String emailForCheck) throws SQLException {
         boolean aBoolean = false;
-        if (emailForCheck != null && emailForCheck.length() != 0) {
-            String sqlQuery = "SELECT count(email) FROM employee WHERE email = '" + emailForCheck + "'";
+        String sqlQuery = "SELECT count(email) FROM employee WHERE email = '" + emailForCheck + "'";
 
-            PreparedStatement preparedStatement = connection.prepareStatement(sqlQuery);
-            ResultSet resultSet = preparedStatement.executeQuery();
-            while (resultSet.next()) {
-                aBoolean = resultSet.getBoolean(1);
-            }
-        } else {
-
+        PreparedStatement preparedStatement = connection.prepareStatement(sqlQuery);
+        ResultSet resultSet = preparedStatement.executeQuery();
+        while (resultSet.next()) {
+            aBoolean = resultSet.getBoolean(1);
         }
         connection.close();
         return aBoolean;

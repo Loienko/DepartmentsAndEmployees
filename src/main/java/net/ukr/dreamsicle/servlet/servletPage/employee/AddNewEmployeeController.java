@@ -25,15 +25,19 @@ public class AddNewEmployeeController extends AbstractServlet {
         String parameterNameDepartment = req.getParameter("nameDepartment");
         HttpSession session = req.getSession();
         session.setAttribute("parameterNameDepartment", parameterNameDepartment);
+        String errorDataEmployee = (String) session.getAttribute("errorData");
+        req.setAttribute("errorDataEmployee", errorDataEmployee);
         forwardToFragment("add_new_employee.jsp", req, resp);
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.setCharacterEncoding("UTF-8");
-        DBUtilsEmployee dbUtilsEmployee = new DBUtilsEmployee();
-        Connection connection = new DBConnection().getConnection();
+        HttpSession session = req.getSession();
+        boolean hasError = false;
+        String errorDataEmployee = "";
         String errorEmail = "";
+        Employee employeeAddNewEmployee = null;
 
         String parameterNameDepartment = (String) req.getSession().getAttribute("parameterNameDepartment");
         String nameEmployee = req.getParameter("nameEmployee");
@@ -41,23 +45,40 @@ public class AddNewEmployeeController extends AbstractServlet {
         String emailEmployee = req.getParameter("emailEmployee");
         String dateEmployee = req.getParameter("dateEmployee");
 
-        if (validEmailAddress.isValidEmailAddress(emailEmployee)) {
+        /*if (validEmailAddress.isValidUniqueEmailAddress(emailEmployee)) {
             errorEmail = "";
         } else {
             errorEmail = "regular";
+        }*/
+
+        if (nameEmployee.isEmpty() || surnameEmployee.isEmpty() || emailEmployee.isEmpty()) {
+            hasError = true;
+            errorDataEmployee = "Please Input correct data (name, surname, email) !!!";
+        } else {
+            DBUtilsEmployee dbUtilsEmployee = new DBUtilsEmployee();
+            Connection connection = new DBConnection().getConnection();
+            employeeAddNewEmployee = new Employee(nameEmployee, surnameEmployee, emailEmployee, getDateFormat(dateEmployee));
+            try {
+                if (!connection.isClosed()) {
+                    dbUtilsEmployee.addNewEmployee(connection, employeeAddNewEmployee, parameterNameDepartment);
+                } else {
+                    forwardToPage("error.jsp", req, resp);
+                }
+            } catch (SQLException e) {
+                hasError = true;
+                e.printStackTrace();
+                forwardToPage("error.jsp", req, resp);
+//                throw new ApplicationException("Can't execute db command: " + e.getMessage(), e);
+            }
         }
 
-        Employee employeeAddNewEmployee = new Employee(nameEmployee, surnameEmployee, emailEmployee, getDateFormat(dateEmployee));
-
-        try {
-            dbUtilsEmployee.addNewEmployee(connection, employeeAddNewEmployee, parameterNameDepartment);
-        } catch (SQLException e) {
-            e.printStackTrace();
+        if (hasError) {
+            session.setAttribute("errorDataEmployee", errorDataEmployee);
+            forwardToFragment("add_new_employee.jsp", req, resp);
+        } else {
+            req.setAttribute("employeeAddNewEmployee", employeeAddNewEmployee);
+            resp.sendRedirect(req.getContextPath() + "/employee");
         }
-
-        req.setAttribute("employeeAddNewEmployee", employeeAddNewEmployee);
-
-        resp.sendRedirect(req.getContextPath() + "/employee");
     }
 
     private String getDateFormat(String dateEmployee) {

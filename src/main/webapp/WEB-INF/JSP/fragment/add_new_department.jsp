@@ -1,4 +1,3 @@
-<%--@elvariable id="department" type="net.ukr.dreamsicle.beans.Department"--%>
 <%@ page import="static net.ukr.dreamsicle.consts.Constants.REGEX_CHECK_VALID_NAME_SURNAME_DEPARTMENT" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" trimDirectiveWhitespaces="true" %>
 
@@ -9,7 +8,7 @@
     <title>Create new Department</title>
 </head>
 <h2>Create Department</h2>
-
+<p style="color: red">${errorDataDepartment}</p>
 <form method="post" action="${pageContext.request.contextPath}/addNewDepartment">
     <table border="0">
         <tr>

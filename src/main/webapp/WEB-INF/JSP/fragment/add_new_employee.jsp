@@ -9,20 +9,22 @@
     <title>Create new Employee</title>
 </head>
 <h2>Create new Employee</h2>
-
+<p style="color: red">${errorDataEmployee}</p>
 <form method="post" action="${pageContext.request.contextPath}/addNewEmployee">
     <table border="2">
         <tr>
             <td align="center">Name</td>
             <td align="center">
-                <input type="text" placeholder="Name" pattern=<%=REGEX_CHECK_VALID_NAME_SURNAME_EMPLOYEE%> name="nameEmployee"
+                <input type="text" placeholder="Name"
+                       pattern=<%=REGEX_CHECK_VALID_NAME_SURNAME_EMPLOYEE%> name="nameEmployee"
                        value="${employee.name}">
             </td>
         </tr>
         <tr>
             <td align="center">Surname</td>
             <td>
-                <input type="text" placeholder="Surname" pattern=<%=REGEX_CHECK_VALID_NAME_SURNAME_EMPLOYEE%> name="surnameEmployee"
+                <input type="text" placeholder="Surname"
+                       pattern=<%=REGEX_CHECK_VALID_NAME_SURNAME_EMPLOYEE%> name="surnameEmployee"
                        value="${employee.surname}">
             </td>
         </tr>

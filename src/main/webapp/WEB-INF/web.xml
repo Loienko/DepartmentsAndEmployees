@@ -8,14 +8,8 @@
         <tracking-mode>COOKIE</tracking-mode>
     </session-config>
 
-
-    <!--<welcome-file-list>
-
-        <welcome-file>department</welcome-file>
-
-        <welcome-file>index.jsp</welcome-file>
-
-    </welcome-file-list>-->
-
-
+    <error-page>
+        <error-code>404</error-code>
+        <location>/error</location>
+    </error-page>
 </web-app>

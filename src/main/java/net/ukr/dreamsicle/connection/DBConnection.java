@@ -19,6 +19,7 @@ public class DBConnection {
                     readDataFromResFileAppProp.getProperties("db.url"),
                     readDataFromResFileAppProp.getProperties("db.username"),
                     readDataFromResFileAppProp.getProperties("db.password"));
+            connection.setAutoCommit(true);
         } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
         }
@@ -32,4 +33,6 @@ public class DBConnection {
             e.printStackTrace();
         }
     }
+
+
 }

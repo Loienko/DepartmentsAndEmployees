@@ -17,11 +17,11 @@ public class ValidEmailAddress {
 
     @Test
     public static void main(String[] args) {
-        System.out.println(new ValidEmailAddress().isValidEmailAddress("dreamsicle@ukr.net"));
+        System.out.println(new ValidEmailAddress().isValidUniqueEmailAddress("dreamsicle@ukr.net"));
 
     }
 
-    public boolean isValidEmailAddress(String email) {
+    public boolean isValidUniqueEmailAddress(String email) {
         matcher = pattern.matcher(email);
         if (matcher.matches()) {
             return true;

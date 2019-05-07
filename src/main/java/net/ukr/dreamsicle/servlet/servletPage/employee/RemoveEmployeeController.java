@@ -1,6 +1,7 @@
 package net.ukr.dreamsicle.servlet.servletPage.employee;
 
 import net.ukr.dreamsicle.connection.DBConnection;
+import net.ukr.dreamsicle.exception.ApplicationException;
 import net.ukr.dreamsicle.servlet.AbstractServlet;
 import net.ukr.dreamsicle.util.DBUtilsEmployee;
 
@@ -9,6 +10,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.sql.Connection;
 import java.sql.SQLException;
 
 @WebServlet("/removeEmployee")
@@ -17,22 +19,20 @@ public class RemoveEmployeeController extends AbstractServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String delete = req.getParameter("emailEmployee");
 
-        DBConnection dbConnection = new DBConnection();
-        DBUtilsEmployee dbUtilsEmployee = new DBUtilsEmployee();
-
-        String errorString = null;
-        try {
-            dbUtilsEmployee.removeEmployee(dbConnection.getConnection(), delete);
-        } catch (SQLException e) {
-            e.printStackTrace();
-            errorString = e.getMessage();
-        } finally {
-            dbConnection.destroy();
-        }
-
-        if (errorString != null) {
-            req.setAttribute("errorString", errorString);
-            forwardToFragment("removeEmployee.jsp", req, resp);
+        if (!delete.isEmpty()) {
+            Connection connection = new DBConnection().getConnection();
+            DBUtilsEmployee dbUtilsEmployee = new DBUtilsEmployee();
+            try {
+                if (!connection.isClosed()) {
+                    dbUtilsEmployee.removeEmployee(connection, delete);
+                } else {
+                    forwardToPage("error.jsp", req, resp);
+                }
+            } catch (SQLException e) {
+//                throw new ApplicationException("Can't execute db command: " + e.getMessage(), e);
+                e.printStackTrace();
+                forwardToPage("error.jsp", req, resp);
+            }
         } else {
             resp.sendRedirect(req.getContextPath() + "/employee");
         }
