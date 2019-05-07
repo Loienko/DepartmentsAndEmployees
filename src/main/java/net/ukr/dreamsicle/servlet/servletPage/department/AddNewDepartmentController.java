@@ -28,20 +28,20 @@ public class AddNewDepartmentController extends AbstractServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.setCharacterEncoding("UTF-8");
+        HttpSession session = req.getSession();
         boolean hasError = false;
         String errorDataDepartment = "";
-        HttpSession session = req.getSession();
-
         Department departmentAddNewDepart = null;
+
         String newNameDepartment = req.getParameter("newNameDepartment");
 
         if (newNameDepartment == null || newNameDepartment.isEmpty()) {
             hasError = true;
             errorDataDepartment = "Sorry, You have not entered the department name. Please enter a name";
         } else {
-            departmentAddNewDepart = new Department(0, newNameDepartment, 0);
             DBUtilsDepartment dbUtilsDepartment = new DBUtilsDepartment();
             Connection connection = new DBConnection().getConnection();
+            departmentAddNewDepart = new Department(0, newNameDepartment, 0);
             try {
                 if (!connection.isClosed()) {
                     String uniqueDepartmentName = dbUtilsDepartment.getUniqueDepartmentName(connection, newNameDepartment);

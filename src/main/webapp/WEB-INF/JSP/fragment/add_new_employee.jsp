@@ -9,7 +9,7 @@
     <title>Create new Employee</title>
 </head>
 <h2>Create new Employee</h2>
-<p style="color: red">${errorDataEmployee}</p>
+<p style="color: red">${errorAddDataEmployee}</p>
 <form method="post" action="${pageContext.request.contextPath}/addNewEmployee">
     <table border="2">
         <tr>

@@ -14,6 +14,8 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 
 @WebServlet("/addNewEmployee")
 public class AddNewEmployeeController extends AbstractServlet {
@@ -22,11 +24,14 @@ public class AddNewEmployeeController extends AbstractServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String parameterNameDepartment = req.getParameter("nameDepartment");
         HttpSession session = req.getSession();
+
+        String parameterNameDepartment = req.getParameter("nameDepartment");
+        String errorAddDataEmployee = (String) session.getAttribute("errorAddDataEmployee");
+
         session.setAttribute("parameterNameDepartment", parameterNameDepartment);
-        String errorDataEmployee = (String) session.getAttribute("errorData");
-        req.setAttribute("errorDataEmployee", errorDataEmployee);
+        req.setAttribute("errorAddDataEmployee", errorAddDataEmployee);
+
         forwardToFragment("add_new_employee.jsp", req, resp);
     }
 
@@ -35,48 +40,51 @@ public class AddNewEmployeeController extends AbstractServlet {
         req.setCharacterEncoding("UTF-8");
         HttpSession session = req.getSession();
         boolean hasError = false;
-        String errorDataEmployee = "";
-        String errorEmail = "";
+        String errorAddDataEmployee = "";
         Employee employeeAddNewEmployee = null;
 
         String parameterNameDepartment = (String) req.getSession().getAttribute("parameterNameDepartment");
+
         String nameEmployee = req.getParameter("nameEmployee");
         String surnameEmployee = req.getParameter("surnameEmployee");
         String emailEmployee = req.getParameter("emailEmployee");
         String dateEmployee = req.getParameter("dateEmployee");
 
-        /*if (validEmailAddress.isValidUniqueEmailAddress(emailEmployee)) {
-            errorEmail = "";
-        } else {
-            errorEmail = "regular";
-        }*/
+        if (dateEmployee.isEmpty()) {
+            dateEmployee = new SimpleDateFormat("dd.MM.yyyy").format(Calendar.getInstance().getTime());
+        }
+        boolean validUniqueEmailAddress = validEmailAddress.isValidUniqueEmailAddress(emailEmployee);
 
         if (nameEmployee.isEmpty() || surnameEmployee.isEmpty() || emailEmployee.isEmpty()) {
             hasError = true;
-            errorDataEmployee = "Please Input correct data (name, surname, email) !!!";
+//            errorAddDataEmployee = "Please Input data (name, surname, email) !!!";
         } else {
             DBUtilsEmployee dbUtilsEmployee = new DBUtilsEmployee();
             Connection connection = new DBConnection().getConnection();
-            if (dateEmployee.isEmpty()){
-
-            }
             employeeAddNewEmployee = new Employee(nameEmployee, surnameEmployee, emailEmployee, getDateFormat(dateEmployee));
             try {
                 if (!connection.isClosed()) {
-                    dbUtilsEmployee.addNewEmployee(connection, employeeAddNewEmployee, parameterNameDepartment);
+                    boolean validEmailByDB = dbUtilsEmployee.isValidEmailByDB(connection, emailEmployee);
+                    if (validUniqueEmailAddress && !validEmailByDB) {
+                        dbUtilsEmployee.addNewEmployee(connection, employeeAddNewEmployee, parameterNameDepartment);
+                    } else {
+                        hasError = true;
+                        errorAddDataEmployee = "Please input unique email address";
+                    }
                 } else {
-                    forwardToPage("error.jsp", req, resp);
+                    hasError = true;
+                    errorAddDataEmployee = "Sorry, problem with connection to DB, Try again later...";
                 }
             } catch (SQLException e) {
-                hasError = true;
+//                throw new ApplicationException("Can't execute db command: " + e.getMessage(), e);
+                errorAddDataEmployee = "Sorry, problem with connection DB, Try again later...";
                 e.printStackTrace();
                 forwardToPage("error.jsp", req, resp);
-//                throw new ApplicationException("Can't execute db command: " + e.getMessage(), e);
             }
         }
 
         if (hasError) {
-            session.setAttribute("errorDataEmployee", errorDataEmployee);
+            session.setAttribute("errorAddDataEmployee", errorAddDataEmployee);
             forwardToFragment("add_new_employee.jsp", req, resp);
         } else {
             req.setAttribute("employeeAddNewEmployee", employeeAddNewEmployee);

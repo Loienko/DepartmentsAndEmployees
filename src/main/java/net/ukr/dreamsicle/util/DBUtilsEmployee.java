@@ -16,7 +16,8 @@ public class DBUtilsEmployee {
 //            dbUtilsEmployee.addNewEmployee(dbConnection.getConnection(), new Employee(), "Design");
 //            dbUtilsEmployee.updateEmployee(dbConnection.getConnection(), new Employee("Evil", "Reptile", "annutockha777@gmail.com", "04-05-2019"), "2");
         try {
-            dbUtilsEmployee.isValidEmailByDB(dbConnection.getConnection(), "dreamsicle@ukr.net");
+            boolean validEmailByDB = dbUtilsEmployee.isValidEmailByDB(dbConnection.getConnection(), "drea@ukr.net");
+            System.out.println(validEmailByDB);
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -57,7 +58,12 @@ public class DBUtilsEmployee {
         preparedStatement.setString(1, employee.getName());
         preparedStatement.setString(2, employee.getSurname());
         preparedStatement.setString(3, employee.getEmail());
-        preparedStatement.setString(4, employee.getCreateDate());
+        String createDate = employee.getCreateDate();
+        if (createDate.isEmpty()) {
+
+        } else {
+            preparedStatement.setString(4, createDate);
+        }
         preparedStatement.setString(5, emailEmployeeParameter);
         preparedStatement.executeUpdate();
         connection.close();
@@ -100,7 +106,6 @@ public class DBUtilsEmployee {
         while (resultSet.next()) {
             aBoolean = resultSet.getBoolean(1);
         }
-        connection.close();
         return aBoolean;
     }
 }

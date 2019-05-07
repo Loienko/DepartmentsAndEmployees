@@ -24,7 +24,6 @@ public class Employee implements Serializable {
     }
 
     public Employee(String name, String surname, String email, String createDate) {
-
         this.name = name;
         this.surname = surname;
         this.email = email;
@@ -54,7 +53,6 @@ public class Employee implements Serializable {
     public void setEmail(String email) {
         this.email = email;
     }
-
 
     @Override
     public String toString() {

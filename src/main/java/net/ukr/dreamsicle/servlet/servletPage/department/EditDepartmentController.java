@@ -53,8 +53,6 @@ public class EditDepartmentController extends AbstractServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.setCharacterEncoding("UTF-8");
         String nameUpdateDepartment = req.getParameter("nameUpdateDepartment");
-        String errorEditDepartment = "";
-        HttpSession session = req.getSession();
 
         Connection connection = new DBConnection().getConnection();
         DBUtilsDepartment dbUtilsDepartment = new DBUtilsDepartment();
@@ -82,9 +80,6 @@ public class EditDepartmentController extends AbstractServlet {
                 forwardToPage("error.jsp", req, resp);
             }
         } else {
-//            errorEditDepartment = "You have not entered the department name, please repeat your input.";
-//            session.setAttribute("errorEditDepartment", errorEditDepartment);
-//            forwardToFragment("editDepartment.jsp", req, resp);
             resp.sendRedirect(req.getContextPath() + "/department");
         }
     }

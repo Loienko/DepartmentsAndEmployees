@@ -7,7 +7,7 @@
 </head>
 <body>
 <h3>Edit Employee</h3>
-
+<p style="color: red">${errorEditEmployee}</p>
 <form method="post" action="editEmployee">
     <table border="2">
         <tr>

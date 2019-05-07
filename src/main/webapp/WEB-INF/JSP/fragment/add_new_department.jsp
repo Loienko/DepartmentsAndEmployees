@@ -7,7 +7,7 @@
     <meta charset="UTF-8">
     <title>Create new Department</title>
 </head>
-<h2>Create Department</h2>
+<h2>Create new Department</h2>
 <p style="color: red">${errorDataDepartment}</p>
 <form method="post" action="${pageContext.request.contextPath}/addNewDepartment">
     <table border="0">
