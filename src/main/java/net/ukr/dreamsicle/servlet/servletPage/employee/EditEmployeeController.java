@@ -25,23 +25,21 @@ public class EditEmployeeController extends AbstractServlet {
         emailEmployeeParameter = req.getParameter("emailEmployee");
         req.setAttribute("emailEmployeeParameter", emailEmployeeParameter);
 
-        Employee employeeForUpdate = null;
-
         if (emailEmployeeParameter.isEmpty()) {
             forwardToPage("error.jsp", req, resp);
         } else {
             Connection connection = new DBConnection().getConnection();
             DBUtilsEmployee dbUtilsEmployee = new DBUtilsEmployee();
             try {
-                employeeForUpdate = dbUtilsEmployee.findEmployeeForUpdate(connection, emailEmployeeParameter);
+                Employee employeeForUpdate = dbUtilsEmployee.findEmployeeForUpdate(connection, emailEmployeeParameter);
+                req.setAttribute("employeeForUpdate", employeeForUpdate);
+                forwardToFragment("editEmployee.jsp", req, resp);
             } catch (Exception e) {
                 e.printStackTrace();
 //                throw new ApplicationException("Can't execute db command: " + e.getMessage(), e);
                 forwardToPage("error.jsp", req, resp);
             }
         }
-        req.setAttribute("employeeForUpdate", employeeForUpdate);
-        forwardToFragment("editEmployee.jsp", req, resp);
     }
 
     @Override
@@ -52,24 +50,23 @@ public class EditEmployeeController extends AbstractServlet {
         String updateEmailEmployee = req.getParameter("updateEmailEmployee");
         String updateDateEmployee = req.getParameter("updateDateEmployee");
 
-        /*if (validEmailAddress.isValidEmailAddress(updateEmailEmployee)) {
-
-        } else {
-
-        }*/
-
-        Connection connection = new DBConnection().getConnection();
-        DBUtilsEmployee dbUtilsEmployee = new DBUtilsEmployee();
-        Employee employeeUpdate = new Employee(updateNameEmployee, updateSurnameEmployee, updateEmailEmployee, getDateFormat(updateDateEmployee));
-
-        try {
-            dbUtilsEmployee.updateEmployee(connection, employeeUpdate, emailEmployeeParameter);
-        } catch (SQLException e) {
+        if (!updateDateEmployee.isEmpty() || !updateSurnameEmployee.isEmpty() || !updateEmailEmployee.isEmpty()) {
+            Connection connection = new DBConnection().getConnection();
+            DBUtilsEmployee dbUtilsEmployee = new DBUtilsEmployee();
+            Employee employeeUpdate = new Employee(updateNameEmployee, updateSurnameEmployee, updateEmailEmployee, getDateFormat(updateDateEmployee));
+            try {
+                if (!connection.isClosed()) {
+                    dbUtilsEmployee.updateEmployee(connection, employeeUpdate, emailEmployeeParameter);
+                    resp.sendRedirect(req.getContextPath() + "/employee");
+                }
+            } catch (SQLException e) {
 //            throw new ApplicationException("Can't execute db command: " + e.getMessage(), e);
-            e.printStackTrace();
-            forwardToPage("error.jsp", req, resp);
+                e.printStackTrace();
+                forwardToPage("error.jsp", req, resp);
+            }
+        } else {
+            resp.sendRedirect(req.getContextPath() + "/employee");
         }
-        resp.sendRedirect(req.getContextPath() + "/employee");
     }
 
     private String getDateFormat(String dateEmployee) {

@@ -14,7 +14,7 @@ import java.sql.Connection;
 import java.sql.SQLException;
 
 @WebServlet("/removeDepartment")
-public class RemoveDepartment extends AbstractServlet {
+public class RemoveDepartmentController extends AbstractServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

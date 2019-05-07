@@ -3,12 +3,14 @@ package net.ukr.dreamsicle.util;
 import net.ukr.dreamsicle.beans.Department;
 import net.ukr.dreamsicle.beans.Employee;
 import net.ukr.dreamsicle.connection.DBConnection;
+import org.junit.Test;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
 public class DBUtilsDepartment {
+    @Test
     public static void main(String[] args) {
         DBUtilsDepartment dbUtilsDepartment = new DBUtilsDepartment();
         DBConnection dbConnection = new DBConnection();
@@ -25,8 +27,12 @@ public class DBUtilsDepartment {
 //            for (Employee employee : employeeListFromDepartmentType) {
 //                System.out.println(employee.toString());
 //            }
-            int anna = dbUtilsDepartment.getCountEmployeeFromDepartment(dbConnection.getConnection(), "Anna");
-            System.out.println(anna);
+            String anna = dbUtilsDepartment.getUniqueDepartmentName(dbConnection.getConnection(), "asd");
+            if (!anna.isEmpty()) {
+                System.out.println("not unique " + anna);
+            } else {
+                System.out.println("unique");
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -135,4 +141,18 @@ public class DBUtilsDepartment {
         }
         return anInt;
     }
+
+    public String getUniqueDepartmentName(Connection connection, String departUniqueName) throws SQLException {
+        String sqlQuery = "SELECT name_depart FROM department WHERE name_depart = ?";
+        String string = "";
+        PreparedStatement preparedStatement = connection.prepareStatement(sqlQuery);
+        preparedStatement.setString(1, departUniqueName);
+        ResultSet resultSet = preparedStatement.executeQuery();
+        while (resultSet.next()) {
+            string = resultSet.getString(1);
+        }
+        return string;
+    }
+
+
 }

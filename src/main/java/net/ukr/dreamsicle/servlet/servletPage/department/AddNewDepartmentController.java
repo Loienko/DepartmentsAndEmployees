@@ -37,19 +37,27 @@ public class AddNewDepartmentController extends AbstractServlet {
 
         if (newNameDepartment == null || newNameDepartment.isEmpty()) {
             hasError = true;
-            errorDataDepartment = "Please Input correct name department !!!";
+            errorDataDepartment = "Sorry, You have not entered the department name. Please enter a name";
         } else {
             departmentAddNewDepart = new Department(0, newNameDepartment, 0);
             DBUtilsDepartment dbUtilsDepartment = new DBUtilsDepartment();
             Connection connection = new DBConnection().getConnection();
             try {
                 if (!connection.isClosed()) {
-                    dbUtilsDepartment.addNewDepartment(connection, departmentAddNewDepart);
+                    String uniqueDepartmentName = dbUtilsDepartment.getUniqueDepartmentName(connection, newNameDepartment);
+                    if (uniqueDepartmentName.isEmpty()) {
+                        dbUtilsDepartment.addNewDepartment(connection, departmentAddNewDepart);
+                    } else {
+                        hasError = true;
+                        errorDataDepartment = "Sorry, you input not unique department name. Please repeat your input ";
+                    }
                 } else {
-                    forwardToPage("error.jsp", req, resp);
+                    hasError = true;
+                    errorDataDepartment = "Sorry, problem with connection to DB, Try again later...";
                 }
             } catch (SQLException e) {
 //                throw new ApplicationException("Can't execute db command: " + e.getMessage(), e);
+                errorDataDepartment = "Sorry, problem with connection DB, Try again later...";
                 e.printStackTrace();
                 forwardToPage("error.jsp", req, resp);
             }

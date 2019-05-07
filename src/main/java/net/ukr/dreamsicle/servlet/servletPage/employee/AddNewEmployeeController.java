@@ -57,6 +57,9 @@ public class AddNewEmployeeController extends AbstractServlet {
         } else {
             DBUtilsEmployee dbUtilsEmployee = new DBUtilsEmployee();
             Connection connection = new DBConnection().getConnection();
+            if (dateEmployee.isEmpty()){
+
+            }
             employeeAddNewEmployee = new Employee(nameEmployee, surnameEmployee, emailEmployee, getDateFormat(dateEmployee));
             try {
                 if (!connection.isClosed()) {

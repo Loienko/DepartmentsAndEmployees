@@ -25,6 +25,7 @@ public class RemoveEmployeeController extends AbstractServlet {
             try {
                 if (!connection.isClosed()) {
                     dbUtilsEmployee.removeEmployee(connection, delete);
+                    resp.sendRedirect(req.getContextPath() + "/employee");
                 } else {
                     forwardToPage("error.jsp", req, resp);
                 }

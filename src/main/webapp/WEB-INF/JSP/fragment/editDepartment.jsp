@@ -6,11 +6,11 @@
 </head>
 <body>
 <h3>Edit Department</h3>
-
+<p style="color: red">${errorEditDepartment}</p>
 <form method="post" action="editDepartment">
     <tr>
         <td>Name Department</td>
-        <td><input type="text" pattern=<%=REGEX_CHECK_VALID_NAME_SURNAME_DEPARTMENT%> name="nameUpdateDepartment"
+        <td><input type="text" pattern=<%=REGEX_CHECK_VALID_NAME_SURNAME_DEPARTMENT%> name="nameUpdateDepartment" placeholder="${departmentForUpdate.name_depart}"
                    value="${departmentForUpdate.name_depart}"/></td>
     </tr>
     <tr>
