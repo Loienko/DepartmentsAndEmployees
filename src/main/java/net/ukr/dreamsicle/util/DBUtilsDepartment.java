@@ -57,15 +57,9 @@ public class DBUtilsDepartment {
     public void deleteDepartment(Connection connection, String nameDepartForDelete) throws SQLException {
         String sqlQuery = "DELETE FROM department WHERE name_depart = ?";
 
-//        int countEmployeeFromDepartment = getCountEmployeeFromDepartment(connection, nameDepartForDelete);
-
-//        if (countEmployeeFromDepartment > 0) {
         PreparedStatement preparedStatement = connection.prepareStatement(sqlQuery);
         preparedStatement.setString(1, nameDepartForDelete);
         preparedStatement.executeUpdate();
-//        } else {
-//            return;
-//        }
         connection.close();
     }
 
