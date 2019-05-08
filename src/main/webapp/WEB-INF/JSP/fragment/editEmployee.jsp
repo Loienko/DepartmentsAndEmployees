@@ -13,28 +13,37 @@
         <tr>
             <td align="center">Name</td>
             <td align="center">
-                <input type="text" pattern=<%=REGEX_CHECK_VALID_NAME_SURNAME_EMPLOYEE%> name="updateNameEmployee"
-                       value="${employeeForUpdate.name}">
+                <input type="text"
+                       placeholder="${employeeForUpdate.name}"
+                       pattern=<%=REGEX_CHECK_VALID_NAME_SURNAME_EMPLOYEE%> name="updateNameEmployee"
+                       <%--value="${employeeForUpdate.name}">--%>
             </td>
         </tr>
         <tr>
             <td align="center">Surname</td>
             <td>
-                <input type="text" pattern=<%=REGEX_CHECK_VALID_NAME_SURNAME_EMPLOYEE%> name="updateSurnameEmployee"
-                       value="${employeeForUpdate.surname}">
+                <input type="text"
+                       placeholder="${employeeForUpdate.surname}"
+                       pattern=<%=REGEX_CHECK_VALID_NAME_SURNAME_EMPLOYEE%> name="updateSurnameEmployee"
+                       <%--value="${employeeForUpdate.surname}">--%>
             </td>
         </tr>
         <tr>
             <td align="center">Email</td>
             <td>
-                <input type="email" pattern=<%=REGEX_CHECK_VALID_EMAIL_ADDRESS%> name="updateEmailEmployee"
-                       value="${employeeForUpdate.email}">
+                <input type="email"
+                       placeholder="${employeeForUpdate.email}"
+                       pattern=<%=REGEX_CHECK_VALID_EMAIL_ADDRESS%> name="updateEmailEmployee"
+                       <%--value="${employeeForUpdate.email}">--%>
             </td>
         </tr>
         <tr>
             <td align="center">Date</td>
             <td>
-                <input type="date" name="updateDateEmployee" value="${employeeForUpdate.createDate}">
+                <input type="date"
+                       placeholder="${employeeForUpdate.createDate}"
+                       name="updateDateEmployee"
+                       <%--value="${employeeForUpdate.createDate}">--%>
             </td>
         </tr>
         <tr>

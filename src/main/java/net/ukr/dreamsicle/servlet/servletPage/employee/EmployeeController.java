@@ -24,10 +24,12 @@ public class EmployeeController extends AbstractServlet {
         boolean check = false;
         String errorCreateNewEmployee = "";
         String errorEditEmployee = "";
+
         session.setAttribute("errorCreateNewEmployee", errorCreateNewEmployee);
         session.setAttribute("errorEditEmployee", errorEditEmployee);
 
         String nameDepartFromDepartment = req.getParameter("name_depart");
+
         if (nameDepartFromDepartment != null) {
             req.setAttribute("nameDepartFromDepartment", nameDepartFromDepartment);
             session.setAttribute("nameDepartFromDepartment", nameDepartFromDepartment);
