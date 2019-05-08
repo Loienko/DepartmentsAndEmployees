@@ -25,6 +25,7 @@ public class EditEmployeeController extends AbstractServlet {
         HttpSession session = req.getSession();
         String errorEditEmployee = (String) session.getAttribute("errorEditEmployee");
         emailEmployeeParameter = req.getParameter("emailEmployee");
+
         req.setAttribute("errorEditEmployee", errorEditEmployee);
         req.setAttribute("emailEmployeeParameter", emailEmployeeParameter);
 

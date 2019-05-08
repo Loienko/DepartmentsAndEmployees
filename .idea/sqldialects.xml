@@ -2,6 +2,5 @@
 <project version="4">
   <component name="SqlDialectMappings">
     <file url="file://$PROJECT_DIR$/src/main/java/net/ukr/dreamsicle/util/dao/db-dump.sql" dialect="PostgreSQL" />
-    <file url="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/classes/net/ukr/dreamsicle/util/dao/db-dump.sql" dialect="PostgreSQL" />
   </component>
 </project>

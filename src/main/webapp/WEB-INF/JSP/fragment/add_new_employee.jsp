@@ -9,7 +9,7 @@
     <title>Create new Employee</title>
 </head>
 <h2>Create new Employee</h2>
-<p style="color: red">${errorAddDataEmployee}</p>
+<p style="color: red">${errorCreateNewEmployee}</p>
 <form method="post" action="${pageContext.request.contextPath}/addNewEmployee">
     <table border="2">
         <tr>
@@ -44,7 +44,7 @@
         </tr>
         <tr>
             <td align="right" colspan="2">
-                <a href="/employee">Cancel</a>
+                <a href="employee">Cancel</a>
                 <input type="submit" value="Add">
             </td>
         </tr>

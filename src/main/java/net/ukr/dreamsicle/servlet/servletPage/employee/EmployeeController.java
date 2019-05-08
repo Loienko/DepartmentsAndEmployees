@@ -2,7 +2,6 @@ package net.ukr.dreamsicle.servlet.servletPage.employee;
 
 import net.ukr.dreamsicle.beans.Employee;
 import net.ukr.dreamsicle.connection.DBConnection;
-import net.ukr.dreamsicle.exception.ApplicationException;
 import net.ukr.dreamsicle.servlet.AbstractServlet;
 import net.ukr.dreamsicle.util.DBUtilsDepartment;
 
@@ -23,6 +22,10 @@ public class EmployeeController extends AbstractServlet {
         List<Employee> employeeList = null;
         HttpSession session = req.getSession();
         boolean check = false;
+        String errorCreateNewEmployee = "";
+        String errorEditEmployee = "";
+        session.setAttribute("errorCreateNewEmployee", errorCreateNewEmployee);
+        session.setAttribute("errorEditEmployee", errorEditEmployee);
 
         String nameDepartFromDepartment = req.getParameter("name_depart");
         if (nameDepartFromDepartment != null) {

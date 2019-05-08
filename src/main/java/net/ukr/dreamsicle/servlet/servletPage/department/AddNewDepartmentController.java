@@ -21,6 +21,7 @@ public class AddNewDepartmentController extends AbstractServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession session = req.getSession();
         String errorDataDepartment = (String) session.getAttribute("errorDataDepartment");
+        System.out.println("errorDataDepartment - " + errorDataDepartment);
         req.setAttribute("errorDataDepartment", errorDataDepartment);
         forwardToFragment("add_new_department.jsp", req, resp);
     }

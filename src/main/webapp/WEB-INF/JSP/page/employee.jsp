@@ -1,5 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" trimDirectiveWhitespaces="true" pageEncoding="UTF-8" %>
 <html>
 <head>
     <h3> Department: ${sessionScope.nameDepartFromDepartment}</h3>
@@ -26,7 +26,9 @@
     </c:forEach>
     </tbody>
 </table>
-<p><a href="/addNewEmployee?nameDepartment=${sessionScope.nameDepartFromDepartment}"> Add new employee </a></p>
+<p>
+    <a href="${pageContext.request.contextPath}/addNewEmployee?nameDepartment=${sessionScope.nameDepartFromDepartment}">
+        Add new employee </a></p>
 <a href="/department"> Back </a>
 </body>
 </html>

@@ -25,12 +25,11 @@ public class AddNewEmployeeController extends AbstractServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession session = req.getSession();
+        String errorCreateNewEmployee = (String) session.getAttribute("errorCreateNewEmployee");
+        req.setAttribute("errorCreateNewEmployee", errorCreateNewEmployee);
 
         String parameterNameDepartment = req.getParameter("nameDepartment");
-        String errorAddDataEmployee = (String) session.getAttribute("errorAddDataEmployee");
-
         session.setAttribute("parameterNameDepartment", parameterNameDepartment);
-        req.setAttribute("errorAddDataEmployee", errorAddDataEmployee);
 
         forwardToFragment("add_new_employee.jsp", req, resp);
     }
@@ -40,7 +39,7 @@ public class AddNewEmployeeController extends AbstractServlet {
         req.setCharacterEncoding("UTF-8");
         HttpSession session = req.getSession();
         boolean hasError = false;
-        String errorAddDataEmployee = "";
+        String errorDataDepartment = "";
         Employee employeeAddNewEmployee = null;
 
         String parameterNameDepartment = (String) req.getSession().getAttribute("parameterNameDepartment");
@@ -57,7 +56,7 @@ public class AddNewEmployeeController extends AbstractServlet {
 
         if (nameEmployee.isEmpty() || surnameEmployee.isEmpty() || emailEmployee.isEmpty()) {
             hasError = true;
-//            errorAddDataEmployee = "Please Input data (name, surname, email) !!!";
+            errorDataDepartment = "Please Input data (name, surname, email, date)!";
         } else {
             DBUtilsEmployee dbUtilsEmployee = new DBUtilsEmployee();
             Connection connection = new DBConnection().getConnection();
@@ -69,24 +68,24 @@ public class AddNewEmployeeController extends AbstractServlet {
                         dbUtilsEmployee.addNewEmployee(connection, employeeAddNewEmployee, parameterNameDepartment);
                     } else {
                         hasError = true;
-                        errorAddDataEmployee = "Please input unique email address";
+                        errorDataDepartment = "Please input unique email address";
                     }
                 } else {
                     hasError = true;
-                    errorAddDataEmployee = "Sorry, problem with connection to DB, Try again later...";
+                    errorDataDepartment = "Sorry, problem with connection to DB, Try again later...";
                 }
             } catch (SQLException e) {
 //                throw new ApplicationException("Can't execute db command: " + e.getMessage(), e);
-                errorAddDataEmployee = "Sorry, problem with connection DB, Try again later...";
                 e.printStackTrace();
                 forwardToPage("error.jsp", req, resp);
             }
         }
 
         if (hasError) {
-            session.setAttribute("errorAddDataEmployee", errorAddDataEmployee);
+            session.setAttribute("errorCreateNewEmployee", errorDataDepartment);
             forwardToFragment("add_new_employee.jsp", req, resp);
         } else {
+//            session.setAttribute("errorCreateNewEmployee", errorDataDepartment); //????
             req.setAttribute("employeeAddNewEmployee", employeeAddNewEmployee);
             resp.sendRedirect(req.getContextPath() + "/employee");
         }
