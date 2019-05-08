@@ -55,6 +55,7 @@ public class DBUtilsEmployee {
 
         PreparedStatement preparedStatement = connection.prepareStatement(sqlQuery);
 
+
         preparedStatement.setString(1, employee.getName());
         preparedStatement.setString(2, employee.getSurname());
         preparedStatement.setString(3, employee.getEmail());

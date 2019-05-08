@@ -1,5 +1,6 @@
 <%@ page import="static net.ukr.dreamsicle.consts.Constants.REGEX_CHECK_VALID_NAME_SURNAME_EMPLOYEE" %>
 <%@ page import="static net.ukr.dreamsicle.consts.Constants.REGEX_CHECK_VALID_EMAIL_ADDRESS" %>
+<%@ page import="static net.ukr.dreamsicle.consts.Constants.ADD" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -16,7 +17,7 @@
                 <input type="text"
                        placeholder="${employeeForUpdate.name}"
                        pattern=<%=REGEX_CHECK_VALID_NAME_SURNAME_EMPLOYEE%> name="updateNameEmployee"
-                       <%--value="${employeeForUpdate.name}">--%>
+                       value="${employeeForUpdate.name}">
             </td>
         </tr>
         <tr>
@@ -25,7 +26,7 @@
                 <input type="text"
                        placeholder="${employeeForUpdate.surname}"
                        pattern=<%=REGEX_CHECK_VALID_NAME_SURNAME_EMPLOYEE%> name="updateSurnameEmployee"
-                       <%--value="${employeeForUpdate.surname}">--%>
+                       value="${employeeForUpdate.surname}">
             </td>
         </tr>
         <tr>
@@ -34,7 +35,7 @@
                 <input type="email"
                        placeholder="${employeeForUpdate.email}"
                        pattern=<%=REGEX_CHECK_VALID_EMAIL_ADDRESS%> name="updateEmailEmployee"
-                       <%--value="${employeeForUpdate.email}">--%>
+                       value="${employeeForUpdate.email}">
             </td>
         </tr>
         <tr>
@@ -43,13 +44,13 @@
                 <input type="date"
                        placeholder="${employeeForUpdate.createDate}"
                        name="updateDateEmployee"
-                       <%--value="${employeeForUpdate.createDate}">--%>
+                       value="${employeeForUpdate.createDate}">
             </td>
         </tr>
         <tr>
             <td align="right" colspan="2">
                 <a href="/employee">Cancel</a>
-                <input type="submit" value="Add">
+                <input type="submit" value=<%=ADD%>>
             </td>
         </tr>
     </table>
