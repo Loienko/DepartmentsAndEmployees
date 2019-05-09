@@ -5,7 +5,7 @@
 </head>
 <body>
 <h3 style="color: #dc3b37">Can't remove. Department have employee. </h3>
-<p>Please, delete all employee from Department, before deleting </p>
+<p>Please, delete all employees from Department, before deleting. </p>
 <a href="/department"> List Department</a>
 </body>
 </html>

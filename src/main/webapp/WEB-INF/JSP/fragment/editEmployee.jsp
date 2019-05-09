@@ -13,6 +13,7 @@
     <table border="2">
         <tr>
             <td align="center">Name</td>
+            <td style="color: #1c2eff;">${employeeForUpdate.name}</td>
             <td align="center">
                 <input type="text"
                        placeholder="${employeeForUpdate.name}"
@@ -22,15 +23,18 @@
         </tr>
         <tr>
             <td align="center">Surname</td>
+            <td style="color: #1c2eff;">${employeeForUpdate.surname}</td>
             <td>
                 <input type="text"
                        placeholder="${employeeForUpdate.surname}"
                        pattern=<%=REGEX_CHECK_VALID_NAME_SURNAME_EMPLOYEE%> name="updateSurnameEmployee"
                        value="${employeeForUpdate.surname}">
             </td>
+
         </tr>
         <tr>
             <td align="center">Email</td>
+            <td style="color: #1c2eff;">${employeeForUpdate.email}</td>
             <td>
                 <input type="email"
                        placeholder="${employeeForUpdate.email}"
@@ -40,15 +44,16 @@
         </tr>
         <tr>
             <td align="center">Date</td>
+            <td style="color: #1c2eff;">${employeeForUpdate.createDate}</td>
             <td>
                 <input type="date"
                        placeholder="${employeeForUpdate.createDate}"
                        name="updateDateEmployee"
-                       value="${employeeForUpdate.createDate}">
+                       <%--value="${employeeForUpdate.createDate}">--%>
             </td>
         </tr>
         <tr>
-            <td align="right" colspan="2">
+            <td align="right" colspan="3">
                 <a href="/employee">Cancel</a>
                 <input type="submit" value=<%=ADD%>>
             </td>

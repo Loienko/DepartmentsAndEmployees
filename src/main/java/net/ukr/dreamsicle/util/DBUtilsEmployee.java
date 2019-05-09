@@ -7,6 +7,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
 
 public class DBUtilsEmployee {
     public static void main(String[] args) {
@@ -50,22 +51,15 @@ public class DBUtilsEmployee {
         return anInt;
     }
 
-    public void updateEmployee(Connection connection, Employee employee, String emailEmployeeParameter) throws SQLException {
-        String sqlQuery = "Update employee set name = ?, surname= ?, email=?, date = ? WHERE email = ?";
+    public void updateEmployee(Connection connection, String substring, List arrayListValueField, String emailEmployeeParameter) throws SQLException {
+        String sqlQuery = "Update employee set " + substring + " WHERE email = ?";
 
         PreparedStatement preparedStatement = connection.prepareStatement(sqlQuery);
 
-
-        preparedStatement.setString(1, employee.getName());
-        preparedStatement.setString(2, employee.getSurname());
-        preparedStatement.setString(3, employee.getEmail());
-        String createDate = employee.getCreateDate();
-        if (createDate.isEmpty()) {
-
-        } else {
-            preparedStatement.setString(4, createDate);
+        for (int i = 0; i < arrayListValueField.size(); i++) {
+            preparedStatement.setString(i + 1, (String) arrayListValueField.get(i));
         }
-        preparedStatement.setString(5, emailEmployeeParameter);
+        preparedStatement.setString(arrayListValueField.size() + 1, emailEmployeeParameter);
         preparedStatement.executeUpdate();
         connection.close();
     }

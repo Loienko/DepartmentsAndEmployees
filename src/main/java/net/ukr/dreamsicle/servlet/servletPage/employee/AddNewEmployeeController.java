@@ -68,7 +68,7 @@ public class AddNewEmployeeController extends AbstractServlet {
                         dbUtilsEmployee.addNewEmployee(connection, employeeAddNewEmployee, parameterNameDepartment);
                     } else {
                         hasError = true;
-                        errorDataDepartment = "Please input unique email address";
+                        errorDataDepartment = "Please input unique email address.";
                     }
                 } else {
                     hasError = true;

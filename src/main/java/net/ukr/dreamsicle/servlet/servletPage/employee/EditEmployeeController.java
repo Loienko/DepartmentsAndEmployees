@@ -14,6 +14,8 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 @WebServlet("/editEmployee")
 public class EditEmployeeController extends AbstractServlet {
@@ -56,11 +58,7 @@ public class EditEmployeeController extends AbstractServlet {
         HttpSession session = req.getSession();
         String errorEditEmployee = "";
         boolean error = false;
-        Employee employeeForUpdateFromDB = (Employee) session.getAttribute("employeeForUpdate");
-        System.out.println(employeeForUpdateFromDB.getName());
-        System.out.println(employeeForUpdateFromDB.getSurname());
-        System.out.println(employeeForUpdateFromDB.getEmail());
-        System.out.println(employeeForUpdateFromDB.getCreateDate());
+
 //        req.setAttribute("emailEmployee", emailEmployee);
 
         String updateNameEmployee = req.getParameter("updateNameEmployee");
@@ -82,42 +80,81 @@ public class EditEmployeeController extends AbstractServlet {
         }
 
 
-        if (!updateDateEmployee.isEmpty() && !updateSurnameEmployee.isEmpty() && !updateEmailEmployee.isEmpty()) {
+        if (!updateNameEmployee.isEmpty() && !updateSurnameEmployee.isEmpty() && !updateEmailEmployee.isEmpty()) {
             Employee employeeUpdate = new Employee(updateNameEmployee, updateSurnameEmployee, updateEmailEmployee, getDateFormat(updateDateEmployee));
+            StringBuffer createQueryForBD = new StringBuffer();
+            List arrayListValueField = new ArrayList();
+            Employee employeeForUpdateFromDB = (Employee) session.getAttribute("employeeForUpdate");
 
+//            getCorrectName(employeeUpdate, createQueryForBD, arrayListValueField, employeeForUpdateFromDB);
 
-            if (validUniqueEmailAddress && !validEmailByDB) {
-                try {
-                    if (!connection.isClosed()) {
-                        dbUtilsEmployee.updateEmployee(connection, employeeUpdate, emailEmployee);
-                        resp.sendRedirect(req.getContextPath() + "/employee");
+            if (!employeeForUpdateFromDB.getName().equals(employeeUpdate.getName())) {
+                createQueryForBD.append(" name = ?,");
+                arrayListValueField.add(employeeUpdate.getName());
+            }
+            if (!employeeForUpdateFromDB.getSurname().equals(employeeUpdate.getSurname())) {
+                createQueryForBD.append(" surname = ?,");
+                arrayListValueField.add(employeeUpdate.getSurname());
+            }
+
+            if (!employeeForUpdateFromDB.getEmail().equals(employeeUpdate.getEmail())) {
+                if (validUniqueEmailAddress && !validEmailByDB) {
+                    createQueryForBD.append(" email = ?,");
+                    arrayListValueField.add(employeeUpdate.getEmail());
+                } else {
+                    error = true;
+                    errorEditEmployee = "Sorry, that email not unique, Please, input unique email address.";
+                }
+            }
+
+            if (!employeeForUpdateFromDB.getCreateDate().equals(employeeUpdate.getCreateDate())) {
+                if (employeeUpdate.getCreateDate().isEmpty()) {
+                    createQueryForBD.append(" date = ?,");
+                    arrayListValueField.add(employeeForUpdateFromDB.getCreateDate());
+                } else {
+                    createQueryForBD.append(" date = ?,");
+                    arrayListValueField.add(employeeUpdate.getCreateDate());
+                }
+            }
+            String fieldForUpdate = "";
+            if (createQueryForBD.length() != 0) {
+                fieldForUpdate = createQueryForBD.substring(0, createQueryForBD.length() - 1);
+            }
+
+            try {
+                if (!connection.isClosed() && !fieldForUpdate.isEmpty()) {
+                    if (!error) {
+                        dbUtilsEmployee.updateEmployee(connection, fieldForUpdate, arrayListValueField, emailEmployee);
                     } else {
-                        forwardToPage("error.jsp", req, resp);
+                        req.setAttribute("emailEmployee", emailEmployee);
+                        session.setAttribute("errorEditEmployee", errorEditEmployee);
+                        forwardToFragment("editEmployee.jsp", req, resp);
                     }
-                } catch (Exception e) {
-                    e.printStackTrace();
+                } else {
                     forwardToPage("error.jsp", req, resp);
                 }
-            } else {
-                error = true;
-                errorEditEmployee = "Sorry, that email not unique, Please, input unique email address";
-//                emailEmployee = emailEmployee;
-//                resp.sendRedirect(req.getContextPath() + "/editEmployee");
+            } catch (Exception e) {
+                e.printStackTrace();
+                forwardToPage("error.jsp", req, resp);
             }
         } else {
             error = true;
-            errorEditEmployee = "Please, input all field";
+            errorEditEmployee = "Please, input all fields.";
         }
-
 
         if (error) {
             req.setAttribute("emailEmployee", emailEmployee);
-            System.out.println("Post - " + emailEmployee);
             session.setAttribute("errorEditEmployee", errorEditEmployee);
-
             forwardToFragment("editEmployee.jsp", req, resp);
         } else {
             resp.sendRedirect(req.getContextPath() + "/employee");
+        }
+    }
+
+    private void getCorrectName(Employee employeeUpdate, StringBuffer createQueryForBD, List arrayListValueField, Employee employeeForUpdateFromDB) {
+        if (!employeeForUpdateFromDB.getName().equals(employeeUpdate.getName())) {
+            createQueryForBD.append(" name = ?,");
+            arrayListValueField.add(employeeUpdate.getName());
         }
     }
 

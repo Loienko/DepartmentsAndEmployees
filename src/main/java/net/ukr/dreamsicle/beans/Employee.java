@@ -1,7 +1,6 @@
 package net.ukr.dreamsicle.beans;
 
 import java.io.Serializable;
-import java.util.Date;
 
 public class Employee implements Serializable {
     private String name;
@@ -9,24 +8,22 @@ public class Employee implements Serializable {
     private String email;
     private String createDate;
 
-
     public Employee() {
 
-    }
-
-
-    public String getCreateDate() {
-        return createDate;
-    }
-
-    public void setCreateDate(String createDate) {
-        this.createDate = createDate;
     }
 
     public Employee(String name, String surname, String email, String createDate) {
         this.name = name;
         this.surname = surname;
         this.email = email;
+        this.createDate = createDate;
+    }
+
+    public String getCreateDate() {
+        return createDate;
+    }
+
+    public void setCreateDate(String createDate) {
         this.createDate = createDate;
     }
 

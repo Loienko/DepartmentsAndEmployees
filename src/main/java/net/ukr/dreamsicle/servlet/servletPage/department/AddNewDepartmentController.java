@@ -38,7 +38,7 @@ public class AddNewDepartmentController extends AbstractServlet {
 
         if (newNameDepartment == null || newNameDepartment.isEmpty()) {
             hasError = true;
-            errorDataDepartment = "Sorry, You have not entered the department name. Please enter a name";
+            errorDataDepartment = "Sorry, You have not entered the department name. Please enter a name.";
         } else {
             DBUtilsDepartment dbUtilsDepartment = new DBUtilsDepartment();
             Connection connection = new DBConnection().getConnection();
@@ -50,7 +50,7 @@ public class AddNewDepartmentController extends AbstractServlet {
                         dbUtilsDepartment.addNewDepartment(connection, departmentAddNewDepart);
                     } else {
                         hasError = true;
-                        errorDataDepartment = "Sorry, you input not unique department name. Please repeat your input ";
+                        errorDataDepartment = "Sorry, you input not unique department name. Please repeat your input. ";
                     }
                 } else {
                     hasError = true;
