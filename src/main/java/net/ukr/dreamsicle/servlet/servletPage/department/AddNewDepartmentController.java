@@ -2,6 +2,7 @@ package net.ukr.dreamsicle.servlet.servletPage.department;
 
 import net.ukr.dreamsicle.beans.Department;
 import net.ukr.dreamsicle.connection.DBConnection;
+import net.ukr.dreamsicle.exception.ApplicationException;
 import net.ukr.dreamsicle.servlet.AbstractServlet;
 import net.ukr.dreamsicle.util.DBUtilsDepartment;
 
@@ -12,7 +13,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.sql.Connection;
-import java.sql.SQLException;
 
 @WebServlet("/addNewDepartment")
 public class AddNewDepartmentController extends AbstractServlet {
@@ -21,7 +21,6 @@ public class AddNewDepartmentController extends AbstractServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession session = req.getSession();
         String errorDataDepartment = (String) session.getAttribute("errorDataDepartment");
-        System.out.println("errorDataDepartment - " + errorDataDepartment);
         req.setAttribute("errorDataDepartment", errorDataDepartment);
         forwardToFragment("add_new_department.jsp", req, resp);
     }
@@ -56,11 +55,10 @@ public class AddNewDepartmentController extends AbstractServlet {
                     hasError = true;
                     errorDataDepartment = "Sorry, problem with connection to DB, Try again later...";
                 }
-            } catch (SQLException e) {
-//                throw new ApplicationException("Can't execute db command: " + e.getMessage(), e);
-                errorDataDepartment = "Sorry, problem with connection DB, Try again later...";
+            } catch (Exception e) {
                 e.printStackTrace();
                 forwardToPage("error.jsp", req, resp);
+                throw new ApplicationException("Can't execute db command: " + e.getMessage(), e);
             }
         }
 

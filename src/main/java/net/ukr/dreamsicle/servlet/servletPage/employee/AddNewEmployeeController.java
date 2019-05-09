@@ -2,6 +2,7 @@ package net.ukr.dreamsicle.servlet.servletPage.employee;
 
 import net.ukr.dreamsicle.beans.Employee;
 import net.ukr.dreamsicle.connection.DBConnection;
+import net.ukr.dreamsicle.exception.ApplicationException;
 import net.ukr.dreamsicle.servlet.AbstractServlet;
 import net.ukr.dreamsicle.util.DBUtilsEmployee;
 import net.ukr.dreamsicle.validation.ValidEmailAddress;
@@ -54,7 +55,7 @@ public class AddNewEmployeeController extends AbstractServlet {
         }
         boolean validUniqueEmailAddress = validEmailAddress.isValidUniqueEmailAddress(emailEmployee);
 
-        if (nameEmployee.isEmpty() || surnameEmployee.isEmpty() || emailEmployee.isEmpty()) {
+        if (nameEmployee.isEmpty() || surnameEmployee.isEmpty() || emailEmployee.isEmpty() || parameterNameDepartment.isEmpty()) {
             hasError = true;
             errorDataDepartment = "Please Input data (name, surname, email, date)!";
         } else {
@@ -75,9 +76,9 @@ public class AddNewEmployeeController extends AbstractServlet {
                     errorDataDepartment = "Sorry, problem with connection to DB, Try again later...";
                 }
             } catch (SQLException e) {
-//                throw new ApplicationException("Can't execute db command: " + e.getMessage(), e);
                 e.printStackTrace();
                 forwardToPage("error.jsp", req, resp);
+                throw new ApplicationException("Can't execute db command: " + e.getMessage(), e);
             }
         }
 
@@ -93,10 +94,10 @@ public class AddNewEmployeeController extends AbstractServlet {
 
     private String getDateFormat(String dateEmployee) {
         String[] split = dateEmployee.split("-");
-        StringBuffer stringBuffer = new StringBuffer();
+        StringBuilder stringBuilder = new StringBuilder();
         for (int i = split.length - 1; i >= 0; i--) {
-            stringBuffer.append(split[i]).append(".");
+            stringBuilder.append(split[i]).append(".");
         }
-        return stringBuffer.substring(0, stringBuffer.length() - 1);
+        return stringBuilder.substring(0, stringBuilder.length() - 1);
     }
 }

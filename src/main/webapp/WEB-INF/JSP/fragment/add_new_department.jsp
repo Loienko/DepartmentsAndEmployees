@@ -16,7 +16,8 @@
             <td>
                 <input type="text" placeholder="Department"
                        pattern=<%=REGEX_CHECK_VALID_NAME_SURNAME_DEPARTMENT%> name="newNameDepartment"
-                       value="${department.name_depart}">
+                       value="${department.name_depart}"
+                       required>
             </td>
         </tr>
         <tr>

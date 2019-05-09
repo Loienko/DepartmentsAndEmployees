@@ -33,7 +33,6 @@ public class Department implements Serializable {
     }
 
     public int getId() {
-
         return id;
     }
 

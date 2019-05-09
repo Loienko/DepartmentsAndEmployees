@@ -2,6 +2,7 @@ package net.ukr.dreamsicle.servlet.servletPage.employee;
 
 import net.ukr.dreamsicle.beans.Employee;
 import net.ukr.dreamsicle.connection.DBConnection;
+import net.ukr.dreamsicle.exception.ApplicationException;
 import net.ukr.dreamsicle.servlet.AbstractServlet;
 import net.ukr.dreamsicle.util.DBUtilsEmployee;
 import net.ukr.dreamsicle.validation.ValidEmailAddress;
@@ -19,7 +20,7 @@ import java.util.List;
 
 @WebServlet("/editEmployee")
 public class EditEmployeeController extends AbstractServlet {
-    String emailEmployee;
+    private String emailEmployee;
     private ValidEmailAddress validEmailAddress = new ValidEmailAddress();
 
     @Override
@@ -48,6 +49,7 @@ public class EditEmployeeController extends AbstractServlet {
             } catch (Exception e) {
                 e.printStackTrace();
                 forwardToPage("error.jsp", req, resp);
+                throw new ApplicationException("Can't execute db command: " + e.getMessage(), e);
             }
         }
     }
@@ -58,8 +60,6 @@ public class EditEmployeeController extends AbstractServlet {
         HttpSession session = req.getSession();
         String errorEditEmployee = "";
         boolean error = false;
-
-//        req.setAttribute("emailEmployee", emailEmployee);
 
         String updateNameEmployee = req.getParameter("updateNameEmployee");
         String updateSurnameEmployee = req.getParameter("updateSurnameEmployee");
@@ -86,17 +86,9 @@ public class EditEmployeeController extends AbstractServlet {
             List arrayListValueField = new ArrayList();
             Employee employeeForUpdateFromDB = (Employee) session.getAttribute("employeeForUpdate");
 
-//            getCorrectName(employeeUpdate, createQueryForBD, arrayListValueField, employeeForUpdateFromDB);
 
-            if (!employeeForUpdateFromDB.getName().equals(employeeUpdate.getName())) {
-                createQueryForBD.append(" name = ?,");
-                arrayListValueField.add(employeeUpdate.getName());
-            }
-            if (!employeeForUpdateFromDB.getSurname().equals(employeeUpdate.getSurname())) {
-                createQueryForBD.append(" surname = ?,");
-                arrayListValueField.add(employeeUpdate.getSurname());
-            }
-
+            getCorrectName(employeeUpdate, createQueryForBD, arrayListValueField, employeeForUpdateFromDB);
+            getCorrectSurname(employeeUpdate, createQueryForBD, arrayListValueField, employeeForUpdateFromDB);
             if (!employeeForUpdateFromDB.getEmail().equals(employeeUpdate.getEmail())) {
                 if (validUniqueEmailAddress && !validEmailByDB) {
                     createQueryForBD.append(" email = ?,");
@@ -116,6 +108,8 @@ public class EditEmployeeController extends AbstractServlet {
                     arrayListValueField.add(employeeUpdate.getCreateDate());
                 }
             }
+
+
             String fieldForUpdate = "";
             if (createQueryForBD.length() != 0) {
                 fieldForUpdate = createQueryForBD.substring(0, createQueryForBD.length() - 1);
@@ -136,6 +130,7 @@ public class EditEmployeeController extends AbstractServlet {
             } catch (Exception e) {
                 e.printStackTrace();
                 forwardToPage("error.jsp", req, resp);
+                throw new ApplicationException("Can't execute db command: " + e.getMessage(), e);
             }
         } else {
             error = true;
@@ -148,6 +143,13 @@ public class EditEmployeeController extends AbstractServlet {
             forwardToFragment("editEmployee.jsp", req, resp);
         } else {
             resp.sendRedirect(req.getContextPath() + "/employee");
+        }
+    }
+
+    private void getCorrectSurname(Employee employeeUpdate, StringBuffer createQueryForBD, List arrayListValueField, Employee employeeForUpdateFromDB) {
+        if (!employeeForUpdateFromDB.getSurname().equals(employeeUpdate.getSurname())) {
+            createQueryForBD.append(" surname = ?,");
+            arrayListValueField.add(employeeUpdate.getSurname());
         }
     }
 

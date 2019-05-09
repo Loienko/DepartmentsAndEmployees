@@ -39,8 +39,8 @@ public class RemoveDepartmentController extends AbstractServlet {
                 }
             } catch (SQLException e) {
                 e.printStackTrace();
-//            throw new ApplicationException("Can't execute db command: " + e.getMessage(), e);
                 forwardToPage("error.jsp", req, resp);
+                throw new ApplicationException("Can't execute db command: " + e.getMessage(), e);
             }
         } else {
             resp.sendRedirect(req.getContextPath() + "/department");

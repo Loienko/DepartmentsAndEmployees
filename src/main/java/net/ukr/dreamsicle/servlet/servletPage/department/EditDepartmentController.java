@@ -42,9 +42,9 @@ public class EditDepartmentController extends AbstractServlet {
                     forwardToPage("error.jsp", req, resp);
                 }
             } catch (SQLException e) {
-//                throw new ApplicationException("Can't execute db command: " + e.getMessage(), e);
                 e.printStackTrace();
                 forwardToPage("error.jsp", req, resp);
+                throw new ApplicationException("Can't execute db command: " + e.getMessage(), e);
             }
         }
     }
@@ -57,13 +57,13 @@ public class EditDepartmentController extends AbstractServlet {
         Connection connection = new DBConnection().getConnection();
         DBUtilsDepartment dbUtilsDepartment = new DBUtilsDepartment();
 
-        String uniqueDepartmentName = null;
+        String uniqueDepartmentName;
         try {
             uniqueDepartmentName = dbUtilsDepartment.getUniqueDepartmentName(connection, nameUpdateDepartment);
-            System.out.println(uniqueDepartmentName);
         } catch (SQLException e) {
-//            e.printStackTrace();
+            e.printStackTrace();
             forwardToPage("error.jsp", req, resp);
+            throw new ApplicationException("Can't execute db command: " + e.getMessage(), e);
         }
 
         if (!nameUpdateDepartment.isEmpty() && uniqueDepartmentName.isEmpty()) {

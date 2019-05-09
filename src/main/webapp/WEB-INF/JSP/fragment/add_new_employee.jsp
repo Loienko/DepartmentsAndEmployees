@@ -17,7 +17,8 @@
             <td align="center">
                 <input type="text" placeholder="Name"
                        pattern=<%=REGEX_CHECK_VALID_NAME_SURNAME_EMPLOYEE%> name="nameEmployee"
-                       value="${employee.name}">
+                       value="${employee.name}"
+                       required>
             </td>
         </tr>
         <tr>
@@ -25,14 +26,18 @@
             <td>
                 <input type="text" placeholder="Surname"
                        pattern=<%=REGEX_CHECK_VALID_NAME_SURNAME_EMPLOYEE%> name="surnameEmployee"
-                       value="${employee.surname}">
+                       value="${employee.surname}"
+                       required>
             </td>
         </tr>
         <tr>
             <td align="center">Email</td>
             <td>
-                <input type="email" pattern=<%=REGEX_CHECK_VALID_EMAIL_ADDRESS%>
-                        name="emailEmployee" value="${employee.email} " placeholder="example: email@ukr.net">
+                <input type="email"
+                       pattern=<%=REGEX_CHECK_VALID_EMAIL_ADDRESS%>
+                               name="emailEmployee" value="${employee.email} "
+                       placeholder="example: email@ukr.net"
+                       required>
             </td>
         </tr>
         <tr>

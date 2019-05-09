@@ -22,7 +22,8 @@
         <tr>
             <td align="center">${departments.name_depart}</td>
             <td align="center">${departments.count_employee}</td>
-            <td><a href="editDepartment?nameDepart=${departments.name_depart}"/> <%= EDIT%>
+            <td>
+                <a href="editDepartment?nameDepart=${departments.name_depart}"/> <%= EDIT%>
             </td>
             <td><a href="removeDepartment?nameDepart=${departments.name_depart}"/> <%= REMOVE%>
             </td>

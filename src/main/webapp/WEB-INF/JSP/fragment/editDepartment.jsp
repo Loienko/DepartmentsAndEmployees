@@ -10,11 +10,11 @@
 <form method="post" action="editDepartment">
     <tr>
         <td>Name Department</td>
-        <%--<td style="color: #1c2eff">${departmentForUpdate.name_depart}</td>--%>
         <td><input type="text"
                    pattern=<%=REGEX_CHECK_VALID_NAME_SURNAME_DEPARTMENT%> name="nameUpdateDepartment"
                    placeholder="${departmentForUpdate.name_depart}"
-                   value="${departmentForUpdate.name_depart}"/></td>
+                   value="${departmentForUpdate.name_depart}"
+        /></td>
     </tr>
     <tr>
         <td colspan="2">

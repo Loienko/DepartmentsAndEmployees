@@ -18,7 +18,8 @@
                 <input type="text"
                        placeholder="${employeeForUpdate.name}"
                        pattern=<%=REGEX_CHECK_VALID_NAME_SURNAME_EMPLOYEE%> name="updateNameEmployee"
-                       value="${employeeForUpdate.name}">
+                       value="${employeeForUpdate.name}
+">
             </td>
         </tr>
         <tr>
@@ -49,7 +50,7 @@
                 <input type="date"
                        placeholder="${employeeForUpdate.createDate}"
                        name="updateDateEmployee"
-                       <%--value="${employeeForUpdate.createDate}">--%>
+                <%--value="${employeeForUpdate.createDate}">--%>
             </td>
         </tr>
         <tr>

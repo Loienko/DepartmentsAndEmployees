@@ -2,9 +2,9 @@ package net.ukr.dreamsicle.servlet.servletPage.department;
 
 import net.ukr.dreamsicle.beans.Department;
 import net.ukr.dreamsicle.connection.DBConnection;
+import net.ukr.dreamsicle.exception.ApplicationException;
 import net.ukr.dreamsicle.servlet.AbstractServlet;
 import net.ukr.dreamsicle.util.DBUtilsDepartment;
-import net.ukr.dreamsicle.exception.ApplicationException;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -25,13 +25,13 @@ public class DepartmentController extends AbstractServlet {
         DBConnection dbConnection = new DBConnection();
         DBUtilsDepartment dbUtilsDepartment = new DBUtilsDepartment();
 
-        List<Department> departmentList = null;
+        List<Department> departmentList;
         try {
             departmentList = dbUtilsDepartment.getListDepartment(dbConnection.getConnection());
         } catch (SQLException e) {
             e.printStackTrace();
-//            throw new ApplicationException("Can't execute db command: " + e.getMessage(), e);
             forwardToPage("error.jsp", req, resp);
+            throw new ApplicationException("Can't execute db command: " + e.getMessage(), e);
         }
 
         req.setAttribute("depart", departmentList);

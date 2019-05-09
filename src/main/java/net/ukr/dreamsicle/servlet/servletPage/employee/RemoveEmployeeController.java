@@ -30,9 +30,9 @@ public class RemoveEmployeeController extends AbstractServlet {
                     forwardToPage("error.jsp", req, resp);
                 }
             } catch (SQLException e) {
-//                throw new ApplicationException("Can't execute db command: " + e.getMessage(), e);
                 e.printStackTrace();
                 forwardToPage("error.jsp", req, resp);
+                throw new ApplicationException("Can't execute db command: " + e.getMessage(), e);
             }
         } else {
             resp.sendRedirect(req.getContextPath() + "/employee");
