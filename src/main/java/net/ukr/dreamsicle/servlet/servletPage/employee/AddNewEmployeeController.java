@@ -86,7 +86,6 @@ public class AddNewEmployeeController extends AbstractServlet {
             session.setAttribute("errorCreateNewEmployee", errorDataDepartment);
             forwardToFragment("add_new_employee.jsp", req, resp);
         } else {
-//            session.setAttribute("errorCreateNewEmployee", errorDataDepartment); //????
             req.setAttribute("employeeAddNewEmployee", employeeAddNewEmployee);
             resp.sendRedirect(req.getContextPath() + "/employee");
         }
