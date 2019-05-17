@@ -37,7 +37,8 @@
                        pattern=<%=REGEX_CHECK_VALID_EMAIL_ADDRESS%>
                                name="emailEmployee" value="${employee.email} "
                        placeholder="example: email@ukr.net"
-                       required>
+                       required
+                       autocomplete="on | off">
             </td>
         </tr>
         <tr>

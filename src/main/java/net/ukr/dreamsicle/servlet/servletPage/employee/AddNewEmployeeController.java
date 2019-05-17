@@ -6,6 +6,7 @@ import net.ukr.dreamsicle.exception.ApplicationException;
 import net.ukr.dreamsicle.servlet.AbstractServlet;
 import net.ukr.dreamsicle.util.DBUtilsEmployee;
 import net.ukr.dreamsicle.validation.ValidEmailAddress;
+import org.junit.Test;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -91,7 +92,8 @@ public class AddNewEmployeeController extends AbstractServlet {
         }
     }
 
-    private String getDateFormat(String dateEmployee) {
+
+    protected String getDateFormat(String dateEmployee) {
         String[] split = dateEmployee.split("-");
         StringBuilder stringBuilder = new StringBuilder();
         for (int i = split.length - 1; i >= 0; i--) {

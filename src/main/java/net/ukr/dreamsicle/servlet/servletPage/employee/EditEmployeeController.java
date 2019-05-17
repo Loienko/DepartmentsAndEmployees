@@ -146,21 +146,21 @@ public class EditEmployeeController extends AbstractServlet {
         }
     }
 
-    private void getCorrectSurname(Employee employeeUpdate, StringBuffer createQueryForBD, List arrayListValueField, Employee employeeForUpdateFromDB) {
+    protected void getCorrectSurname(Employee employeeUpdate, StringBuffer createQueryForBD, List arrayListValueField, Employee employeeForUpdateFromDB) {
         if (!employeeForUpdateFromDB.getSurname().equals(employeeUpdate.getSurname())) {
             createQueryForBD.append(" surname = ?,");
             arrayListValueField.add(employeeUpdate.getSurname());
         }
     }
 
-    private void getCorrectName(Employee employeeUpdate, StringBuffer createQueryForBD, List arrayListValueField, Employee employeeForUpdateFromDB) {
+    protected void getCorrectName(Employee employeeUpdate, StringBuffer createQueryForBD, List arrayListValueField, Employee employeeForUpdateFromDB) {
         if (!employeeForUpdateFromDB.getName().equals(employeeUpdate.getName())) {
             createQueryForBD.append(" name = ?,");
             arrayListValueField.add(employeeUpdate.getName());
         }
     }
 
-    private String getDateFormat(String dateEmployee) {
+    protected String getDateFormat(String dateEmployee) {
         String[] split = dateEmployee.split("-");
         StringBuffer stringBuffer = new StringBuffer();
         for (int i = split.length - 1; i >= 0; i--) {

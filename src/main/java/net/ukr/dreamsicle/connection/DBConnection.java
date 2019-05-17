@@ -13,7 +13,7 @@ public class DBConnection {
         readDataFromResFileAppProp = new ReadDataFromResFileAppProp();
     }
 
-    public Connection getConnection() {
+    public static Connection getConnection() {
         Connection connection;
         try {
             Class.forName(readDataFromResFileAppProp.getProperties("db.driver"));
@@ -27,5 +27,19 @@ public class DBConnection {
             throw new ApplicationException("Can't execute db command: " + e.getMessage(), e);
         }
         return connection;
+    }
+
+    public static void closeQuietly(Connection connection) {
+        try {
+            connection.close();
+        } catch (Exception e) {
+        }
+    }
+
+    public static void rollbackQuietly(Connection conn) {
+        try {
+            conn.rollback();
+        } catch (Exception e) {
+        }
     }
 }

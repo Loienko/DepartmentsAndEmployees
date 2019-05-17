@@ -18,8 +18,9 @@
                 <input type="text"
                        placeholder="${employeeForUpdate.name}"
                        pattern=<%=REGEX_CHECK_VALID_NAME_SURNAME_EMPLOYEE%> name="updateNameEmployee"
-                       value="${employeeForUpdate.name}
-">
+                       value="${employeeForUpdate.name}"
+                       autocomplete="on | off"
+                >
             </td>
         </tr>
         <tr>

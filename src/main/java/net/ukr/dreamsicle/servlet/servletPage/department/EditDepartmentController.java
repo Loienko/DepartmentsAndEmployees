@@ -76,7 +76,6 @@ public class EditDepartmentController extends AbstractServlet {
                 }
             } catch (SQLException e) {
                 e.printStackTrace();
-//                throw new ApplicationException("Can't execute db command: " + e.getMessage(), e);
                 forwardToPage("error.jsp", req, resp);
             }
         } else {

@@ -14,6 +14,7 @@
                    pattern=<%=REGEX_CHECK_VALID_NAME_SURNAME_DEPARTMENT%> name="nameUpdateDepartment"
                    placeholder="${departmentForUpdate.name_depart}"
                    value="${departmentForUpdate.name_depart}"
+                   autocomplete="on | off"
         /></td>
     </tr>
     <tr>

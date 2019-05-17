@@ -17,7 +17,8 @@
                 <input type="text" placeholder="Department"
                        pattern=<%=REGEX_CHECK_VALID_NAME_SURNAME_DEPARTMENT%> name="newNameDepartment"
                        value="${department.name_depart}"
-                       required>
+                       required
+                       autocomplete="on | off">
             </td>
         </tr>
         <tr>

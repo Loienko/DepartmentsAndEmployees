@@ -1,7 +1,5 @@
 package net.ukr.dreamsicle.validation;
 
-import org.junit.Test;
-
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -13,12 +11,6 @@ public class ValidEmailAddress {
 
     public ValidEmailAddress() {
         pattern = Pattern.compile(REGEX_CHECK_VALID_EMAIL_ADDRESS);
-    }
-
-    @Test
-    public static void main(String[] args) {
-        System.out.println(new ValidEmailAddress().isValidUniqueEmailAddress("dreamsicle@ukr.net"));
-
     }
 
     public boolean isValidUniqueEmailAddress(String email) {
