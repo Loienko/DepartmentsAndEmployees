@@ -9,7 +9,6 @@ public class Employee implements Serializable {
     private String createDate;
 
     public Employee() {
-
     }
 
     public Employee(String name, String surname, String email, String createDate) {

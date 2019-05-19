@@ -6,7 +6,7 @@ import net.ukr.dreamsicle.exception.ApplicationException;
 import net.ukr.dreamsicle.servlet.AbstractServlet;
 import net.ukr.dreamsicle.util.DBUtilsEmployee;
 import net.ukr.dreamsicle.validation.ValidEmailAddress;
-import org.junit.Test;
+import org.apache.log4j.Logger;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -21,7 +21,7 @@ import java.util.Calendar;
 
 @WebServlet("/addNewEmployee")
 public class AddNewEmployeeController extends AbstractServlet {
-
+    private static final Logger LOGGER = Logger.getLogger(AddNewEmployeeController.class);
     private ValidEmailAddress validEmailAddress = new ValidEmailAddress();
 
     @Override
@@ -74,10 +74,11 @@ public class AddNewEmployeeController extends AbstractServlet {
                     }
                 } else {
                     hasError = true;
+                    LOGGER.info("Connection with DB closed");
                     errorDataDepartment = "Sorry, problem with connection to DB, Try again later...";
                 }
             } catch (SQLException e) {
-                e.printStackTrace();
+                LOGGER.error(e);
                 forwardToPage("error.jsp", req, resp);
                 throw new ApplicationException("Can't execute db command: " + e.getMessage(), e);
             }

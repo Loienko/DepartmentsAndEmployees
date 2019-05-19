@@ -5,6 +5,7 @@ import net.ukr.dreamsicle.connection.DBConnection;
 import net.ukr.dreamsicle.exception.ApplicationException;
 import net.ukr.dreamsicle.servlet.AbstractServlet;
 import net.ukr.dreamsicle.util.DBUtilsDepartment;
+import org.apache.log4j.Logger;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -18,6 +19,8 @@ import java.util.List;
 
 @WebServlet("/employee")
 public class EmployeeController extends AbstractServlet {
+    private static final Logger LOGGER = Logger.getLogger(EmployeeController.class);
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         List<Employee> employeeList = null;
@@ -35,6 +38,7 @@ public class EmployeeController extends AbstractServlet {
             req.setAttribute("nameDepartFromDepartment", nameDepartFromDepartment);
             session.setAttribute("nameDepartFromDepartment", nameDepartFromDepartment);
         } else {
+            LOGGER.info("nameDepartFromDepartment is empty");
             nameDepartFromDepartment = (String) session.getAttribute("nameDepartFromDepartment");
         }
 
@@ -45,11 +49,12 @@ public class EmployeeController extends AbstractServlet {
                 if (!connection.isClosed()) {
                     employeeList = dbUtilsDepartment.getEmployeeListFromDepartmentType(connection, nameDepartFromDepartment);
                 } else {
+                    LOGGER.info("Connection with DB closed");
                     check = true;
                     forwardToPage("error.jsp", req, resp);
                 }
             } catch (SQLException e) {
-                e.printStackTrace();
+                LOGGER.error(e);
                 forwardToPage("error.jsp", req, resp);
                 throw new ApplicationException("Can't execute db command: " + e.getMessage(), e);
             }

@@ -5,6 +5,7 @@ import net.ukr.dreamsicle.connection.DBConnection;
 import net.ukr.dreamsicle.exception.ApplicationException;
 import net.ukr.dreamsicle.servlet.AbstractServlet;
 import net.ukr.dreamsicle.util.DBUtilsDepartment;
+import org.apache.log4j.Logger;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -16,6 +17,7 @@ import java.sql.Connection;
 
 @WebServlet("/addNewDepartment")
 public class AddNewDepartmentController extends AbstractServlet {
+    private static final Logger LOGGER = Logger.getLogger(AddNewDepartmentController.class);
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -37,6 +39,7 @@ public class AddNewDepartmentController extends AbstractServlet {
 
         if (newNameDepartment == null || newNameDepartment.isEmpty()) {
             hasError = true;
+            LOGGER.info("newNameDepartment not input");
             errorDataDepartment = "Sorry, You have not entered the department name. Please enter a name.";
         } else {
             DBUtilsDepartment dbUtilsDepartment = new DBUtilsDepartment();
@@ -49,15 +52,17 @@ public class AddNewDepartmentController extends AbstractServlet {
                         dbUtilsDepartment.addNewDepartment(connection, departmentAddNewDepart);
                     } else {
                         hasError = true;
+                        LOGGER.info("Not unique department name");
                         errorDataDepartment = "Sorry, you input not unique department name. Please repeat your input. ";
                     }
                 } else {
                     hasError = true;
+                    LOGGER.info("Connection with DB closed");
                     errorDataDepartment = "Sorry, problem with connection to DB, Try again later...";
                 }
             } catch (Exception e) {
-                e.printStackTrace();
                 forwardToPage("error.jsp", req, resp);
+                LOGGER.error(e);
                 throw new ApplicationException("Can't execute db command: " + e.getMessage(), e);
             }
         }

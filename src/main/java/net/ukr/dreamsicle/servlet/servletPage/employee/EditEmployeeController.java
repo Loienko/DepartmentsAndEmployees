@@ -6,6 +6,7 @@ import net.ukr.dreamsicle.exception.ApplicationException;
 import net.ukr.dreamsicle.servlet.AbstractServlet;
 import net.ukr.dreamsicle.util.DBUtilsEmployee;
 import net.ukr.dreamsicle.validation.ValidEmailAddress;
+import org.apache.log4j.Logger;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -20,6 +21,7 @@ import java.util.List;
 
 @WebServlet("/editEmployee")
 public class EditEmployeeController extends AbstractServlet {
+    private static final Logger LOGGER = Logger.getLogger(EditEmployeeController.class);
     private String emailEmployee;
     private ValidEmailAddress validEmailAddress = new ValidEmailAddress();
 
@@ -33,6 +35,7 @@ public class EditEmployeeController extends AbstractServlet {
         emailEmployee = req.getParameter("emailEmployee");
 
         if (emailEmployee.isEmpty()) {
+            LOGGER.info("emailEmployee is empty");
             forwardToPage("error.jsp", req, resp);
         } else {
             Connection connection = new DBConnection().getConnection();
@@ -44,10 +47,11 @@ public class EditEmployeeController extends AbstractServlet {
                     session.setAttribute("employeeForUpdate", employeeForUpdate);
                     forwardToFragment("editEmployee.jsp", req, resp);
                 } else {
+                    LOGGER.info("Connection with DB closed");
                     forwardToPage("error.jsp", req, resp);
                 }
             } catch (Exception e) {
-                e.printStackTrace();
+                LOGGER.error(e);
                 forwardToPage("error.jsp", req, resp);
                 throw new ApplicationException("Can't execute db command: " + e.getMessage(), e);
             }
@@ -75,7 +79,7 @@ public class EditEmployeeController extends AbstractServlet {
         try {
             validEmailByDB = dbUtilsEmployee.isValidEmailByDB(connection, updateEmailEmployee);
         } catch (SQLException e) {
-            e.printStackTrace();
+            LOGGER.error(e);
             forwardToPage("error.jsp", req, resp);
         }
 
@@ -95,6 +99,7 @@ public class EditEmployeeController extends AbstractServlet {
                     arrayListValueField.add(employeeUpdate.getEmail());
                 } else {
                     error = true;
+                    LOGGER.info("email not unique");
                     errorEditEmployee = "Sorry, that email not unique, Please, input unique email address.";
                 }
             }
@@ -125,14 +130,16 @@ public class EditEmployeeController extends AbstractServlet {
                         forwardToFragment("editEmployee.jsp", req, resp);
                     }
                 } else {
+                    LOGGER.info("Connection with DB closed");
                     forwardToPage("error.jsp", req, resp);
                 }
             } catch (Exception e) {
-                e.printStackTrace();
+                LOGGER.error(e);
                 forwardToPage("error.jsp", req, resp);
                 throw new ApplicationException("Can't execute db command: " + e.getMessage(), e);
             }
         } else {
+            LOGGER.info("not input all fields");
             error = true;
             errorEditEmployee = "Please, input all fields.";
         }

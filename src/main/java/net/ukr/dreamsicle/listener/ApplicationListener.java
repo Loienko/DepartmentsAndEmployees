@@ -6,7 +6,7 @@ import org.slf4j.LoggerFactory;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 import javax.servlet.annotation.WebListener;
-import java.util.Date;
+import java.util.GregorianCalendar;
 
 @WebListener
 public class ApplicationListener implements ServletContextListener {
@@ -14,11 +14,11 @@ public class ApplicationListener implements ServletContextListener {
 
     @Override
     public void contextInitialized(ServletContextEvent servletContextEvent) {
-        LOGGER.info("APP STARTED " + new Date());
+        LOGGER.info("------------ APP STARTED " + new GregorianCalendar().getTime() + " ------------");
     }
 
     @Override
     public void contextDestroyed(ServletContextEvent servletContextEvent) {
-        LOGGER.info("APP DESTROYED");
+        LOGGER.info("------------ APP DESTROYED " + new GregorianCalendar().getTime() + " ------------");
     }
 }

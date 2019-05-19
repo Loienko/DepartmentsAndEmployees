@@ -1,5 +1,7 @@
 package net.ukr.dreamsicle.connection;
 
+import org.apache.log4j.Logger;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
@@ -8,6 +10,7 @@ import java.util.Properties;
  * class for download resources from application.properties
  */
 public class ReadDataFromResFileAppProp {
+    private static final Logger LOGGER = Logger.getLogger(ReadDataFromResFileAppProp.class);
     private final Properties properties = new Properties();
 
     public ReadDataFromResFileAppProp() {
@@ -18,7 +21,8 @@ public class ReadDataFromResFileAppProp {
         try (InputStream in = ReadDataFromResFileAppProp.class.getClassLoader().getResourceAsStream(classPathUrl)) {
             properties.load(in);
         } catch (IOException e) {
-            throw new IllegalArgumentException("Can't load properties from classpath:" + classPathUrl, e);
+            LOGGER.error(e);
+//            throw new IllegalArgumentException("Can't load properties from classpath:" + classPathUrl, e);
         }
     }
 
