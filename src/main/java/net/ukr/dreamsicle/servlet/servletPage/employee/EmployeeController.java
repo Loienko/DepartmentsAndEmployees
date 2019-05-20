@@ -1,7 +1,7 @@
 package net.ukr.dreamsicle.servlet.servletPage.employee;
 
 import net.ukr.dreamsicle.beans.Employee;
-import net.ukr.dreamsicle.connection.DBConnection;
+import net.ukr.dreamsicle.connection.MyUtils;
 import net.ukr.dreamsicle.exception.ApplicationException;
 import net.ukr.dreamsicle.servlet.AbstractServlet;
 import net.ukr.dreamsicle.util.DBUtilsDepartment;
@@ -28,7 +28,7 @@ public class EmployeeController extends AbstractServlet {
         boolean check = false;
         String errorCreateNewEmployee = "";
         String errorEditEmployee = "";
-
+        Connection conn = MyUtils.getStoredConnection(req);
         session.setAttribute("errorCreateNewEmployee", errorCreateNewEmployee);
         session.setAttribute("errorEditEmployee", errorEditEmployee);
 
@@ -43,18 +43,12 @@ public class EmployeeController extends AbstractServlet {
         }
 
         if (!nameDepartFromDepartment.isEmpty()) {
-            Connection connection = new DBConnection().getConnection();
             DBUtilsDepartment dbUtilsDepartment = new DBUtilsDepartment();
             try {
-                if (!connection.isClosed()) {
-                    employeeList = dbUtilsDepartment.getEmployeeListFromDepartmentType(connection, nameDepartFromDepartment);
-                } else {
-                    LOGGER.info("Connection with DB closed");
-                    check = true;
-                    forwardToPage("error.jsp", req, resp);
-                }
-            } catch (SQLException e) {
-                LOGGER.error(e);
+                employeeList = dbUtilsDepartment.getEmployeeListFromDepartmentType(conn, nameDepartFromDepartment);
+
+            } catch (SQLException | ApplicationException e) {
+                LOGGER.error("error", e);
                 forwardToPage("error.jsp", req, resp);
                 throw new ApplicationException("Can't execute db command: " + e.getMessage(), e);
             }

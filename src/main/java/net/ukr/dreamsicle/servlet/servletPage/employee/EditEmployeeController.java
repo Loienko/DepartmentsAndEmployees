@@ -1,7 +1,7 @@
 package net.ukr.dreamsicle.servlet.servletPage.employee;
 
 import net.ukr.dreamsicle.beans.Employee;
-import net.ukr.dreamsicle.connection.DBConnection;
+import net.ukr.dreamsicle.connection.MyUtils;
 import net.ukr.dreamsicle.exception.ApplicationException;
 import net.ukr.dreamsicle.servlet.AbstractServlet;
 import net.ukr.dreamsicle.util.DBUtilsEmployee;
@@ -28,7 +28,7 @@ public class EditEmployeeController extends AbstractServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession session = req.getSession();
-
+        Connection conn = MyUtils.getStoredConnection(req);
         String errorEditEmployee = (String) session.getAttribute("errorEditEmployee");
         req.setAttribute("errorEditEmployee", errorEditEmployee);
 
@@ -38,22 +38,18 @@ public class EditEmployeeController extends AbstractServlet {
             LOGGER.info("emailEmployee is empty");
             forwardToPage("error.jsp", req, resp);
         } else {
-            Connection connection = new DBConnection().getConnection();
             DBUtilsEmployee dbUtilsEmployee = new DBUtilsEmployee();
             try {
-                if (!connection.isClosed()) {
-                    Employee employeeForUpdate = dbUtilsEmployee.findEmployeeForUpdate(connection, emailEmployee);
-                    req.setAttribute("employeeForUpdate", employeeForUpdate);
-                    session.setAttribute("employeeForUpdate", employeeForUpdate);
-                    forwardToFragment("editEmployee.jsp", req, resp);
-                } else {
-                    LOGGER.info("Connection with DB closed");
-                    forwardToPage("error.jsp", req, resp);
-                }
-            } catch (Exception e) {
+                Employee employeeForUpdate = dbUtilsEmployee.findEmployeeForUpdate(conn, emailEmployee);
+                req.setAttribute("employeeForUpdate", employeeForUpdate);
+                session.setAttribute("employeeForUpdate", employeeForUpdate);
+                forwardToFragment("editEmployee.jsp", req, resp);
+
+            } catch (SQLException | ApplicationException e) {
                 LOGGER.error(e);
                 forwardToPage("error.jsp", req, resp);
-                throw new ApplicationException("Can't execute db command: " + e.getMessage(), e);
+            } catch (Exception e) {
+                e.printStackTrace();
             }
         }
     }
@@ -64,7 +60,7 @@ public class EditEmployeeController extends AbstractServlet {
         HttpSession session = req.getSession();
         String errorEditEmployee = "";
         boolean error = false;
-
+        Connection conn = MyUtils.getStoredConnection(req);
         String updateNameEmployee = req.getParameter("updateNameEmployee");
         String updateSurnameEmployee = req.getParameter("updateSurnameEmployee");
         String updateEmailEmployee = req.getParameter("updateEmailEmployee");
@@ -72,12 +68,12 @@ public class EditEmployeeController extends AbstractServlet {
 
         boolean validUniqueEmailAddress = validEmailAddress.isValidUniqueEmailAddress(updateEmailEmployee);
 
-        Connection connection = new DBConnection().getConnection();
+//        Connection connection = new DBConnection().getConnection();
         DBUtilsEmployee dbUtilsEmployee = new DBUtilsEmployee();
 
         boolean validEmailByDB = false;
         try {
-            validEmailByDB = dbUtilsEmployee.isValidEmailByDB(connection, updateEmailEmployee);
+            validEmailByDB = dbUtilsEmployee.isValidEmailByDB(conn, updateEmailEmployee);
         } catch (SQLException e) {
             LOGGER.error(e);
             forwardToPage("error.jsp", req, resp);
@@ -121,9 +117,9 @@ public class EditEmployeeController extends AbstractServlet {
             }
 
             try {
-                if (!connection.isClosed() && !fieldForUpdate.isEmpty()) {
+                if (!fieldForUpdate.isEmpty()) {
                     if (!error) {
-                        dbUtilsEmployee.updateEmployee(connection, fieldForUpdate, arrayListValueField, emailEmployee);
+                        dbUtilsEmployee.updateEmployee(conn, fieldForUpdate, arrayListValueField, emailEmployee);
                     } else {
                         req.setAttribute("emailEmployee", emailEmployee);
                         session.setAttribute("errorEditEmployee", errorEditEmployee);
@@ -133,10 +129,9 @@ public class EditEmployeeController extends AbstractServlet {
                     LOGGER.info("Connection with DB closed");
                     forwardToPage("error.jsp", req, resp);
                 }
-            } catch (Exception e) {
-                LOGGER.error(e);
+            } catch (SQLException | ApplicationException e) {
+                LOGGER.error("error", e);
                 forwardToPage("error.jsp", req, resp);
-                throw new ApplicationException("Can't execute db command: " + e.getMessage(), e);
             }
         } else {
             LOGGER.info("not input all fields");

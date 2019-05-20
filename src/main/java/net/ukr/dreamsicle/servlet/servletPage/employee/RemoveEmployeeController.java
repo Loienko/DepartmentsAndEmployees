@@ -1,6 +1,6 @@
 package net.ukr.dreamsicle.servlet.servletPage.employee;
 
-import net.ukr.dreamsicle.connection.DBConnection;
+import net.ukr.dreamsicle.connection.MyUtils;
 import net.ukr.dreamsicle.exception.ApplicationException;
 import net.ukr.dreamsicle.servlet.AbstractServlet;
 import net.ukr.dreamsicle.util.DBUtilsEmployee;
@@ -21,22 +21,15 @@ public class RemoveEmployeeController extends AbstractServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String delete = req.getParameter("emailEmployee");
-
         if (!delete.isEmpty()) {
-            Connection connection = new DBConnection().getConnection();
             DBUtilsEmployee dbUtilsEmployee = new DBUtilsEmployee();
             try {
-                if (!connection.isClosed()) {
-                    dbUtilsEmployee.removeEmployee(connection, delete);
-                    resp.sendRedirect(req.getContextPath() + "/employee");
-                } else {
-                    LOGGER.info("Connection with DB closed");
-                    forwardToPage("error.jsp", req, resp);
-                }
-            } catch (SQLException e) {
-                LOGGER.error(e);
+                dbUtilsEmployee.removeEmployee(MyUtils.getStoredConnection(req), delete);
+                resp.sendRedirect(req.getContextPath() + "/employee");
+
+            } catch (SQLException | ApplicationException e) {
+                LOGGER.error("error", e);
                 forwardToPage("error.jsp", req, resp);
-                throw new ApplicationException("Can't execute db command: " + e.getMessage(), e);
             }
         } else {
             LOGGER.info("Field delete is empty");

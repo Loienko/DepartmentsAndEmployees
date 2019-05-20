@@ -14,11 +14,11 @@ public class ApplicationListener implements ServletContextListener {
 
     @Override
     public void contextInitialized(ServletContextEvent servletContextEvent) {
-        LOGGER.info("------------ APP STARTED " + new GregorianCalendar().getTime() + " ------------");
+        LOGGER.info("---------- APP STARTED " + new GregorianCalendar().getTime() + " ----------");
     }
 
     @Override
     public void contextDestroyed(ServletContextEvent servletContextEvent) {
-        LOGGER.info("------------ APP DESTROYED " + new GregorianCalendar().getTime() + " ------------");
+        LOGGER.info("---------- APP DESTROYED " + new GregorianCalendar().getTime() + " ----------");
     }
 }

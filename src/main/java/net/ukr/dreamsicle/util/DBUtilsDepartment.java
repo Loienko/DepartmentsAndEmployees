@@ -3,62 +3,53 @@ package net.ukr.dreamsicle.util;
 import net.ukr.dreamsicle.beans.Department;
 import net.ukr.dreamsicle.beans.Employee;
 import net.ukr.dreamsicle.connection.DBConnection;
-import org.apache.log4j.Logger;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
 public class DBUtilsDepartment {
-    private static final Logger LOGGER = Logger.getLogger(DBUtilsDepartment.class);
+    final static org.apache.log4j.Logger LOGGER = org.apache.log4j.Logger.getLogger(DBConnection.class);
 
-    public void addNewDepartment(Connection connection, Department department) throws SQLException {
+    public void addNewDepartment(Department department) throws SQLException {
         String sqlQuery = "INSERT INTO department(name_depart, count_employee) VALUES (?, ?)";
-
+        Connection connection = new DBConnection().getConnection();
         try (PreparedStatement preparedStatement = connection.prepareStatement(sqlQuery)) {
             preparedStatement.setString(1, department.getName_depart());
             preparedStatement.setInt(2, department.getCount_employee());
             preparedStatement.executeUpdate();
-        } catch (Exception e) {
-            LOGGER.error(e);
         }
         connection.close();
-
     }
 
-    public void updateDepartment(Connection connection, String department, String nameDepartForChange) throws SQLException {
+    public void updateDepartment(String department, String nameDepartForChange) throws SQLException {
         String sqlQuery = "Update department set name_depart = '" + nameDepartForChange + "' WHERE name_depart = '" + department + "'";
 
-        try (PreparedStatement preparedStatement = connection.prepareStatement(sqlQuery)) {
+        try (Connection connection = new DBConnection().getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(sqlQuery)) {
             Statement statement = connection.createStatement();
             statement.executeUpdate(sqlQuery);
 
             preparedStatement.executeUpdate();
-        } catch (Exception e) {
-            LOGGER.error(e);
+            System.out.println();
         }
-        connection.close();
     }
 
-    public void deleteDepartment(Connection connection, String nameDepartForDelete) throws SQLException {
+    public void deleteDepartment(String nameDepartForDelete) throws SQLException {
         String sqlQuery = "DELETE FROM department WHERE name_depart = ?";
 
-        try (PreparedStatement preparedStatement = connection.prepareStatement(sqlQuery)) {
+        try (Connection connection = new DBConnection().getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(sqlQuery)) {
             preparedStatement.setString(1, nameDepartForDelete);
             preparedStatement.executeUpdate();
-        } catch (Exception e) {
-            LOGGER.error(e);
         }
-        connection.close();
     }
 
     public List<Department> getListDepartment(Connection connection) throws SQLException {
         List<Department> list = new ArrayList<>();
         String sqlQuery = "SELECT * FROM department ORDER BY name_depart";
-
-        try (Connection connection1 = new DBConnection().getConnection();
-             PreparedStatement preparedStatement = connection1.prepareStatement(sqlQuery)) {
-            getCountTable(connection1);
+        try (PreparedStatement preparedStatement = connection.prepareStatement(sqlQuery)) {
+            getCountTable(connection);
             ResultSet resultSet = preparedStatement.executeQuery();
 
             while (resultSet.next()) {
@@ -67,12 +58,7 @@ public class DBUtilsDepartment {
                 department.setCount_employee(resultSet.getInt(3));
                 list.add(department);
             }
-        } catch (Exception e) {
-            LOGGER.error(e);
         }
-
-//        connection.close();
-
         return list;
     }
 
@@ -80,8 +66,6 @@ public class DBUtilsDepartment {
         String sql = "UPDATE department SET count_employee = (SELECT COUNT(id_department) FROM employee WHERE id_department = department.id)";
         try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
             preparedStatement.executeUpdate();
-        } catch (Exception e) {
-            LOGGER.error(e);
         }
     }
 
@@ -100,11 +84,8 @@ public class DBUtilsDepartment {
                 employee.setCreateDate(resultSet.getString("date"));
                 list.add(employee);
             }
-        } catch (Exception e) {
-            LOGGER.error(e);
         }
 
-        connection.close();
         return list;
     }
 
@@ -117,10 +98,8 @@ public class DBUtilsDepartment {
             while (resultSet.next()) {
                 departmentForUpdate.setName_depart(resultSet.getString("name_depart"));
             }
-        } catch (Exception e) {
-            LOGGER.error(e);
         }
-        connection.close();
+
         return departmentForUpdate;
     }
 
@@ -134,8 +113,6 @@ public class DBUtilsDepartment {
             while (resultSet.next()) {
                 anInt = resultSet.getInt("count_employee");
             }
-        } catch (Exception e) {
-            LOGGER.error(e);
         }
         return anInt;
     }
@@ -149,8 +126,6 @@ public class DBUtilsDepartment {
             while (resultSet.next()) {
                 string = resultSet.getString(1);
             }
-        } catch (Exception e) {
-            LOGGER.error(e);
         }
         return string;
     }

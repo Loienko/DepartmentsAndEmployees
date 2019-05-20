@@ -1,7 +1,6 @@
 package net.ukr.dreamsicle.util;
 
 import net.ukr.dreamsicle.beans.Employee;
-import net.ukr.dreamsicle.connection.DBConnection;
 import org.apache.log4j.Logger;
 
 import java.sql.Connection;
@@ -14,24 +13,20 @@ public class DBUtilsEmployee {
     private static final Logger LOGGER = Logger.getLogger(DBUtilsEmployee.class);
 
     public DBUtilsEmployee() {
-
     }
 
     public void addNewEmployee(Connection connection, Employee employee, String idDepartment) throws SQLException {
         String sqlQuery = "INSERT INTO employee(id_department ,name, surname, email, date) VALUES (?, ?, ?, ?, ?)";
 
-        int anInt = getAnInt(connection, idDepartment);
         try (PreparedStatement preparedStatement = connection.prepareStatement(sqlQuery)) {
+            int anInt = getAnInt(connection, idDepartment);
             preparedStatement.setInt(1, anInt);
             preparedStatement.setString(2, employee.getName());
             preparedStatement.setString(3, employee.getSurname());
             preparedStatement.setString(4, employee.getEmail());
             preparedStatement.setString(5, employee.getCreateDate());
             preparedStatement.executeUpdate();
-        } catch (Exception e) {
-            LOGGER.error(e);
         }
-        connection.close();
     }
 
     private int getAnInt(Connection connection, String idDepartment) throws SQLException {
@@ -43,8 +38,6 @@ public class DBUtilsEmployee {
             while (resultSet.next()) {
                 anInt = resultSet.getInt(1);
             }
-        } catch (Exception e) {
-            LOGGER.error(e);
         }
         return anInt;
     }
@@ -52,9 +45,7 @@ public class DBUtilsEmployee {
     public void updateEmployee(Connection connection, String substring, List arrayListValueField, String emailEmployeeParameter) throws SQLException {
         String sqlQuery = "Update employee set " + substring + " WHERE email = ?";
 
-//        dbConnection
-        try (Connection connections = new DBConnection().getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement(sqlQuery)) {
+        try (PreparedStatement preparedStatement = connection.prepareStatement(sqlQuery)) {
             for (int i = 0; i < arrayListValueField.size(); i++) {
                 preparedStatement.setString(i + 1, (String) arrayListValueField.get(i));
             }
@@ -63,7 +54,6 @@ public class DBUtilsEmployee {
         } catch (Exception e) {
             LOGGER.error(e);
         }
-        connection.close();
     }
 
     public void removeEmployee(Connection connection, String remove) throws SQLException {
@@ -73,13 +63,10 @@ public class DBUtilsEmployee {
 
             preparedStatement.setString(1, remove);
             preparedStatement.executeUpdate();
-        } catch (Exception e) {
-            LOGGER.error(e);
         }
-        connection.close();
     }
 
-    public Employee findEmployeeForUpdate(Connection connection, String emailEmployeeParameter) throws Exception {
+    public Employee findEmployeeForUpdate(Connection connection, String emailEmployeeParameter) throws SQLException {
         String sqlQuery = "SELECT name, surname, email, date FROM employee WHERE email = ?";
         Employee employeeList = new Employee();
 
@@ -92,10 +79,7 @@ public class DBUtilsEmployee {
                 employeeList.setEmail(resultSet.getString("email"));
                 employeeList.setCreateDate(resultSet.getString("date"));
             }
-        } catch (Exception e) {
-            LOGGER.error(e);
         }
-        connection.close();
         return employeeList;
     }
 
@@ -108,8 +92,6 @@ public class DBUtilsEmployee {
             while (resultSet.next()) {
                 aBoolean = resultSet.getBoolean(1);
             }
-        } catch (Exception e) {
-            LOGGER.error(e);
         }
         return aBoolean;
     }

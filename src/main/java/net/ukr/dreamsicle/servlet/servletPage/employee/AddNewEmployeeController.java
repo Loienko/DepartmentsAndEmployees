@@ -1,7 +1,7 @@
 package net.ukr.dreamsicle.servlet.servletPage.employee;
 
 import net.ukr.dreamsicle.beans.Employee;
-import net.ukr.dreamsicle.connection.DBConnection;
+import net.ukr.dreamsicle.connection.MyUtils;
 import net.ukr.dreamsicle.exception.ApplicationException;
 import net.ukr.dreamsicle.servlet.AbstractServlet;
 import net.ukr.dreamsicle.util.DBUtilsEmployee;
@@ -43,7 +43,7 @@ public class AddNewEmployeeController extends AbstractServlet {
         boolean hasError = false;
         String errorDataDepartment = "";
         Employee employeeAddNewEmployee = null;
-
+        Connection conn = MyUtils.getStoredConnection(req);
         String parameterNameDepartment = (String) req.getSession().getAttribute("parameterNameDepartment");
 
         String nameEmployee = req.getParameter("nameEmployee");
@@ -61,26 +61,18 @@ public class AddNewEmployeeController extends AbstractServlet {
             errorDataDepartment = "Please Input data (name, surname, email, date)!";
         } else {
             DBUtilsEmployee dbUtilsEmployee = new DBUtilsEmployee();
-            Connection connection = new DBConnection().getConnection();
             employeeAddNewEmployee = new Employee(nameEmployee, surnameEmployee, emailEmployee, getDateFormat(dateEmployee));
             try {
-                if (!connection.isClosed()) {
-                    boolean validEmailByDB = dbUtilsEmployee.isValidEmailByDB(connection, emailEmployee);
-                    if (validUniqueEmailAddress && !validEmailByDB) {
-                        dbUtilsEmployee.addNewEmployee(connection, employeeAddNewEmployee, parameterNameDepartment);
-                    } else {
-                        hasError = true;
-                        errorDataDepartment = "Please input unique email address.";
-                    }
+                boolean validEmailByDB = dbUtilsEmployee.isValidEmailByDB(conn, emailEmployee);
+                if (validUniqueEmailAddress && !validEmailByDB) {
+                    dbUtilsEmployee.addNewEmployee(conn, employeeAddNewEmployee, parameterNameDepartment);
                 } else {
                     hasError = true;
-                    LOGGER.info("Connection with DB closed");
-                    errorDataDepartment = "Sorry, problem with connection to DB, Try again later...";
+                    errorDataDepartment = "Please input unique email address.";
                 }
-            } catch (SQLException e) {
-                LOGGER.error(e);
+            } catch (SQLException | ApplicationException e) {
+                LOGGER.error("error", e);
                 forwardToPage("error.jsp", req, resp);
-                throw new ApplicationException("Can't execute db command: " + e.getMessage(), e);
             }
         }
 

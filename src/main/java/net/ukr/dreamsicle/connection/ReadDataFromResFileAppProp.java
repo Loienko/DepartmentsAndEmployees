@@ -21,12 +21,11 @@ public class ReadDataFromResFileAppProp {
         try (InputStream in = ReadDataFromResFileAppProp.class.getClassLoader().getResourceAsStream(classPathUrl)) {
             properties.load(in);
         } catch (IOException e) {
-            LOGGER.error(e);
-//            throw new IllegalArgumentException("Can't load properties from classpath:" + classPathUrl, e);
+            LOGGER.error("error", e);
         }
     }
 
-    public String getProperties(String property) {
+    String getProperties(String property) {
         return properties.getProperty(property);
     }
 }
