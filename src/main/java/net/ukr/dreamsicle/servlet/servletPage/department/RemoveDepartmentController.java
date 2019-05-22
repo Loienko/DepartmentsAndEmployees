@@ -1,6 +1,5 @@
 package net.ukr.dreamsicle.servlet.servletPage.department;
 
-import net.ukr.dreamsicle.connection.MyUtils;
 import net.ukr.dreamsicle.exception.ApplicationException;
 import net.ukr.dreamsicle.servlet.AbstractServlet;
 import net.ukr.dreamsicle.util.DBUtilsDepartment;
@@ -21,12 +20,11 @@ public class RemoveDepartmentController extends AbstractServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String delete = req.getParameter("nameDepart");
-        Connection conn = MyUtils.getStoredConnection(req);
         DBUtilsDepartment dbUtilsDepartment = new DBUtilsDepartment();
 
         if (!delete.isEmpty()) {
             try {
-                int countEmployeeFromDepartment = dbUtilsDepartment.getCountEmployeeFromDepartment(conn, delete);
+                int countEmployeeFromDepartment = dbUtilsDepartment.getCountEmployeeFromDepartment(delete);
                 if (countEmployeeFromDepartment <= 0) {
                     dbUtilsDepartment.deleteDepartment(delete);
                     resp.sendRedirect(req.getContextPath() + "/department");

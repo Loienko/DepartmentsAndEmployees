@@ -1,6 +1,5 @@
 package net.ukr.dreamsicle.servlet.servletPage.employee;
 
-import net.ukr.dreamsicle.connection.MyUtils;
 import net.ukr.dreamsicle.exception.ApplicationException;
 import net.ukr.dreamsicle.servlet.AbstractServlet;
 import net.ukr.dreamsicle.util.DBUtilsEmployee;
@@ -11,7 +10,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.sql.Connection;
 import java.sql.SQLException;
 
 @WebServlet("/removeEmployee")
@@ -24,7 +22,7 @@ public class RemoveEmployeeController extends AbstractServlet {
         if (!delete.isEmpty()) {
             DBUtilsEmployee dbUtilsEmployee = new DBUtilsEmployee();
             try {
-                dbUtilsEmployee.removeEmployee(MyUtils.getStoredConnection(req), delete);
+                dbUtilsEmployee.removeEmployee(delete);
                 resp.sendRedirect(req.getContextPath() + "/employee");
 
             } catch (SQLException | ApplicationException e) {

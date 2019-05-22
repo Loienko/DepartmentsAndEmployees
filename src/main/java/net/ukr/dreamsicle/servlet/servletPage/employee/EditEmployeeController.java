@@ -1,7 +1,6 @@
 package net.ukr.dreamsicle.servlet.servletPage.employee;
 
 import net.ukr.dreamsicle.beans.Employee;
-import net.ukr.dreamsicle.connection.MyUtils;
 import net.ukr.dreamsicle.exception.ApplicationException;
 import net.ukr.dreamsicle.servlet.AbstractServlet;
 import net.ukr.dreamsicle.util.DBUtilsEmployee;
@@ -14,7 +13,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -28,7 +26,6 @@ public class EditEmployeeController extends AbstractServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession session = req.getSession();
-        Connection conn = MyUtils.getStoredConnection(req);
         String errorEditEmployee = (String) session.getAttribute("errorEditEmployee");
         req.setAttribute("errorEditEmployee", errorEditEmployee);
 
@@ -40,7 +37,7 @@ public class EditEmployeeController extends AbstractServlet {
         } else {
             DBUtilsEmployee dbUtilsEmployee = new DBUtilsEmployee();
             try {
-                Employee employeeForUpdate = dbUtilsEmployee.findEmployeeForUpdate(conn, emailEmployee);
+                Employee employeeForUpdate = dbUtilsEmployee.findEmployeeForUpdate(emailEmployee);
                 req.setAttribute("employeeForUpdate", employeeForUpdate);
                 session.setAttribute("employeeForUpdate", employeeForUpdate);
                 forwardToFragment("editEmployee.jsp", req, resp);
@@ -60,7 +57,6 @@ public class EditEmployeeController extends AbstractServlet {
         HttpSession session = req.getSession();
         String errorEditEmployee = "";
         boolean error = false;
-        Connection conn = MyUtils.getStoredConnection(req);
         String updateNameEmployee = req.getParameter("updateNameEmployee");
         String updateSurnameEmployee = req.getParameter("updateSurnameEmployee");
         String updateEmailEmployee = req.getParameter("updateEmailEmployee");
@@ -68,12 +64,11 @@ public class EditEmployeeController extends AbstractServlet {
 
         boolean validUniqueEmailAddress = validEmailAddress.isValidUniqueEmailAddress(updateEmailEmployee);
 
-//        Connection connection = new DBConnection().getConnection();
         DBUtilsEmployee dbUtilsEmployee = new DBUtilsEmployee();
 
         boolean validEmailByDB = false;
         try {
-            validEmailByDB = dbUtilsEmployee.isValidEmailByDB(conn, updateEmailEmployee);
+            validEmailByDB = dbUtilsEmployee.isValidEmailByDB(updateEmailEmployee);
         } catch (SQLException e) {
             LOGGER.error(e);
             forwardToPage("error.jsp", req, resp);
@@ -119,7 +114,7 @@ public class EditEmployeeController extends AbstractServlet {
             try {
                 if (!fieldForUpdate.isEmpty()) {
                     if (!error) {
-                        dbUtilsEmployee.updateEmployee(conn, fieldForUpdate, arrayListValueField, emailEmployee);
+                        dbUtilsEmployee.updateEmployee(fieldForUpdate, arrayListValueField, emailEmployee);
                     } else {
                         req.setAttribute("emailEmployee", emailEmployee);
                         session.setAttribute("errorEditEmployee", errorEditEmployee);

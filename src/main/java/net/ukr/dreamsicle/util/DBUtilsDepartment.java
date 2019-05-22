@@ -11,15 +11,20 @@ import java.util.List;
 public class DBUtilsDepartment {
     final static org.apache.log4j.Logger LOGGER = org.apache.log4j.Logger.getLogger(DBConnection.class);
 
+    public DBUtilsDepartment() {
+
+    }
+
     public void addNewDepartment(Department department) throws SQLException {
         String sqlQuery = "INSERT INTO department(name_depart, count_employee) VALUES (?, ?)";
-        Connection connection = new DBConnection().getConnection();
-        try (PreparedStatement preparedStatement = connection.prepareStatement(sqlQuery)) {
+
+        try (Connection connection = new DBConnection().getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(sqlQuery)) {
             preparedStatement.setString(1, department.getName_depart());
             preparedStatement.setInt(2, department.getCount_employee());
             preparedStatement.executeUpdate();
         }
-        connection.close();
+//        connection.close();
     }
 
     public void updateDepartment(String department, String nameDepartForChange) throws SQLException {
@@ -45,10 +50,11 @@ public class DBUtilsDepartment {
         }
     }
 
-    public List<Department> getListDepartment(Connection connection) throws SQLException {
+    public List<Department> getListDepartment() throws SQLException {
         List<Department> list = new ArrayList<>();
         String sqlQuery = "SELECT * FROM department ORDER BY name_depart";
-        try (PreparedStatement preparedStatement = connection.prepareStatement(sqlQuery)) {
+        try (Connection connection = new DBConnection().getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(sqlQuery)) {
             getCountTable(connection);
             ResultSet resultSet = preparedStatement.executeQuery();
 
@@ -69,11 +75,13 @@ public class DBUtilsDepartment {
         }
     }
 
-    public List<Employee> getEmployeeListFromDepartmentType(Connection connection, String nameDepartment) throws SQLException {
+    public List<Employee> getEmployeeListFromDepartmentType(String nameDepartment) throws SQLException {
         String sqlQuery = "SELECT a.name, a.surname, a.email, a.date FROM employee a WHERE id_department = " +
                 "(SELECT id FROM department WHERE name_depart = '" + nameDepartment + "') ORDER BY name";
+
         List<Employee> list = new ArrayList<>();
-        try (PreparedStatement preparedStatement = connection.prepareStatement(sqlQuery)) {
+        try (Connection connection = new DBConnection().getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(sqlQuery)) {
             ResultSet resultSet = preparedStatement.executeQuery();
 
             while (resultSet.next()) {
@@ -85,29 +93,29 @@ public class DBUtilsDepartment {
                 list.add(employee);
             }
         }
-
         return list;
     }
 
-    public Department findDepartmentForUpdate(Connection connection, String nameDepart) throws SQLException {
+    public Department findDepartmentForUpdate(String nameDepart) throws SQLException {
         String sqlQuery = "SELECT name_depart FROM department WHERE name_depart = ?";
         Department departmentForUpdate = new Department();
-        try (PreparedStatement preparedStatement = connection.prepareStatement(sqlQuery)) {
+        try (Connection connection = new DBConnection().getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(sqlQuery)) {
             preparedStatement.setString(1, nameDepart);
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
                 departmentForUpdate.setName_depart(resultSet.getString("name_depart"));
             }
         }
-
         return departmentForUpdate;
     }
 
-    public int getCountEmployeeFromDepartment(Connection connection, String nameDepart) throws SQLException {
+    public int getCountEmployeeFromDepartment(String nameDepart) throws SQLException {
         int anInt = 0;
         String sqlQuery = "SELECT count_employee FROM department WHERE name_depart = ?";
 
-        try (PreparedStatement preparedStatement = connection.prepareStatement(sqlQuery)) {
+        try (Connection connection = new DBConnection().getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(sqlQuery)) {
             preparedStatement.setString(1, nameDepart);
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
@@ -117,10 +125,11 @@ public class DBUtilsDepartment {
         return anInt;
     }
 
-    public String getUniqueDepartmentName(Connection connection, String departUniqueName) throws SQLException {
+    public String getUniqueDepartmentName(String departUniqueName) throws SQLException {
         String sqlQuery = "SELECT name_depart FROM department WHERE name_depart = ?";
         String string = "";
-        try (PreparedStatement preparedStatement = connection.prepareStatement(sqlQuery)) {
+        try (Connection connection = new DBConnection().getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(sqlQuery)) {
             preparedStatement.setString(1, departUniqueName);
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {

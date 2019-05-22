@@ -7,16 +7,16 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-public class DBConnection {
+public class DBConnection implements AutoCloseable {
     final static Logger LOGGER = Logger.getLogger(DBConnection.class);
     private static ReadDataFromResFileAppProp readDataFromResFileAppProp;
+    Connection connection = null;
 
     public DBConnection() {
         readDataFromResFileAppProp = new ReadDataFromResFileAppProp();
     }
 
     public Connection getConnection() {
-        Connection connection = null;
         try {
             Class.forName(readDataFromResFileAppProp.getProperties("db.driver"));
             connection = DriverManager.getConnection(
@@ -27,5 +27,10 @@ public class DBConnection {
             LOGGER.error("error", e);
         }
         return connection;
+    }
+
+    @Override
+    public void close() {
+        LOGGER.info("connection closed");
     }
 }

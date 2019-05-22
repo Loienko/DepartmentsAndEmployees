@@ -4,7 +4,6 @@ import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
-import java.sql.Connection;
 import java.util.Collection;
 import java.util.Map;
 
@@ -43,18 +42,10 @@ public class JDBCFilter implements Filter {
         HttpServletRequest req = (HttpServletRequest) request;
 
         if (this.needJDBC(req)) {
-            Connection conn = null;
             try {
-                conn = ConnectionUtils.getConnection();
-                conn.setAutoCommit(false);
-                MyUtils.storeConnection(request, conn);
                 chain.doFilter(request, response);
-                conn.commit();
             } catch (Exception e) {
                 e.printStackTrace();
-                ConnectionUtils.rollbackQuietly(conn);
-            } finally {
-                ConnectionUtils.closeQuietly(conn);
             }
         } else {
             chain.doFilter(request, response);

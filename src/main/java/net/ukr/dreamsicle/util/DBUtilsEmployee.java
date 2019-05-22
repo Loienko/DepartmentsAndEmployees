@@ -1,6 +1,7 @@
 package net.ukr.dreamsicle.util;
 
 import net.ukr.dreamsicle.beans.Employee;
+import net.ukr.dreamsicle.connection.DBConnection;
 import org.apache.log4j.Logger;
 
 import java.sql.Connection;
@@ -15,10 +16,11 @@ public class DBUtilsEmployee {
     public DBUtilsEmployee() {
     }
 
-    public void addNewEmployee(Connection connection, Employee employee, String idDepartment) throws SQLException {
+    public void addNewEmployee(Employee employee, String idDepartment) throws SQLException {
         String sqlQuery = "INSERT INTO employee(id_department ,name, surname, email, date) VALUES (?, ?, ?, ?, ?)";
 
-        try (PreparedStatement preparedStatement = connection.prepareStatement(sqlQuery)) {
+        try (Connection connection = new DBConnection().getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(sqlQuery)) {
             int anInt = getAnInt(connection, idDepartment);
             preparedStatement.setInt(1, anInt);
             preparedStatement.setString(2, employee.getName());
@@ -42,10 +44,11 @@ public class DBUtilsEmployee {
         return anInt;
     }
 
-    public void updateEmployee(Connection connection, String substring, List arrayListValueField, String emailEmployeeParameter) throws SQLException {
+    public void updateEmployee(String substring, List arrayListValueField, String emailEmployeeParameter) throws SQLException {
         String sqlQuery = "Update employee set " + substring + " WHERE email = ?";
 
-        try (PreparedStatement preparedStatement = connection.prepareStatement(sqlQuery)) {
+        try (Connection connection = new DBConnection().getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(sqlQuery)) {
             for (int i = 0; i < arrayListValueField.size(); i++) {
                 preparedStatement.setString(i + 1, (String) arrayListValueField.get(i));
             }
@@ -56,21 +59,22 @@ public class DBUtilsEmployee {
         }
     }
 
-    public void removeEmployee(Connection connection, String remove) throws SQLException {
-
+    public void removeEmployee(String remove) throws SQLException {
         String sqlQuery = "DELETE FROM employee WHERE email = ?";
-        try (PreparedStatement preparedStatement = connection.prepareStatement(sqlQuery)) {
+        try (Connection connection = new DBConnection().getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(sqlQuery)) {
 
             preparedStatement.setString(1, remove);
             preparedStatement.executeUpdate();
         }
     }
 
-    public Employee findEmployeeForUpdate(Connection connection, String emailEmployeeParameter) throws SQLException {
+    public Employee findEmployeeForUpdate(String emailEmployeeParameter) throws SQLException {
         String sqlQuery = "SELECT name, surname, email, date FROM employee WHERE email = ?";
         Employee employeeList = new Employee();
 
-        try (PreparedStatement preparedStatement = connection.prepareStatement(sqlQuery)) {
+        try (Connection connection = new DBConnection().getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(sqlQuery)) {
             preparedStatement.setString(1, emailEmployeeParameter);
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
@@ -83,11 +87,12 @@ public class DBUtilsEmployee {
         return employeeList;
     }
 
-    public boolean isValidEmailByDB(Connection connection, String emailForCheck) throws SQLException {
+    public boolean isValidEmailByDB(String emailForCheck) throws SQLException {
         boolean aBoolean = false;
         String sqlQuery = "SELECT count(email) FROM employee WHERE email = '" + emailForCheck + "'";
 
-        try (PreparedStatement preparedStatement = connection.prepareStatement(sqlQuery)) {
+        try (Connection connection = new DBConnection().getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(sqlQuery)) {
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
                 aBoolean = resultSet.getBoolean(1);

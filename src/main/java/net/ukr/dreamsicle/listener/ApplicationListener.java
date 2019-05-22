@@ -8,6 +8,7 @@ import javax.servlet.ServletContextListener;
 import javax.servlet.annotation.WebListener;
 import java.util.GregorianCalendar;
 
+
 @WebListener
 public class ApplicationListener implements ServletContextListener {
     private static final Logger LOGGER = LoggerFactory.getLogger(ApplicationListener.class);
