@@ -9,11 +9,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DBUtilsDepartment {
-    final static org.apache.log4j.Logger LOGGER = org.apache.log4j.Logger.getLogger(DBConnection.class);
-
-    public DBUtilsDepartment() {
-
-    }
 
     public void addNewDepartment(Department department) throws SQLException {
         String sqlQuery = "INSERT INTO department(name_depart, count_employee) VALUES (?, ?)";
@@ -24,7 +19,6 @@ public class DBUtilsDepartment {
             preparedStatement.setInt(2, department.getCount_employee());
             preparedStatement.executeUpdate();
         }
-//        connection.close();
     }
 
     public void updateDepartment(String department, String nameDepartForChange) throws SQLException {
@@ -36,7 +30,6 @@ public class DBUtilsDepartment {
             statement.executeUpdate(sqlQuery);
 
             preparedStatement.executeUpdate();
-            System.out.println();
         }
     }
 
