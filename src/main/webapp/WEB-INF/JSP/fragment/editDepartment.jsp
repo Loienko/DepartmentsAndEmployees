@@ -1,4 +1,4 @@
-<%@ page import="static net.ukr.dreamsicle.consts.Constants.REGEX_CHECK_VALID_NAME_SURNAME_DEPARTMENT" %>
+<%@ page import="static net.ukr.dreamsicle.consts.Constants.REGEX_CHECK_VALID_NAME_DEPARTMENT" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -11,7 +11,7 @@
     <tr>
         <td>Name Department</td>
         <td><input type="text"
-                   pattern=<%=REGEX_CHECK_VALID_NAME_SURNAME_DEPARTMENT%> name="nameUpdateDepartment"
+                   pattern=<%=REGEX_CHECK_VALID_NAME_DEPARTMENT%> name="nameUpdateDepartment"
                    placeholder="${departmentForUpdate.name_depart}"
                    value="${departmentForUpdate.name_depart}"
                    autocomplete="on | off"

@@ -1,10 +1,20 @@
 package net.ukr.dreamsicle.beans;
 
+
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 import java.io.Serializable;
 
 public class Employee implements Serializable {
+    @Size(max = 50)
+    @Pattern(regexp = "\"[A-Za-zА-Яа-яЁё]{1,50}\"")
     private String name;
+    @Size(max = 50)
+    @Pattern(regexp = "\"[A-Za-zА-Яа-яЁё]{1,50}\"")
     private String surname;
+    @NotNull
+    @Pattern(regexp = "^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))$")
     private String email;
     private String createDate;
 

@@ -1,11 +1,20 @@
 package net.ukr.dreamsicle.beans;
 
+
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.util.Objects;
 
 public class Department implements Serializable {
     private int id;
+    @NotNull
+    @Size(max = 50)
+    @Pattern(regexp = "[A-Za-zА-Яа-яЁё0-9-_]{1,50}")
     private String name_depart;
+    @Min(0)
     private int count_employee;
 
     public Department() {
@@ -30,14 +39,6 @@ public class Department implements Serializable {
     @Override
     public int hashCode() {
         return Objects.hash(id, name_depart, count_employee);
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public String getName_depart() {

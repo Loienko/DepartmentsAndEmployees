@@ -11,6 +11,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 import java.io.IOException;
 import java.sql.SQLException;
 
@@ -46,6 +48,8 @@ public class EditDepartmentController extends AbstractServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.setCharacterEncoding("UTF-8");
+
+        @Pattern(regexp = "[A-Za-zА-Яа-яЁё0-9-_]{1,50}")
         String nameUpdateDepartment = req.getParameter("nameUpdateDepartment");
         DBUtilsDepartment dbUtilsDepartment = new DBUtilsDepartment();
         String uniqueDepartmentName = null;

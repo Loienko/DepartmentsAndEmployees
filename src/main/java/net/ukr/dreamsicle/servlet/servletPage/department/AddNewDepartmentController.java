@@ -16,6 +16,8 @@ import java.sql.SQLException;
 
 @WebServlet("/addNewDepartment")
 public class AddNewDepartmentController extends AbstractServlet {
+
+
     private static final Logger LOGGER = Logger.getLogger(AddNewDepartmentController.class);
 
     @Override
@@ -51,7 +53,6 @@ public class AddNewDepartmentController extends AbstractServlet {
                     hasError = true;
                     LOGGER.info("Not unique department name");
                     errorDataDepartment = "Sorry, you input not unique department name. Please repeat your input. ";
-
                 }
             } catch (ApplicationException | SQLException e) {
                 LOGGER.error("error", e);
