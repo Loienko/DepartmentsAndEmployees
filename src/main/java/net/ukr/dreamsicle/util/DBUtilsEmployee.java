@@ -2,7 +2,6 @@ package net.ukr.dreamsicle.util;
 
 import net.ukr.dreamsicle.beans.Employee;
 import net.ukr.dreamsicle.connection.DBConnection;
-import org.apache.log4j.Logger;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -10,11 +9,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
-public class DBUtilsEmployee {
-    private static final Logger LOGGER = Logger.getLogger(DBUtilsEmployee.class);
-
-    public DBUtilsEmployee() {
-    }
+public class DBUtilsEmployee implements Actions {
 
     public void addNewEmployee(Employee employee, String idDepartment) throws SQLException {
         String sqlQuery = "INSERT INTO employee(id_department ,name, surname, email, date) VALUES (?, ?, ?, ?, ?)";
@@ -32,13 +27,16 @@ public class DBUtilsEmployee {
     }
 
     private int getAnInt(Connection connection, String idDepartment) throws SQLException {
-        String sqlQueryGetIdDepartment = "SELECT id FROM department WHERE name_depart = '" + idDepartment + "'";
+
+        String sqlQueryGetIdDepartment = "SELECT id FROM department WHERE name_depart = ?";
         int anInt = 0;
 
         try (PreparedStatement preparedStatement = connection.prepareStatement(sqlQueryGetIdDepartment)) {
-            ResultSet resultSet = preparedStatement.executeQuery();
-            while (resultSet.next()) {
-                anInt = resultSet.getInt(1);
+            preparedStatement.setString(1, idDepartment);
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                while (resultSet.next()) {
+                    anInt = resultSet.getInt(1);
+                }
             }
         }
         return anInt;
@@ -54,50 +52,58 @@ public class DBUtilsEmployee {
             }
             preparedStatement.setString(arrayListValueField.size() + 1, emailEmployeeParameter);
             preparedStatement.executeUpdate();
-        } catch (Exception e) {
-            LOGGER.error(e);
         }
     }
 
-    public void removeEmployee(String remove) throws SQLException {
+    public boolean isValidEmailByDB(String emailForCheck) throws SQLException {
+        boolean aBoolean = false;
+        String sqlQuery = "SELECT count(email) FROM employee WHERE email = ?";
+
+        try (Connection connection = new DBConnection().getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(sqlQuery)) {
+            preparedStatement.setString(1, emailForCheck);
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                while (resultSet.next()) {
+                    aBoolean = resultSet.getBoolean(1);
+                }
+            }
+        }
+        return aBoolean;
+    }
+
+    @Override
+    public void remove(String parameter) throws SQLException {
         String sqlQuery = "DELETE FROM employee WHERE email = ?";
         try (Connection connection = new DBConnection().getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(sqlQuery)) {
-
-            preparedStatement.setString(1, remove);
+            preparedStatement.setString(1, parameter);
             preparedStatement.executeUpdate();
         }
     }
 
-    public Employee findEmployeeForUpdate(String emailEmployeeParameter) throws SQLException {
+    @Override
+    public String uniqueParameter(String param) throws SQLException {
+        String sqlQuery = "SELECT email FROM employee WHERE EXISTS(SELECT * FROM employee WHERE email = ?)";
+        return getQuery(param, sqlQuery);
+    }
+
+    @Override
+    public Object findParameterForUpdate(String param) throws SQLException {
         String sqlQuery = "SELECT name, surname, email, date FROM employee WHERE email = ?";
         Employee employeeList = new Employee();
 
         try (Connection connection = new DBConnection().getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(sqlQuery)) {
-            preparedStatement.setString(1, emailEmployeeParameter);
-            ResultSet resultSet = preparedStatement.executeQuery();
-            while (resultSet.next()) {
-                employeeList.setName(resultSet.getString("name"));
-                employeeList.setSurname(resultSet.getString("surname"));
-                employeeList.setEmail(resultSet.getString("email"));
-                employeeList.setCreateDate(resultSet.getString("date"));
+            preparedStatement.setString(1, param);
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                while (resultSet.next()) {
+                    employeeList.setName(resultSet.getString("name"));
+                    employeeList.setSurname(resultSet.getString("surname"));
+                    employeeList.setEmail(resultSet.getString("email"));
+                    employeeList.setCreateDate(resultSet.getString("date"));
+                }
             }
         }
         return employeeList;
-    }
-
-    public boolean isValidEmailByDB(String emailForCheck) throws SQLException {
-        boolean aBoolean = false;
-        String sqlQuery = "SELECT count(email) FROM employee WHERE email = '" + emailForCheck + "'";
-
-        try (Connection connection = new DBConnection().getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement(sqlQuery)) {
-            ResultSet resultSet = preparedStatement.executeQuery();
-            while (resultSet.next()) {
-                aBoolean = resultSet.getBoolean(1);
-            }
-        }
-        return aBoolean;
     }
 }

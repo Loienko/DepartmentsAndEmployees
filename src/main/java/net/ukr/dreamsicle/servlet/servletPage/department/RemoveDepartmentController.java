@@ -10,7 +10,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.sql.Connection;
 import java.sql.SQLException;
 
 @WebServlet("/removeDepartment")
@@ -22,11 +21,19 @@ public class RemoveDepartmentController extends AbstractServlet {
         String delete = req.getParameter("nameDepart");
         DBUtilsDepartment dbUtilsDepartment = new DBUtilsDepartment();
 
-        if (!delete.isEmpty()) {
+        String uniqueParameter = "";
+        try {
+            uniqueParameter = dbUtilsDepartment.uniqueParameter(delete);
+        } catch (SQLException e) {
+            LOGGER.error("error", e);
+            forwardToPage("error.jsp", req, resp);
+        }
+
+        if (!delete.isEmpty() && uniqueParameter.length() != 0) {
             try {
                 int countEmployeeFromDepartment = dbUtilsDepartment.getCountEmployeeFromDepartment(delete);
                 if (countEmployeeFromDepartment <= 0) {
-                    dbUtilsDepartment.deleteDepartment(delete);
+                    dbUtilsDepartment.remove(delete);
                     resp.sendRedirect(req.getContextPath() + "/department");
                 } else {
                     LOGGER.info("count employee from department not null");

@@ -2,34 +2,38 @@ package net.ukr.dreamsicle.util;
 
 import org.junit.Test;
 
-import java.sql.Connection;
-
-import static org.junit.Assert.*;
+import java.sql.SQLException;
 
 public class DBUtilsEmployeeTest {
     DBUtilsEmployee dbUtilsEmployee = new DBUtilsEmployee();
+
     @Test
     public void addNewEmployee() {
-//        dbUtilsEmployee.addNewEmployee();
     }
 
     @Test
     public void updateEmployee() {
-
-    }
-
-    @Test
-    public void removeEmployee() {
-
-    }
-
-    @Test
-    public void findEmployeeForUpdate() {
-
     }
 
     @Test
     public void isValidEmailByDB() {
+    }
 
+    @Test
+    public void remove() {
+    }
+
+    @Test
+    public void uniqueParameter() {
+        try {
+            String s = dbUtilsEmployee.uniqueParameter("Annsqq");
+            System.out.println(s + ", " + s.length());
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    public void findParameterForUpdate() {
     }
 }

@@ -16,8 +16,6 @@ import java.sql.SQLException;
 
 @WebServlet("/addNewDepartment")
 public class AddNewDepartmentController extends AbstractServlet {
-
-
     private static final Logger LOGGER = Logger.getLogger(AddNewDepartmentController.class);
 
     @Override
@@ -46,7 +44,7 @@ public class AddNewDepartmentController extends AbstractServlet {
             DBUtilsDepartment dbUtilsDepartment = new DBUtilsDepartment();
             departmentAddNewDepart = new Department(0, newNameDepartment, 0);
             try {
-                String uniqueDepartmentName = dbUtilsDepartment.getUniqueDepartmentName(newNameDepartment);
+                String uniqueDepartmentName = dbUtilsDepartment.uniqueParameter(newNameDepartment);
                 if (uniqueDepartmentName.isEmpty()) {
                     dbUtilsDepartment.addNewDepartment(departmentAddNewDepart);
                 } else {

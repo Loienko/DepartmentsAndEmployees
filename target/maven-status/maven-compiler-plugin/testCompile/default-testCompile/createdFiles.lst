@@ -1,0 +1,5 @@
+net\ukr\dreamsicle\servlet\servletPage\employee\AddNewEmployeeControllerTest.class
+net\ukr\dreamsicle\validation\ValidEmailAddressTest.class
+net\ukr\dreamsicle\util\DBUtilsDepartmentTest.class
+net\ukr\dreamsicle\util\DBUtilsEmployeeTest.class
+net\ukr\dreamsicle\servlet\servletPage\employee\EditEmployeeControllerTest.class

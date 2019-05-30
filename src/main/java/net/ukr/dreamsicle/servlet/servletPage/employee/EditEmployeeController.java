@@ -26,27 +26,31 @@ public class EditEmployeeController extends AbstractServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession session = req.getSession();
+        DBUtilsEmployee dbUtilsEmployee = new DBUtilsEmployee();
         String errorEditEmployee = (String) session.getAttribute("errorEditEmployee");
         req.setAttribute("errorEditEmployee", errorEditEmployee);
 
         emailEmployee = req.getParameter("emailEmployee");
+        String uniqueEmail = "";
+        try {
+            uniqueEmail = new DBUtilsEmployee().uniqueParameter(emailEmployee);
+        } catch (SQLException e) {
+            LOGGER.error("Modification the request");
+            forwardToPage("error.jsp", req, resp);
+        }
 
-        if (emailEmployee.isEmpty()) {
+        if (emailEmployee.isEmpty() || uniqueEmail.length() == 0) {
             LOGGER.info("emailEmployee is empty");
             forwardToPage("error.jsp", req, resp);
         } else {
-            DBUtilsEmployee dbUtilsEmployee = new DBUtilsEmployee();
             try {
-                Employee employeeForUpdate = dbUtilsEmployee.findEmployeeForUpdate(emailEmployee);
+                Employee employeeForUpdate = (Employee) dbUtilsEmployee.findParameterForUpdate(emailEmployee);
                 req.setAttribute("employeeForUpdate", employeeForUpdate);
                 session.setAttribute("employeeForUpdate", employeeForUpdate);
                 forwardToFragment("editEmployee.jsp", req, resp);
-
             } catch (SQLException | ApplicationException e) {
                 LOGGER.error(e);
                 forwardToPage("error.jsp", req, resp);
-            } catch (Exception e) {
-                e.printStackTrace();
             }
         }
     }
@@ -84,6 +88,7 @@ public class EditEmployeeController extends AbstractServlet {
 
             getCorrectName(employeeUpdate, createQueryForBD, arrayListValueField, employeeForUpdateFromDB);
             getCorrectSurname(employeeUpdate, createQueryForBD, arrayListValueField, employeeForUpdateFromDB);
+
             if (!employeeForUpdateFromDB.getEmail().equals(employeeUpdate.getEmail())) {
                 if (validUniqueEmailAddress && !validEmailByDB) {
                     createQueryForBD.append(" email = ?,");
@@ -143,21 +148,21 @@ public class EditEmployeeController extends AbstractServlet {
         }
     }
 
-    protected void getCorrectSurname(Employee employeeUpdate, StringBuffer createQueryForBD, List arrayListValueField, Employee employeeForUpdateFromDB) {
+    private void getCorrectSurname(Employee employeeUpdate, StringBuffer createQueryForBD, List arrayListValueField, Employee employeeForUpdateFromDB) {
         if (!employeeForUpdateFromDB.getSurname().equals(employeeUpdate.getSurname())) {
             createQueryForBD.append(" surname = ?,");
             arrayListValueField.add(employeeUpdate.getSurname());
         }
     }
 
-    protected void getCorrectName(Employee employeeUpdate, StringBuffer createQueryForBD, List arrayListValueField, Employee employeeForUpdateFromDB) {
+    private void getCorrectName(Employee employeeUpdate, StringBuffer createQueryForBD, List arrayListValueField, Employee employeeForUpdateFromDB) {
         if (!employeeForUpdateFromDB.getName().equals(employeeUpdate.getName())) {
             createQueryForBD.append(" name = ?,");
             arrayListValueField.add(employeeUpdate.getName());
         }
     }
 
-    protected String getDateFormat(String dateEmployee) {
+    String getDateFormat(String dateEmployee) {
         String[] split = dateEmployee.split("-");
         StringBuffer stringBuffer = new StringBuffer();
         for (int i = split.length - 1; i >= 0; i--) {
