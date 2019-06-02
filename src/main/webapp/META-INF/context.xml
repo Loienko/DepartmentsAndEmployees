@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Context>
+    <!-- Specify a JDBC datasource -->
+    <Resource name="jdbc/depart"
+              auth="Container"
+              description="DB Connection"
+              username="depart"
+              password="depart"
+              type="javax.sql.DataSource"
+              maxActive="10"
+              maxWait="1000"
+              maxIdle="4"
+              driverClassName="org.postgresql.Driver"
+              url="jdbc:postgresql://localhost/department?autoReconnect=true"
+              maxTime="50000"
+    />
+</Context>

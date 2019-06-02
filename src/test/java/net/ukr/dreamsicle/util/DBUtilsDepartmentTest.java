@@ -1,14 +1,16 @@
 package net.ukr.dreamsicle.util;
 
+import net.ukr.dreamsicle.beans.Department;
+import org.junit.Assert;
 import org.junit.Test;
 
 import java.sql.SQLException;
 
 public class DBUtilsDepartmentTest {
-    DBUtilsDepartment dbUtilsDepartment = new DBUtilsDepartment();
 
     @Test
     public void addNewDepartment() {
+
     }
 
     @Test
@@ -42,11 +44,11 @@ public class DBUtilsDepartmentTest {
 
     @Test
     public void uniqueParameter() {
-        try {
+        /*try {
             String s = dbUtilsDepartment.uniqueParameter("Annsqq1");
             System.out.println(s + ", " + s.length());
         } catch (SQLException e) {
             e.printStackTrace();
-        }
+        }*/
     }
 }

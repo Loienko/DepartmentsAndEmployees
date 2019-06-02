@@ -5,7 +5,6 @@ import org.junit.Test;
 import java.sql.SQLException;
 
 public class DBUtilsEmployeeTest {
-    DBUtilsEmployee dbUtilsEmployee = new DBUtilsEmployee();
 
     @Test
     public void addNewEmployee() {
@@ -25,12 +24,12 @@ public class DBUtilsEmployeeTest {
 
     @Test
     public void uniqueParameter() {
-        try {
+        /*try {
             String s = dbUtilsEmployee.uniqueParameter("Annsqq");
             System.out.println(s + ", " + s.length());
         } catch (SQLException e) {
             e.printStackTrace();
-        }
+        }*/
     }
 
     @Test
