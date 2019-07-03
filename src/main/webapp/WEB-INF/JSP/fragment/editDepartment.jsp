@@ -12,8 +12,8 @@
         <td>Name Department</td>
         <td><input type="text"
                    pattern=<%=REGEX_CHECK_VALID_NAME_DEPARTMENT%> name="nameUpdateDepartment"
-                   placeholder="${departmentForUpdate.name_depart}"
-                   value="${departmentForUpdate.name_depart}"
+                   placeholder="${departmentForUpdate.nameDepart}"
+                   value="${departmentForUpdate.nameDepart}"
                    autocomplete="on | off"
         /></td>
     </tr>

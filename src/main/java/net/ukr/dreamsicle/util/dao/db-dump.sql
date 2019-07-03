@@ -12,8 +12,8 @@ SET check_function_bodies = false;
 SET search_path = public, pg_catalog;
 CREATE TABLE public.department (
   id             bigint DEFAULT nextval(('public.department_id_seq' :: text) :: regclass) NOT NULL,
-  name_depart    varchar(50)                                                              NOT NULL,
-  count_employee bigint DEFAULT 0                                                         NOT NULL
+  nameDepart    varchar(50)                                                              NOT NULL,
+  countEmployee bigint DEFAULT 0                                                         NOT NULL
 )
 WITH (oids = false
 );
@@ -22,7 +22,7 @@ WITH (oids = false
 --
 CREATE TABLE public.employee (
   id            bigint DEFAULT nextval(('public.employee_id_seq' :: text) :: regclass) NOT NULL,
-  id_department bigint                                                                 NOT NULL,
+  idDepartment bigint                                                                 NOT NULL,
   name          varchar(50)                                                            NOT NULL,
   surname       varchar(50)                                                            NOT NULL,
   email         varchar(120)                                                           NOT NULL,
@@ -51,13 +51,13 @@ CREATE SEQUENCE public.employee_id_seq
 --
 -- Data for table public.department (OID = 32795) (LIMIT 0,3)
 --
-INSERT INTO department (id, name_depart, count_employee)
+INSERT INTO department (id, nameDepart, countEmployee)
 VALUES (53, 'hello', 0);
 
-INSERT INTO department (id, name_depart, count_employee)
+INSERT INTO department (id, nameDepart, countEmployee)
 VALUES (47, 'Departss', 0);
 
-INSERT INTO department (id, name_depart, count_employee)
+INSERT INTO department (id, nameDepart, countEmployee)
 VALUES (54, 'Ann', 0);
 
 --
@@ -65,7 +65,7 @@ VALUES (54, 'Ann', 0);
 --
 CREATE INDEX employee_id_dep
   ON public.employee
-  USING btree (id_department);
+  USING btree (idDepartment);
 --
 -- Definition for index department_seq (OID = 32859) :
 --
@@ -83,7 +83,7 @@ CREATE INDEX employee_seq
 --
 ALTER TABLE ONLY department
   ADD CONSTRAINT department_name_depart_key
-UNIQUE (name_depart);
+UNIQUE (nameDepart);
 --
 -- Definition for index employee_email_key (OID = 32841) :
 --
@@ -101,7 +101,7 @@ PRIMARY KEY (id);
 --
 ALTER TABLE ONLY employee
   ADD CONSTRAINT employee_fk
-FOREIGN KEY (id_department) REFERENCES department (id) ON UPDATE CASCADE ON DELETE RESTRICT;
+FOREIGN KEY (idDepartment) REFERENCES department (id) ON UPDATE CASCADE ON DELETE RESTRICT;
 --
 -- Definition for index employee_pkey (OID = 32868) :
 --

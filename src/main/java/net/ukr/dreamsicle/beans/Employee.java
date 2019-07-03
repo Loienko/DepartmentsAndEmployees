@@ -7,8 +7,11 @@ import javax.validation.constraints.Size;
 import java.io.Serializable;
 
 public class Employee implements Serializable {
+
+    @NotNull
     private int id;
-    private int id_department;
+    @NotNull
+    private int idDepartment;
     @Size(max = 50)
     @Pattern(regexp = "\"[A-Za-zА-Яа-яЁё]{1,50}\"")
     private String name;
@@ -23,9 +26,9 @@ public class Employee implements Serializable {
     public Employee() {
     }
 
-    public Employee(int id, int id_department, String name, String surname, String email, String createDate) {
+    public Employee(int id, int idDepartment, String name, String surname, String email, String createDate) {
         this.id = id;
-        this.id_department = id_department;
+        this.idDepartment = idDepartment;
         this.name = name;
         this.surname = surname;
         this.email = email;
@@ -79,19 +82,19 @@ public class Employee implements Serializable {
         this.id = id;
     }
 
-    public int getId_department() {
-        return id_department;
+    public int getIdDepartment() {
+        return idDepartment;
     }
 
-    public void setId_department(int id_department) {
-        this.id_department = id_department;
+    public void setIdDepartment(int idDepartment) {
+        this.idDepartment = idDepartment;
     }
 
     @Override
     public String toString() {
         return "Employee{" +
                 "id=" + id +
-                ", id_department=" + id_department +
+                ", idDepartment=" + idDepartment +
                 ", name='" + name + '\'' +
                 ", surname='" + surname + '\'' +
                 ", email='" + email + '\'' +

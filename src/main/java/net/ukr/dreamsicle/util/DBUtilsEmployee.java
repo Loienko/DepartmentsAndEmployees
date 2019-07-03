@@ -1,9 +1,8 @@
 package net.ukr.dreamsicle.util;
 
 import net.ukr.dreamsicle.beans.Employee;
-import net.ukr.dreamsicle.connection.ConnectionPool;
+import net.ukr.dreamsicle.connection.Connection;
 
-import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -11,13 +10,12 @@ import java.util.List;
 
 public class DBUtilsEmployee implements Actions {
 
-
     public void addNewEmployee(Employee employee, String idDepartment) throws SQLException {
-        String sqlQuery = "INSERT INTO employee(id_department ,name, surname, email, date) VALUES (?, ?, ?, ?, ?)";
+        String sqlQuery = "INSERT INTO employee(idDepartment ,name, surname, email, date) VALUES (?, ?, ?, ?, ?)";
 
-        try (Connection connection = ConnectionPool.getInstance().getConnection();
+        try (java.sql.Connection connection = Connection.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(sqlQuery)) {
-            int anInt = getAnInt(idDepartment);
+            int anInt = getDepartmentIdByName(idDepartment);
             preparedStatement.setInt(1, anInt);
             preparedStatement.setString(2, employee.getName());
             preparedStatement.setString(3, employee.getSurname());
@@ -27,12 +25,11 @@ public class DBUtilsEmployee implements Actions {
         }
     }
 
-    private int getAnInt(String idDepartment) throws SQLException {
-
-        String sqlQueryGetIdDepartment = "SELECT id FROM department WHERE name_depart = ?";
+    private int getDepartmentIdByName(String idDepartment) throws SQLException {
+        String sqlQueryGetIdDepartment = "SELECT id FROM department WHERE nameDepart = ?";
         int anInt = 0;
 
-        try (Connection connection = ConnectionPool.getInstance().getConnection();
+        try (java.sql.Connection connection = Connection.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(sqlQueryGetIdDepartment)) {
             preparedStatement.setString(1, idDepartment);
             try (ResultSet resultSet = preparedStatement.executeQuery()) {
@@ -47,7 +44,7 @@ public class DBUtilsEmployee implements Actions {
     public void updateEmployee(String substring, List arrayListValueField, String emailEmployeeParameter) throws SQLException {
         String sqlQuery = "Update employee set " + substring + " WHERE email = ?";
 
-        try (Connection connection = ConnectionPool.getInstance().getConnection();
+        try (java.sql.Connection connection = Connection.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(sqlQuery)) {
             for (int i = 0; i < arrayListValueField.size(); i++) {
                 preparedStatement.setString(i + 1, (String) arrayListValueField.get(i));
@@ -61,7 +58,7 @@ public class DBUtilsEmployee implements Actions {
         boolean aBoolean = false;
         String sqlQuery = "SELECT count(email) FROM employee WHERE email = ?";
 
-        try (Connection connection = ConnectionPool.getInstance().getConnection();
+        try (java.sql.Connection connection = Connection.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(sqlQuery)) {
             preparedStatement.setString(1, emailForCheck);
             try (ResultSet resultSet = preparedStatement.executeQuery()) {
@@ -76,7 +73,7 @@ public class DBUtilsEmployee implements Actions {
     @Override
     public void remove(String parameter) throws SQLException {
         String sqlQuery = "DELETE FROM employee WHERE email = ?";
-        try (Connection connection = ConnectionPool.getInstance().getConnection();
+        try (java.sql.Connection connection = Connection.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(sqlQuery)) {
             preparedStatement.setString(1, parameter);
             preparedStatement.executeUpdate();
@@ -86,7 +83,7 @@ public class DBUtilsEmployee implements Actions {
     @Override
     public String uniqueParameter(String param) throws SQLException {
         String sqlQuery = "SELECT email FROM employee WHERE EXISTS(SELECT * FROM employee WHERE email = ?)";
-        try (Connection connection = ConnectionPool.getInstance().getConnection()){
+        try (java.sql.Connection connection = Connection.getConnection()) {
             return getQuery(connection, param, sqlQuery);
         }
     }
@@ -96,7 +93,7 @@ public class DBUtilsEmployee implements Actions {
         String sqlQuery = "SELECT name, surname, email, date FROM employee WHERE email = ?";
         Employee employeeList = new Employee();
 
-        try (Connection connection = ConnectionPool.getInstance().getConnection();
+        try (java.sql.Connection connection = Connection.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(sqlQuery)) {
             preparedStatement.setString(1, param);
             try (ResultSet resultSet = preparedStatement.executeQuery()) {
