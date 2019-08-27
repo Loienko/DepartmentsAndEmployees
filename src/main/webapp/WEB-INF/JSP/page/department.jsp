@@ -9,6 +9,7 @@
 <html>
 <head>
     <title>List Department</title>
+
 </head>
 <body>
 <table border="3">
@@ -20,14 +21,14 @@
     </tr>
     <c:forEach items="${depart}" var="departments">
         <tr>
-            <td align="center">${departments.name_depart}</td>
-            <td align="center">${departments.count_employee}</td>
+            <td align="center">${departments.nameDepart}</td>
+            <td align="center">${departments.countEmployee}</td>
             <td>
-                <a href="editDepartment?nameDepart=${departments.name_depart}"/> <%= EDIT%>
+                <a href="editDepartment?nameDepart=${departments.nameDepart}"/> <%= EDIT%>
             </td>
-            <td><a href="removeDepartment?nameDepart=${departments.name_depart}"/> <%= REMOVE%>
+            <td><a href="removeDepartment?nameDepart=${departments.nameDepart}"/> <%= REMOVE%>
             </td>
-            <td><a href="employee?name_depart=${departments.name_depart}"/><%= EMPLOYEES_LIST%>
+            <td><a href="employee?nameDepart=${departments.nameDepart}"/><%= EMPLOYEES_LIST%>
             </td>
         </tr>
     </c:forEach>

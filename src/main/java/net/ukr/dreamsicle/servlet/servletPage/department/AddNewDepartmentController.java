@@ -44,14 +44,13 @@ public class AddNewDepartmentController extends AbstractServlet {
             DBUtilsDepartment dbUtilsDepartment = new DBUtilsDepartment();
             departmentAddNewDepart = new Department(0, newNameDepartment, 0);
             try {
-                String uniqueDepartmentName = dbUtilsDepartment.getUniqueDepartmentName(newNameDepartment);
+                String uniqueDepartmentName = dbUtilsDepartment.uniqueParameter(newNameDepartment);
                 if (uniqueDepartmentName.isEmpty()) {
                     dbUtilsDepartment.addNewDepartment(departmentAddNewDepart);
                 } else {
                     hasError = true;
                     LOGGER.info("Not unique department name");
                     errorDataDepartment = "Sorry, you input not unique department name. Please repeat your input. ";
-
                 }
             } catch (ApplicationException | SQLException e) {
                 LOGGER.error("error", e);

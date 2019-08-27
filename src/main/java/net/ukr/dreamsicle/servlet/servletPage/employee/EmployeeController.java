@@ -21,29 +21,49 @@ public class EmployeeController extends AbstractServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        List<Employee> employeeList = null;
+        DBUtilsDepartment dbUtilsDepartment = new DBUtilsDepartment();
         HttpSession session = req.getSession();
+
         boolean check = false;
+        List<Employee> employeeList = null;
         String errorCreateNewEmployee = "";
         String errorEditEmployee = "";
+        String uniqueDepartmentName = "";
+
         session.setAttribute("errorCreateNewEmployee", errorCreateNewEmployee);
         session.setAttribute("errorEditEmployee", errorEditEmployee);
 
         String nameDepartFromDepartment = req.getParameter("name_depart");
 
-        if (nameDepartFromDepartment != null) {
+        /**
+         * Check the name after click button 'Cancel' from AddNewEmployee or EditEmployee
+         */
+        if (nameDepartFromDepartment == null || nameDepartFromDepartment.length() == 0) {
+            nameDepartFromDepartment = (String) session.getAttribute("nameDepartFromDepartment");
+        }
+
+        /**
+         * Check that request parameter not modification
+         */
+        try {
+            uniqueDepartmentName = dbUtilsDepartment.uniqueParameter(nameDepartFromDepartment);
+        } catch (SQLException | ApplicationException e) {
+            LOGGER.error(e);
+            forwardToPage("error.jsp", req, resp);
+        }
+
+        if (nameDepartFromDepartment != null && uniqueDepartmentName.length() != 0) {
             req.setAttribute("nameDepartFromDepartment", nameDepartFromDepartment);
             session.setAttribute("nameDepartFromDepartment", nameDepartFromDepartment);
         } else {
+            check = true;
             LOGGER.info("nameDepartFromDepartment is empty");
             nameDepartFromDepartment = (String) session.getAttribute("nameDepartFromDepartment");
         }
 
-        if (!nameDepartFromDepartment.isEmpty()) {
-            DBUtilsDepartment dbUtilsDepartment = new DBUtilsDepartment();
+        if (!nameDepartFromDepartment.isEmpty() || uniqueDepartmentName.length() != 0) {
             try {
                 employeeList = dbUtilsDepartment.getEmployeeListFromDepartmentType(nameDepartFromDepartment);
-
             } catch (SQLException | ApplicationException e) {
                 LOGGER.error("error", e);
                 forwardToPage("error.jsp", req, resp);

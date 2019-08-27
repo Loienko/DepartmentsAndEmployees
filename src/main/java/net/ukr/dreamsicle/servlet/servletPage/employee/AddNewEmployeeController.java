@@ -3,6 +3,7 @@ package net.ukr.dreamsicle.servlet.servletPage.employee;
 import net.ukr.dreamsicle.beans.Employee;
 import net.ukr.dreamsicle.exception.ApplicationException;
 import net.ukr.dreamsicle.servlet.AbstractServlet;
+import net.ukr.dreamsicle.util.DBUtilsDepartment;
 import net.ukr.dreamsicle.util.DBUtilsEmployee;
 import net.ukr.dreamsicle.validation.ValidEmailAddress;
 import org.apache.log4j.Logger;
@@ -31,7 +32,19 @@ public class AddNewEmployeeController extends AbstractServlet {
         String parameterNameDepartment = req.getParameter("nameDepartment");
         session.setAttribute("parameterNameDepartment", parameterNameDepartment);
 
-        forwardToFragment("add_new_employee.jsp", req, resp);
+        DBUtilsDepartment dbUtilsDepartment = new DBUtilsDepartment();
+        try {
+            String uniqueDepartmentName = dbUtilsDepartment.uniqueParameter(parameterNameDepartment);
+            if (!uniqueDepartmentName.isEmpty()) {
+                forwardToFragment("add_new_employee.jsp", req, resp);
+            } else {
+                LOGGER.info("Modification the request");
+                forwardToPage("error.jsp", req, resp);
+            }
+        } catch (SQLException | ApplicationException e) {
+            LOGGER.error(e);
+            forwardToPage("error.jsp", req, resp);
+        }
     }
 
     @Override

@@ -1,0 +1,1717 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ArtifactsWorkspaceSettings">
+    <artifacts-to-build>
+      <artifact name="DepartmentsAndEmployees:war" />
+    </artifacts-to-build>
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="53e3e8ae-2933-4d89-b35d-60bd566d0989" name="Default" comment="add validate annotation">
+      <change afterPath="$PROJECT_DIR$/src/main/java/net/ukr/dreamsicle/util/Actions.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/net/ukr/dreamsicle/beans/Employee.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/net/ukr/dreamsicle/beans/Employee.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/net/ukr/dreamsicle/connection/JDBCFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/net/ukr/dreamsicle/filter/Filter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/net/ukr/dreamsicle/servlet/servletPage/department/AddNewDepartmentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/net/ukr/dreamsicle/servlet/servletPage/department/AddNewDepartmentController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/net/ukr/dreamsicle/servlet/servletPage/department/DepartmentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/net/ukr/dreamsicle/servlet/servletPage/department/DepartmentController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/net/ukr/dreamsicle/servlet/servletPage/department/EditDepartmentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/net/ukr/dreamsicle/servlet/servletPage/department/EditDepartmentController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/net/ukr/dreamsicle/servlet/servletPage/department/RemoveDepartmentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/net/ukr/dreamsicle/servlet/servletPage/department/RemoveDepartmentController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/net/ukr/dreamsicle/servlet/servletPage/employee/AddNewEmployeeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/net/ukr/dreamsicle/servlet/servletPage/employee/AddNewEmployeeController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/net/ukr/dreamsicle/servlet/servletPage/employee/EditEmployeeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/net/ukr/dreamsicle/servlet/servletPage/employee/EditEmployeeController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/net/ukr/dreamsicle/servlet/servletPage/employee/EmployeeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/net/ukr/dreamsicle/servlet/servletPage/employee/EmployeeController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/net/ukr/dreamsicle/servlet/servletPage/employee/RemoveEmployeeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/net/ukr/dreamsicle/servlet/servletPage/employee/RemoveEmployeeController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/net/ukr/dreamsicle/util/DBUtilsDepartment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/net/ukr/dreamsicle/util/DBUtilsDepartment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/net/ukr/dreamsicle/util/DBUtilsEmployee.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/net/ukr/dreamsicle/util/DBUtilsEmployee.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/net/ukr/dreamsicle/util/dao/db-dump.sql" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/net/ukr/dreamsicle/util/dao/db-dump.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/JSP/page/department.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/JSP/page/department.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/net/ukr/dreamsicle/util/DBUtilsDepartmentTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/net/ukr/dreamsicle/util/DBUtilsDepartmentTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/net/ukr/dreamsicle/util/DBUtilsEmployeeTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/net/ukr/dreamsicle/util/DBUtilsEmployeeTest.java" afterDir="false" />
+    </list>
+    <ignored path="$PROJECT_DIR$/out/" />
+    <ignored path="$PROJECT_DIR$/target/" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="TRACKING_ENABLED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="DatabaseView">
+    <option name="SHOW_INTERMEDIATE" value="true" />
+    <option name="GROUP_DATA_SOURCES" value="true" />
+    <option name="GROUP_SCHEMA" value="true" />
+    <option name="GROUP_CONTENTS" value="false" />
+    <option name="SORT_POSITIONED" value="false" />
+    <option name="SHOW_EMPTY_GROUPS" value="false" />
+    <option name="AUTO_SCROLL_FROM_SOURCE" value="false" />
+    <option name="HIDDEN_KINDS">
+      <set />
+    </option>
+    <expand>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="PostgreSQL - department@localhost" type="feb32156:DbDataSourceImpl" />
+      </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="PostgreSQL - department@localhost" type="feb32156:DbDataSourceImpl" />
+        <item name="databases" type="d4e8921:DatabaseStructure$FamilyGroup" />
+      </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="PostgreSQL - department@localhost" type="feb32156:DbDataSourceImpl" />
+        <item name="databases" type="d4e8921:DatabaseStructure$FamilyGroup" />
+        <item name="department: database" type="6d9b600a:PostgresImplModel$Database" />
+      </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="PostgreSQL - department@localhost" type="feb32156:DbDataSourceImpl" />
+        <item name="databases" type="d4e8921:DatabaseStructure$FamilyGroup" />
+        <item name="department: database" type="6d9b600a:PostgresImplModel$Database" />
+        <item name="public: schema" type="a16502c0:PostgresImplModel$Schema" />
+      </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="PostgreSQL - department@localhost" type="feb32156:DbDataSourceImpl" />
+        <item name="databases" type="d4e8921:DatabaseStructure$FamilyGroup" />
+        <item name="department: database" type="6d9b600a:PostgresImplModel$Database" />
+        <item name="public: schema" type="a16502c0:PostgresImplModel$Schema" />
+        <item name="tables" type="d4e8921:DatabaseStructure$FamilyGroup" />
+      </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="PostgreSQL - department@localhost" type="feb32156:DbDataSourceImpl" />
+        <item name="databases" type="d4e8921:DatabaseStructure$FamilyGroup" />
+        <item name="department: database" type="6d9b600a:PostgresImplModel$Database" />
+        <item name="public: schema" type="a16502c0:PostgresImplModel$Schema" />
+        <item name="tables" type="d4e8921:DatabaseStructure$FamilyGroup" />
+        <item name="employee: table" type="a93d6ac6:PostgresImplModel$LocalTable" />
+      </path>
+    </expand>
+    <select />
+  </component>
+  <component name="FileEditorManager">
+    <splitter split-orientation="horizontal" split-proportion="0.41469058">
+      <split-first>
+        <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+          <file leaf-file-name="DBUtilsDepartment.java" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/src/main/java/net/ukr/dreamsicle/util/DBUtilsDepartment.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="425">
+                  <caret line="103" column="62" selection-start-line="103" selection-start-column="62" selection-end-line="103" selection-end-column="62" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+        </leaf>
+      </split-first>
+      <split-second>
+        <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+          <file leaf-file-name="DBUtilsEmployee.java" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/src/main/java/net/ukr/dreamsicle/util/DBUtilsEmployee.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="68">
+                  <caret line="67" column="17" lean-forward="true" selection-start-line="67" selection-start-column="17" selection-end-line="67" selection-end-column="17" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="Actions.java" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/main/java/net/ukr/dreamsicle/util/Actions.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="272">
+                  <caret line="16" column="57" selection-start-line="16" selection-start-column="57" selection-end-line="16" selection-end-column="57" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+        </leaf>
+      </split-second>
+    </splitter>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Interface" />
+        <option value="Jsp File" />
+        <option value="Class" />
+        <option value="JUnit4 Test Class" />
+      </list>
+    </option>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>Aim</find>
+      <find>test</find>
+      <find>isValidEmailByDB</find>
+      <find>System</find>
+      <find>out</find>
+      <find>updateEmployee</find>
+      <find>ResultSet</find>
+      <find>LOGGER</find>
+      <find>getQuery</find>
+    </findStrings>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="master" />
+      </map>
+    </option>
+  </component>
+  <component name="GradleLocalSettings">
+    <option name="projectSyncType">
+      <map>
+        <entry key="D:/Android/Task/ActivityResultExam" value="PREVIEW" />
+        <entry key="D:/Android/Task/AlertDialog" value="PREVIEW" />
+        <entry key="D:/Android/Task/CourtCounter" value="PREVIEW" />
+        <entry key="D:/Android/Task/DrinkDriver" value="PREVIEW" />
+        <entry key="D:/Android/Task/EditManaget" value="PREVIEW" />
+        <entry key="D:/Android/Task/Just-Java-master/Just-Java-master" value="PREVIEW" />
+        <entry key="D:/Android/Task/Lamp" value="PREVIEW" />
+        <entry key="D:/Android/Task/MarcDriver" value="PREVIEW" />
+        <entry key="D:/Android/Task/MyApplication3" value="PREVIEW" />
+        <entry key="D:/Android/Task/MyApplication4" value="PREVIEW" />
+        <entry key="D:/Android/Task/MyGame" value="PREVIEW" />
+        <entry key="D:/Android/Task/MySuperFragment" value="PREVIEW" />
+        <entry key="D:/Android/Task/Notification" value="PREVIEW" />
+        <entry key="D:/Android/Task/PractiseSet2" value="PREVIEW" />
+        <entry key="D:/Android/Task/ProjectFromTweet" value="PREVIEW" />
+        <entry key="D:/Android/Task/Rover_drive" value="PREVIEW" />
+        <entry key="D:/Android/task_from_internet/android-vision-master/visionSamples/barcode-reader" value="PREVIEW" />
+      </map>
+    </option>
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/JSP/page/department.jsp" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" root2="FORCE_HIGHLIGHTING" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/JSP/page/employee.jsp" />
+        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/JSP/fragment/removeDepartment.jsp" />
+        <option value="$PROJECT_DIR$/src/main/java/net/ukr/dreamsicle/servlet/servletPage/department/AddNewDepartmentController.kt" />
+        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/JSP/page/error.jsp" />
+        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/JSP/fragment/add_new_department.jsp" />
+        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/JSP/fragment/add_new_employee.jsp" />
+        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/JSP/fragment/editDepartment.jsp" />
+        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/JSP/fragment/editEmployee.jsp" />
+        <option value="$PROJECT_DIR$/src/main/java/net/ukr/dreamsicle/Tests.java" />
+        <option value="$PROJECT_DIR$/src/main/java/net/ukr/dreamsicle/filter/JDBCFIlter.java" />
+        <option value="$PROJECT_DIR$/readmy.txt" />
+        <option value="$PROJECT_DIR$/src/test/java/net.ukr.dreamsicle/AppTest.java" />
+        <option value="$PROJECT_DIR$/src/test/java/net/ukr/dreamsicle/servlet/servletPage/employee/AddNewEmployeeControllerTest.java" />
+        <option value="$PROJECT_DIR$/src/main/java/net/ukr/dreamsicle/servlet/servletPage/ErrorController.java" />
+        <option value="$PROJECT_DIR$/src/test/java/net/ukr/dreamsicle/servlet/servletPage/employee/EditEmployeeControllerTest.java" />
+        <option value="$PROJECT_DIR$/src/test/java/net/ukr/dreamsicle/validation/ValidEmailAddressTest.java" />
+        <option value="$PROJECT_DIR$/src/main/java/net/ukr/dreamsicle/validation/ValidEmailAddress.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/log.properties" />
+        <option value="$PROJECT_DIR$/src/main/java/net/ukr/dreamsicle/Test.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/log4j.properties" />
+        <option value="$PROJECT_DIR$/src/main/java/net/ukr/dreamsicle/util/DBUtilsDepartment.kt" />
+        <option value="$PROJECT_DIR$/src/main/java/net/ukr/dreamsicle/util/MyUtils.java" />
+        <option value="$PROJECT_DIR$/src/main/java/net/ukr/dreamsicle/connection/ReadDataFromResFileAppProp.java" />
+        <option value="$PROJECT_DIR$/src/test/java/net/ukr/dreamsicle/connection/DBConnectionTest.java" />
+        <option value="$PROJECT_DIR$/src/main/java/net/ukr/dreamsicle/connection/MyUtils.java" />
+        <option value="$PROJECT_DIR$/src/main/java/net/ukr/dreamsicle/connection/ConnectionUtils.java" />
+        <option value="$PROJECT_DIR$/src/main/java/net/ukr/dreamsicle/connection/JDBCFilter.java" />
+        <option value="$PROJECT_DIR$/src/main/java/net/ukr/dreamsicle/connection/DBConnection.java" />
+        <option value="$PROJECT_DIR$/src/main/java/net/ukr/dreamsicle/consts/Constants.java" />
+        <option value="$PROJECT_DIR$/src/main/java/net/ukr/dreamsicle/beans/Department.java" />
+        <option value="$PROJECT_DIR$/src/main/java/net/ukr/dreamsicle/filter/JDBCFilter.java" />
+        <option value="$PROJECT_DIR$/src/main/java/net/ukr/dreamsicle/servlet/servletPage/department/DepartmentController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/net/ukr/dreamsicle/beans/Employee.java" />
+        <option value="$PROJECT_DIR$/src/main/java/net/ukr/dreamsicle/util/dao/db-dump.sql" />
+        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/JSP/page/department.jsp" />
+        <option value="$PROJECT_DIR$/src/main/java/net/ukr/dreamsicle/listener/ApplicationListener.java" />
+        <option value="$PROJECT_DIR$/pom.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/net/ukr/dreamsicle/servlet/servletPage/department/AddNewDepartmentController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/net/ukr/dreamsicle/servlet/servletPage/employee/AddNewEmployeeController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/net/ukr/dreamsicle/servlet/servletPage/department/EditDepartmentController.java" />
+        <option value="$PROJECT_DIR$/src/test/java/net/ukr/dreamsicle/util/DBUtilsEmployeeTest.java" />
+        <option value="$PROJECT_DIR$/src/main/java/net/ukr/dreamsicle/servlet/servletPage/employee/EditEmployeeController.java" />
+        <option value="$PROJECT_DIR$/src/test/java/net/ukr/dreamsicle/util/DBUtilsDepartmentTest.java" />
+        <option value="$PROJECT_DIR$/src/main/java/net/ukr/dreamsicle/servlet/servletPage/employee/EmployeeController.java" />
+        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/net/ukr/dreamsicle/filter/Filter.java" />
+        <option value="$PROJECT_DIR$/src/main/java/net/ukr/dreamsicle/servlet/servletPage/employee/RemoveEmployeeController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/net/ukr/dreamsicle/servlet/servletPage/department/RemoveDepartmentController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/net/ukr/dreamsicle/util/Actions.java" />
+        <option value="$PROJECT_DIR$/src/main/java/net/ukr/dreamsicle/util/DBUtilsEmployee.java" />
+        <option value="$PROJECT_DIR$/src/main/java/net/ukr/dreamsicle/util/DBUtilsDepartment.java" />
+      </list>
+    </option>
+  </component>
+  <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsGulpfileManager">
+    <detection-done>true</detection-done>
+    <sorting>DEFINITION_ORDER</sorting>
+  </component>
+  <component name="LogFilters">
+    <option name="FILTER_ERRORS" value="false" />
+    <option name="FILTER_WARNINGS" value="false" />
+    <option name="FILTER_INFO" value="false" />
+    <option name="FILTER_DEBUG" value="false" />
+    <option name="CUSTOM_FILTER" />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="alwaysUpdateSnapshots" value="true" />
+      </MavenGeneralSettings>
+    </option>
+    <option name="importingSettings">
+      <MavenImportingSettings>
+        <option name="importAutomatically" value="true" />
+      </MavenImportingSettings>
+    </option>
+  </component>
+  <component name="MavenProjectNavigator">
+    <treeState>
+      <expand>
+        <path>
+          <item name="" type="16c1761:MavenProjectsStructure$RootNode" />
+          <item name="DepartmentsAndEmployees Maven Webapp" type="9519ce18:MavenProjectsStructure$ProjectNode" />
+        </path>
+        <path>
+          <item name="" type="16c1761:MavenProjectsStructure$RootNode" />
+          <item name="DepartmentsAndEmployees Maven Webapp" type="9519ce18:MavenProjectsStructure$ProjectNode" />
+          <item name="Lifecycle" type="58874e2:MavenProjectsStructure$LifecycleNode" />
+        </path>
+        <path>
+          <item name="" type="16c1761:MavenProjectsStructure$RootNode" />
+          <item name="DepartmentsAndEmployees Maven Webapp" type="9519ce18:MavenProjectsStructure$ProjectNode" />
+          <item name="Dependencies" type="f4be9f2a:MavenProjectsStructure$DependenciesNode" />
+        </path>
+      </expand>
+      <select />
+    </treeState>
+  </component>
+  <component name="NodePackageJsonFileManager">
+    <packageJsonPaths />
+  </component>
+  <component name="ProjectFrameBounds" extendedState="7">
+    <option name="x" value="28" />
+    <option name="y" value="194" />
+    <option name="width" value="1382" />
+    <option name="height" value="784" />
+  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectView">
+    <navigator proportions="" version="1">
+      <autoscrollFromSource ProjectPane="true" />
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="Scope" />
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="DepartmentsAndEmployees" type="b2602c69:ProjectViewProjectNode" />
+              <item name="DepartmentsAndEmployees" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="DepartmentsAndEmployees" type="b2602c69:ProjectViewProjectNode" />
+              <item name="DepartmentsAndEmployees" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="DepartmentsAndEmployees" type="b2602c69:ProjectViewProjectNode" />
+              <item name="DepartmentsAndEmployees" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="DepartmentsAndEmployees" type="b2602c69:ProjectViewProjectNode" />
+              <item name="DepartmentsAndEmployees" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="DepartmentsAndEmployees" type="b2602c69:ProjectViewProjectNode" />
+              <item name="DepartmentsAndEmployees" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="dreamsicle" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="DepartmentsAndEmployees" type="b2602c69:ProjectViewProjectNode" />
+              <item name="DepartmentsAndEmployees" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="dreamsicle" type="462c0819:PsiDirectoryNode" />
+              <item name="util" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="DepartmentsAndEmployees" type="b2602c69:ProjectViewProjectNode" />
+              <item name="DepartmentsAndEmployees" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="webapp" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="DepartmentsAndEmployees" type="b2602c69:ProjectViewProjectNode" />
+              <item name="DepartmentsAndEmployees" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="webapp" type="462c0819:PsiDirectoryNode" />
+              <item name="WEB-INF" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="DepartmentsAndEmployees" type="b2602c69:ProjectViewProjectNode" />
+              <item name="DepartmentsAndEmployees" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="AndroidView" />
+      <pane id="PackagesPane" />
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="android.sdk.path" value="$USER_HOME$/AppData/Local/Android/Sdk" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="com.intellij.database.dataSource.DataSourceTemplate" value="PostgreSQL" />
+    <property name="com.intellij.ide.scratch.LRUPopupBuilder$1/Change SQL Dialect" value="PostgreSQL&#10;MySQL" />
+    <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="JUnit4" />
+    <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit4" value="" />
+    <property name="extract.method.default.visibility" value="private" />
+    <property name="last_opened_file_path" value="C:/TrainingDivisionTools" />
+    <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
+    <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.15384616" />
+    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="settings.editor.selected.configurable" value="MavenSettings" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CreateTestDialog.RecentsKey">
+      <recent name="net.ukr.dreamsicle.util" />
+      <recent name="net.ukr.dreamsicle.connection" />
+      <recent name="net.ukr.dreamsicle.servlet.servletPage.employee" />
+      <recent name="net.ukr.dreamsicle.validation" />
+    </key>
+    <key name="CreateTestDialog.Recents.Supers">
+      <recent name="" />
+    </key>
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="" />
+      <recent name="java" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\Java\Task\AimprosoftTestApp\src\main\java\net\ukr\dreamsicle\appFromInternet\util\dao" />
+      <recent name="D:\Java\Task\AimprosoftTestApp\src\main\webapp\WEB-INF\JSP\page" />
+      <recent name="D:\Java\Task\AimprosoftTestApp\src\main\webapp" />
+      <recent name="D:\Java\Task\AimprosoftTestApp\src\main\webapp\WEB-INF" />
+      <recent name="D:\Java\Task\AimprosoftTestApp\src\main\java\net\ukr\dreamsicle\dao\create_db" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\Java\Task\AimprosoftTestApp\src\main\java\net\ukr\dreamsicle\appFromInternet\servlet\servletPage" />
+      <recent name="D:\Java\Task\AimprosoftTestApp\src\main\java\net\ukr\dreamsicle" />
+      <recent name="D:\Java\Task\AimprosoftTestApp\src\main\webapp\WEB-INF\JSP" />
+    </key>
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="net.ukr.dreamsicle.appFromInternet.servlet" />
+    </key>
+  </component>
+  <component name="Regex">
+    <option name="pos1" value="440" />
+    <option name="pos2" value="440" />
+    <option name="pos3" value="93" />
+    <option name="pos4" value="880" />
+    <option name="pos5" value="93" />
+    <option name="autoUpdate" value="true" />
+    <option name="referenceOn" value="false" />
+    <option name="referencePos" value="0" />
+    <option name="showLabels" value="true" />
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager" selected="Tomcat Server.department">
+    <configuration name="DBConnection" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="net.ukr.dreamsicle.connection.DBConnection" />
+      <module name="DepartmentsAndEmployees" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="net.ukr.dreamsicle.filter.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+    </configuration>
+    <configuration name="Test" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="net.ukr.dreamsicle.Test" />
+      <module name="DepartmentsAndEmployees" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="net.ukr.dreamsicle.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+    </configuration>
+    <configuration default="true" type="Application" factoryName="Application">
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+    </configuration>
+    <configuration name="DBConnectionTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="DepartmentsAndEmployees" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="net.ukr.dreamsicle.filter.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" value="net.ukr.dreamsicle.connection" />
+      <option name="MAIN_CLASS_NAME" value="net.ukr.dreamsicle.connection.DBConnectionTest" />
+      <option name="METHOD_NAME" />
+      <option name="TEST_OBJECT" value="class" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <patterns />
+    </configuration>
+    <configuration name="DBUtilsDepartmentTest.uniqueParameter" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="DepartmentsAndEmployees" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="net.ukr.dreamsicle.util.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" value="net.ukr.dreamsicle.util" />
+      <option name="MAIN_CLASS_NAME" value="net.ukr.dreamsicle.util.DBUtilsDepartmentTest" />
+      <option name="METHOD_NAME" value="uniqueParameter" />
+      <option name="TEST_OBJECT" value="method" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <patterns />
+    </configuration>
+    <configuration name="DBUtilsEmployeeTest.uniqueParameter" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="DepartmentsAndEmployees" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="net.ukr.dreamsicle.util.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" value="net.ukr.dreamsicle.util" />
+      <option name="MAIN_CLASS_NAME" value="net.ukr.dreamsicle.util.DBUtilsEmployeeTest" />
+      <option name="METHOD_NAME" value="uniqueParameter" />
+      <option name="TEST_OBJECT" value="method" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <patterns />
+    </configuration>
+    <configuration default="true" type="JUnit" factoryName="JUnit">
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="METHOD_NAME" />
+      <option name="TEST_OBJECT" value="class" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <patterns />
+    </configuration>
+    <configuration default="true" type="TestNG" factoryName="TestNG">
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="SUITE_NAME" />
+      <option name="PACKAGE_NAME" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="METHOD_NAME" />
+      <option name="GROUP_NAME" />
+      <option name="TEST_OBJECT" value="CLASS" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
+      <option name="OUTPUT_DIRECTORY" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <option name="USE_DEFAULT_REPORTERS" value="false" />
+      <option name="PROPERTIES_FILE" />
+      <properties />
+      <listeners />
+    </configuration>
+    <configuration name="department" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 8.5.38" ALTERNATIVE_JRE_ENABLED="false">
+      <option name="OPEN_IN_BROWSER" value="false" />
+      <option name="START_JAVASCRIPT_DEBUGGER" value="true" />
+      <option name="SHOW_DIALOG_ON_UPDATE" value="false" />
+      <option name="UPDATING_POLICY" value="redeploy-artifacts" />
+      <deployment>
+        <artifact name="DepartmentsAndEmployees:war">
+          <settings>
+            <option name="CONTEXT_PATH" value="/" />
+          </settings>
+        </artifact>
+      </deployment>
+      <server-settings>
+        <option name="BASE_DIRECTORY_NAME" value="Unnamed_AimprosoftTestApp_2" />
+      </server-settings>
+      <predefined_log_file id="Tomcat" enabled="true" />
+      <log_file alias="Tomcat Manager Log" path="%IDEA_RUN:CATALINA_BASE%/logs/manager.*" />
+      <log_file checked="false" alias="Tomcat Localhost Access Log" path="%IDEA_RUN:CATALINA_BASE%/logs/localhost_access_log.*" />
+      <log_file checked="false" alias="Tomcat Catalina Log" path="%IDEA_RUN:CATALINA_BASE%/logs/catalina.*" />
+      <log_file checked="false" alias="Tomcat Host Manager Log" path="%IDEA_RUN:CATALINA_BASE%/logs/host-manager.*" />
+      <RunnerSettings RunnerId="Debug">
+        <option name="DEBUG_PORT" value="64731" />
+      </RunnerSettings>
+      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Cover">
+        <option name="USE_ENV_VARIABLES" value="true" />
+        <STARTUP>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </STARTUP>
+        <SHUTDOWN>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </SHUTDOWN>
+      </ConfigurationWrapper>
+      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Debug">
+        <option name="USE_ENV_VARIABLES" value="true" />
+        <STARTUP>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </STARTUP>
+        <SHUTDOWN>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </SHUTDOWN>
+      </ConfigurationWrapper>
+      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Run">
+        <option name="USE_ENV_VARIABLES" value="true" />
+        <STARTUP>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </STARTUP>
+        <SHUTDOWN>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </SHUTDOWN>
+      </ConfigurationWrapper>
+      <method>
+        <option name="BuildArtifacts" enabled="true">
+          <artifact name="DepartmentsAndEmployees:war" />
+        </option>
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="Tomcat Server.department" />
+      <item itemvalue="Application.Test" />
+      <item itemvalue="JUnit.DBConnectionTest" />
+      <item itemvalue="Application.DBConnection" />
+      <item itemvalue="JUnit.DBUtilsEmployeeTest.uniqueParameter" />
+      <item itemvalue="JUnit.DBUtilsDepartmentTest.uniqueParameter" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.DBUtilsDepartmentTest.uniqueParameter" />
+        <item itemvalue="JUnit.DBUtilsEmployeeTest.uniqueParameter" />
+        <item itemvalue="JUnit.DBConnectionTest" />
+        <item itemvalue="Application.DBConnection" />
+        <item itemvalue="Application.Test" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SQLPlugin.ProjectConfiguration">
+    <queries />
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="53e3e8ae-2933-4d89-b35d-60bd566d0989" name="Default" comment="" />
+      <created>1555750016225</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1555750016225</updated>
+      <workItem from="1555750020196" duration="44592000" />
+      <workItem from="1556112557446" duration="4358000" />
+      <workItem from="1556117022738" duration="461000" />
+      <workItem from="1556117572079" duration="2366000" />
+      <workItem from="1556120005298" duration="14021000" />
+      <workItem from="1556189689681" duration="5663000" />
+      <workItem from="1556196502547" duration="8531000" />
+      <workItem from="1556258938958" duration="2710000" />
+      <workItem from="1556286356272" duration="4695000" />
+      <workItem from="1556528270085" duration="232000" />
+      <workItem from="1556529481513" duration="6233000" />
+      <workItem from="1556717827350" duration="84407000" />
+      <workItem from="1556923693999" duration="337000" />
+      <workItem from="1556961194392" duration="84599000" />
+      <workItem from="1557249083714" duration="50769000" />
+      <workItem from="1557477360699" duration="16025000" />
+      <workItem from="1557901087919" duration="594000" />
+      <workItem from="1557912875437" duration="258000" />
+      <workItem from="1557913856174" duration="86000" />
+      <workItem from="1557986697188" duration="658000" />
+      <workItem from="1557994067196" duration="22000" />
+      <workItem from="1557996638609" duration="261000" />
+      <workItem from="1557998434875" duration="1384000" />
+      <workItem from="1558077036861" duration="679000" />
+      <workItem from="1558105006543" duration="41172000" />
+      <workItem from="1558337323056" duration="15833000" />
+      <workItem from="1558552329728" duration="5078000" />
+      <workItem from="1558591559095" duration="3952000" />
+      <workItem from="1558682065254" duration="4307000" />
+      <workItem from="1558699501047" duration="511000" />
+      <workItem from="1558700194665" duration="7661000" />
+      <workItem from="1558959222923" duration="44862000" />
+      <workItem from="1559212160142" duration="430000" />
+    </task>
+    <task id="LOCAL-00001" summary="fixed date">
+      <created>1556996925894</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1556996925894</updated>
+    </task>
+    <task id="LOCAL-00002" summary="correct input data (name, surname, email).">
+      <created>1557170754337</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1557170754338</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Improved the Department’s validation errors">
+      <created>1557218827169</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1557218827169</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Improved the Department’s validation errors">
+      <created>1557219760374</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1557219760374</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Added check for entering a unique department name">
+      <created>1557237494733</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1557237494733</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Added check for entering a unique department name and email">
+      <created>1557266427663</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1557266427663</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Correct input of a new employee is changed">
+      <created>1557314873200</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1557314873200</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Correct input of a edit employee is changed">
+      <created>1557341902980</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1557341902980</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Correct input of a edit employee is changed">
+      <created>1557353689750</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1557353689750</updated>
+    </task>
+    <task id="LOCAL-00010" summary="Correct work! Changed editing employee">
+      <created>1557403138092</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1557403138092</updated>
+    </task>
+    <task id="LOCAL-00011" summary="add required, check exception">
+      <created>1557413778514</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1557413778514</updated>
+    </task>
+    <task id="LOCAL-00012" summary="add required, check exception">
+      <created>1557486798875</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1557486798875</updated>
+    </task>
+    <task id="LOCAL-00013" summary="add testUnit">
+      <created>1558125059314</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1558125059314</updated>
+    </task>
+    <task id="LOCAL-00014" summary="add logging">
+      <created>1558250250536</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1558250250536</updated>
+    </task>
+    <task id="LOCAL-00015" summary="change connection with DB">
+      <created>1558343526229</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1558343526230</updated>
+    </task>
+    <task id="LOCAL-00016" summary="change connection with DB">
+      <created>1558516542736</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1558516542736</updated>
+    </task>
+    <task id="LOCAL-00017" summary="correct connection">
+      <created>1558516987509</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1558516987509</updated>
+    </task>
+    <task id="LOCAL-00018" summary="add validate annotation">
+      <created>1558633914891</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1558633914891</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
+    <servers />
+  </component>
+  <component name="TestHistory">
+    <history-entry file="DBConnectionTest - 2019.05.20 at 10h 17m 48s.xml">
+      <configuration name="DBConnectionTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="DBConnectionTest - 2019.05.20 at 10h 23m 03s.xml">
+      <configuration name="DBConnectionTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="DBConnectionTest - 2019.05.20 at 10h 34m 36s.xml">
+      <configuration name="DBConnectionTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="DBConnectionTest - 2019.05.20 at 10h 35m 19s.xml">
+      <configuration name="DBConnectionTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="DBUtilsEmployeeTest_uniqueParameter - 2019.05.30 at 11h 59m 53s.xml">
+      <configuration name="DBUtilsEmployeeTest.uniqueParameter" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="DBUtilsEmployeeTest_uniqueParameter - 2019.05.30 at 12h 01m 16s.xml">
+      <configuration name="DBUtilsEmployeeTest.uniqueParameter" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="DBUtilsEmployeeTest_uniqueParameter - 2019.05.30 at 12h 01m 34s.xml">
+      <configuration name="DBUtilsEmployeeTest.uniqueParameter" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="DBUtilsEmployeeTest_uniqueParameter - 2019.05.30 at 12h 01m 49s.xml">
+      <configuration name="DBUtilsEmployeeTest.uniqueParameter" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="DBUtilsDepartmentTest_uniqueParameter - 2019.05.30 at 12h 04m 33s.xml">
+      <configuration name="DBUtilsDepartmentTest.uniqueParameter" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="DBUtilsDepartmentTest_uniqueParameter - 2019.05.30 at 12h 04m 44s.xml">
+      <configuration name="DBUtilsDepartmentTest.uniqueParameter" configurationId="JUnit" />
+    </history-entry>
+  </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="457747000" />
+  </component>
+  <component name="TodoView">
+    <todo-panel id="selected-file">
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="true" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="-8" y="-8" width="1936" height="1066" extended-state="7" />
+    <editor active="true" />
+    <layout>
+      <window_info anchor="right" id="Palette" order="3" />
+      <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.5010661" side_tool="true" weight="0.17007536" />
+      <window_info anchor="bottom" id="Application Servers" order="7" weight="0.20556414" />
+      <window_info anchor="right" id="Maven Projects" order="3" weight="0.07995736" />
+      <window_info anchor="bottom" id="Database Changes" order="7" show_stripe_button="false" />
+      <window_info id="Capture Tool" order="2" />
+      <window_info anchor="bottom" id="Jelastic" order="7" weight="0.32938644" />
+      <window_info id="Designer" order="2" />
+      <window_info anchor="bottom" id="Regex" order="7" weight="0.32921174" />
+      <window_info anchor="right" id="Database" order="3" weight="0.16044776" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info id="UI Designer" order="2" />
+      <window_info anchor="right" id="Armory" order="3" weight="0.32980332" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.31862217" />
+      <window_info anchor="bottom" id="TODO" order="6" weight="0.32921174" />
+      <window_info anchor="right" id="Palette&#9;" order="3" />
+      <window_info id="Image Layers" order="2" />
+      <window_info anchor="bottom" id="Java Enterprise" order="7" weight="0.32921174" />
+      <window_info anchor="right" id="Capture Analysis" order="3" />
+      <window_info anchor="bottom" id="Version Control" order="7" weight="0.15069968" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.4989339" weight="0.33046287" />
+      <window_info anchor="bottom" id="Terminal" order="7" weight="0.32921174" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.76197606" visible="true" weight="0.18230277" />
+      <window_info anchor="right" id="Bean Validation" order="4" />
+      <window_info id="Web" order="2" sideWeight="0.23802395" side_tool="true" weight="0.15245202" />
+      <window_info anchor="bottom" id="Gradle View" order="7" />
+      <window_info anchor="right" id="Theme Preview" order="3" />
+      <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="Messages" order="7" weight="0.2131324" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32831" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+    </layout>
+    <layout-to-restore>
+      <window_info anchor="bottom" id="Application Servers" order="0" weight="0.20667385" />
+      <window_info id="Designer" order="0" />
+      <window_info anchor="right" id="Palette" order="0" />
+      <window_info id="Image Layers" order="1" />
+      <window_info anchor="bottom" id="Run" order="12" visible="true" weight="0.35952637" />
+      <window_info anchor="bottom" id="Cvs" order="14" weight="0.25" />
+      <window_info anchor="right" id="Ant Build" order="8" weight="0.25" />
+      <window_info anchor="bottom" id="Regex" order="1" />
+      <window_info id="UI Designer" order="2" />
+      <window_info id="Favorites" order="3" side_tool="true" />
+      <window_info anchor="bottom" id="Terminal" order="2" />
+      <window_info id="Capture Tool" order="4" />
+      <window_info anchor="right" id="Capture Analysis" order="1" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="7" type="SLIDING" weight="0.4" />
+      <window_info anchor="bottom" id="Gradle View" order="3" />
+      <window_info anchor="bottom" id="Event Log" order="4" side_tool="true" />
+      <window_info anchor="bottom" id="Messages" order="5" weight="0.2787944" />
+      <window_info anchor="bottom" id="TODO" order="16" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="9" weight="0.25" />
+      <window_info anchor="bottom" id="Jelastic" order="6" />
+      <window_info anchor="bottom" id="Java Enterprise" order="7" />
+      <window_info anchor="bottom" id="Database Changes" order="8" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Version Control" order="9" show_stripe_button="false" />
+      <window_info anchor="right" id="Maven Projects" order="2" />
+      <window_info active="true" content_ui="combo" id="Project" order="6" sideWeight="0.76197606" visible="true" weight="0.18763326" />
+      <window_info anchor="right" id="Database" order="3" weight="0.28624734" />
+      <window_info anchor="bottom" id="Message" order="10" />
+      <window_info id="Web" order="5" sideWeight="0.23802395" side_tool="true" weight="0.15245202" />
+      <window_info anchor="right" id="Palette&#9;" order="4" />
+      <window_info anchor="right" id="Theme Preview" order="5" />
+      <window_info id="Structure" order="7" side_tool="true" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="15" weight="0.4" />
+      <window_info anchor="bottom" id="Find" order="11" weight="0.32938644" />
+      <window_info anchor="right" id="Armory" order="6" />
+      <window_info anchor="bottom" id="Debug" order="13" weight="0.4" />
+    </layout-to-restore>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="RECENTLY_FILTERED_USER_GROUPS">
+                <collection />
+              </option>
+              <option name="RECENTLY_FILTERED_BRANCH_GROUPS">
+                <collection />
+              </option>
+              <option name="COLUMN_ORDER">
+                <list>
+                  <option value="0" />
+                  <option value="1" />
+                  <option value="2" />
+                  <option value="3" />
+                </list>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="fixed date" />
+    <MESSAGE value="correct input data (name, surname, email)." />
+    <MESSAGE value="Improved the Department’s validation errors" />
+    <MESSAGE value="Added check for entering a unique department name" />
+    <MESSAGE value="Added check for entering a unique department name and email" />
+    <MESSAGE value="Correct input of a new employee is changed" />
+    <MESSAGE value="Correct input of a edit employee is changed" />
+    <MESSAGE value="Correct work! Changed editing employee" />
+    <MESSAGE value="add required, check exception" />
+    <MESSAGE value="add testUnit" />
+    <MESSAGE value="add logging" />
+    <MESSAGE value="change connection with DB" />
+    <MESSAGE value="correct connection" />
+    <MESSAGE value="add validate annotation" />
+    <option name="LAST_COMMIT_MESSAGE" value="add validate annotation" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <option name="time" value="14" />
+    </breakpoint-manager>
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/src/main/java/net/ukr/dreamsicle/util/Actions.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="16" column="57" selection-start-line="16" selection-start-column="57" selection-end-line="16" selection-end-column="57" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/net/ukr/dreamsicle/servlet/servletPage/employee/EditEmployeeControllerTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="11" column="34" selection-start-line="11" selection-start-column="34" selection-end-line="11" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/net/ukr/dreamsicle/filter/Filter.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/net/ukr/dreamsicle/Test.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/resources/log4j.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" lean-forward="true" selection-start-line="2" selection-end-line="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/net/ukr/dreamsicle/exception/ValidateException.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/net/ukr/dreamsicle/validation/ValidEmailAddress.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="17" lean-forward="true" selection-start-line="17" selection-end-line="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_161/src.zip!/java/sql/Connection.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="234">
+          <caret line="279" column="9" selection-start-line="279" selection-start-column="9" selection-end-line="279" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/net/ukr/dreamsicle/validation/ValidEmailAddressTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="11" column="5" lean-forward="true" selection-start-line="11" selection-start-column="5" selection-end-line="11" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/net/ukr/dreamsicle/connection/DBConnectionTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="21" column="1" lean-forward="true" selection-start-line="21" selection-start-column="1" selection-end-line="21" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/postgresql/postgresql/42.2.5/postgresql-42.2.5.jar!/org/postgresql/jdbc/PgConnection.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="93">
+          <caret line="577" selection-start-line="577" selection-end-line="577" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_161/src.zip!/java/lang/Thread.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="144">
+          <caret line="747" selection-start-line="747" selection-end-line="747" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/net/ukr/dreamsicle/connection/MyUtils.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/net/ukr/dreamsicle/connection/ConnectionUtils.java" />
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_161/src.zip!/java/lang/Object.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="301">
+          <caret line="99" column="22" selection-start-line="99" selection-start-column="22" selection-end-line="99" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/JSP/fragment/editDepartment.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="16" column="42" selection-start-line="16" selection-start-column="42" selection-end-line="16" selection-end-column="42" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/JSP/fragment/add_new_department.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="8" column="7" lean-forward="true" selection-start-line="8" selection-start-column="7" selection-end-line="8" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/JSP/page/error.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="1" column="28" selection-start-line="1" selection-start-column="28" selection-end-line="1" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/JSP/page/employee.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="166">
+          <caret line="14" column="50" selection-start-line="14" selection-start-column="50" selection-end-line="14" selection-end-column="50" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/net/ukr/dreamsicle/util/dao/db-dump.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="493">
+          <caret line="29" column="1" selection-start-line="29" selection-start-column="1" selection-end-line="29" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/net/ukr/dreamsicle/beans/Department.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="15" column="31" selection-start-line="15" selection-start-column="31" selection-end-line="15" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_161/src.zip!/java/sql/ResultSet.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="205" column="37" lean-forward="true" selection-start-line="205" selection-start-column="37" selection-end-line="205" selection-end-column="37" />
+          <folding>
+            <element signature="docComment;class#ResultSet#0" />
+            <element signature="e#6014#7393#0" />
+            <element signature="e#7440#8787#0" />
+            <element signature="e#8831#9425#0" />
+            <element signature="e#9528#10088#0" />
+            <element signature="e#10153#11173#0" />
+            <element signature="e#11240#11795#0" />
+            <element signature="e#11856#12412#0" />
+            <element signature="e#12475#13030#0" />
+            <element signature="e#13089#13644#0" />
+            <element signature="e#13705#14261#0" />
+            <element signature="e#14324#14881#0" />
+            <element signature="e#14946#15825#0" />
+            <element signature="e#15925#16555#0" />
+            <element signature="e#16619#17193#0" />
+            <element signature="e#17263#17837#0" />
+            <element signature="e#17907#18486#0" />
+            <element signature="e#18566#19825#0" />
+            <element signature="e#19908#21519#0" />
+            <element signature="e#21620#22803#0" />
+            <element signature="e#22950#23607#0" />
+            <element signature="e#23675#24792#0" />
+            <element signature="e#24862#25514#0" />
+            <element signature="e#25578#26231#0" />
+            <element signature="e#26297#26949#0" />
+            <element signature="e#27011#27663#0" />
+            <element signature="e#27727#28380#0" />
+            <element signature="e#28446#29100#0" />
+            <element signature="e#29168#30145#0" />
+            <element signature="e#30248#30975#0" />
+            <element signature="e#31042#31713#0" />
+            <element signature="e#31786#32464#0" />
+            <element signature="e#32537#33213#0" />
+            <element signature="e#33296#34633#0" />
+            <element signature="e#34719#36389#0" />
+            <element signature="e#36493#37740#0" />
+            <element signature="e#37863#38932#0" />
+            <element signature="e#38988#39396#0" />
+            <element signature="e#39448#40614#0" />
+            <element signature="e#40668#41003#0" />
+            <element signature="e#41066#42885#0" />
+            <element signature="e#42950#44437#0" />
+            <element signature="e#44577#45150#0" />
+            <element signature="e#45217#45288#0" />
+            <element signature="e#45474#46119#0" />
+            <element signature="e#46201#46949#0" />
+            <element signature="e#47034#47671#0" />
+            <element signature="e#47744#48485#0" />
+            <element signature="e#48561#48632#0" />
+            <element signature="e#48743#49501#0" />
+            <element signature="e#49556#50308#0" />
+            <element signature="e#50361#51034#0" />
+            <element signature="e#51083#51994#0" />
+            <element signature="e#52042#52544#0" />
+            <element signature="e#52594#53085#0" />
+            <element signature="e#53133#53674#0" />
+            <element signature="e#53721#54261#0" />
+            <element signature="e#54307#54951#0" />
+            <element signature="e#54995#57071#0" />
+            <element signature="e#57130#58349#0" />
+            <element signature="e#58409#59520#0" />
+            <element signature="e#59570#59641#0" />
+            <element signature="e#59741#60030#0" />
+            <element signature="e#60066#60355#0" />
+            <element signature="e#60391#60650#0" />
+            <element signature="e#60686#61608#0" />
+            <element signature="e#61677#62030#0" />
+            <element signature="e#62085#62871#0" />
+            <element signature="e#62930#63268#0" />
+            <element signature="e#63318#63466#0" />
+            <element signature="e#63506#63738#0" />
+            <element signature="e#63784#64012#0" />
+            <element signature="e#64056#64563#0" />
+            <element signature="e#64608#64757#0" />
+            <element signature="e#64796#64941#0" />
+            <element signature="e#64980#65485#0" />
+            <element signature="e#65537#65608#0" />
+            <element signature="e#65705#66478#0" />
+            <element signature="e#66530#67318#0" />
+            <element signature="e#67371#68286#0" />
+            <element signature="e#68338#69136#0" />
+            <element signature="e#69200#70031#0" />
+            <element signature="e#70109#70944#0" />
+            <element signature="e#71016#71845#0" />
+            <element signature="e#71919#72747#0" />
+            <element signature="e#72817#73645#0" />
+            <element signature="e#73717#74546#0" />
+            <element signature="e#74620#75450#0" />
+            <element signature="e#75526#76377#0" />
+            <element signature="e#76461#77291#0" />
+            <element signature="e#77367#78201#0" />
+            <element signature="e#78276#79113#0" />
+            <element signature="e#79194#80031#0" />
+            <element signature="e#80112#80961#0" />
+            <element signature="e#81058#81982#0" />
+            <element signature="e#82142#83066#0" />
+            <element signature="e#83229#84156#0" />
+            <element signature="e#84319#85975#0" />
+            <element signature="e#86076#86914#0" />
+            <element signature="e#86990#87878#0" />
+            <element signature="e#87945#88873#0" />
+            <element signature="e#88954#89879#0" />
+            <element signature="e#89954#90880#0" />
+            <element signature="e#90957#91882#0" />
+            <element signature="e#91955#92880#0" />
+            <element signature="e#92955#93882#0" />
+            <element signature="e#93959#94886#0" />
+            <element signature="e#94965#95912#0" />
+            <element signature="e#95999#96926#0" />
+            <element signature="e#97005#97930#0" />
+            <element signature="e#98008#98942#0" />
+            <element signature="e#99026#99960#0" />
+            <element signature="e#100044#100990#0" />
+            <element signature="e#101090#102111#0" />
+            <element signature="e#102274#103295#0" />
+            <element signature="e#103461#104554#0" />
+            <element signature="e#104725#106478#0" />
+            <element signature="e#106582#107517#0" />
+            <element signature="e#107596#108289#0" />
+            <element signature="e#108337#108937#0" />
+            <element signature="e#108985#109571#0" />
+            <element signature="e#109619#111150#0" />
+            <element signature="e#111199#112029#0" />
+            <element signature="e#112084#113193#0" />
+            <element signature="e#113247#113742#0" />
+            <element signature="e#113797#114403#0" />
+            <element signature="e#114459#115529#0" />
+            <element signature="e#115638#116294#0" />
+            <element signature="e#116353#117037#0" />
+            <element signature="e#117098#117782#0" />
+            <element signature="e#117843#118533#0" />
+            <element signature="e#118596#119707#0" />
+            <element signature="e#119817#120596#0" />
+            <element signature="e#120658#121439#0" />
+            <element signature="e#121503#122277#0" />
+            <element signature="e#122341#123127#0" />
+            <element signature="e#123193#124133#0" />
+            <element signature="e#124217#125254#0" />
+            <element signature="e#125341#126281#0" />
+            <element signature="e#126365#127402#0" />
+            <element signature="e#127489#128449#0" />
+            <element signature="e#128549#129603#0" />
+            <element signature="e#129790#129987#0" />
+            <element signature="e#130031#130226#0" />
+            <element signature="e#130269#131072#0" />
+            <element signature="e#131140#132023#0" />
+            <element signature="e#132094#132930#0" />
+            <element signature="e#133009#133942#0" />
+            <element signature="e#134024#134861#0" />
+            <element signature="e#134942#135876#0" />
+            <element signature="e#135960#136797#0" />
+            <element signature="e#136878#137812#0" />
+            <element signature="e#137896#138734#0" />
+            <element signature="e#138817#139752#0" />
+            <element signature="e#139916#140602#0" />
+            <element signature="e#140665#141452#0" />
+            <element signature="e#141518#142339#0" />
+            <element signature="e#142413#143334#0" />
+            <element signature="e#143411#143749#0" />
+            <element signature="e#143801#144190#0" />
+            <element signature="e#144240#145366#0" />
+            <element signature="e#145449#146676#0" />
+            <element signature="e#146762#147763#0" />
+            <element signature="e#147841#148943#0" />
+            <element signature="e#149024#149858#0" />
+            <element signature="e#149919#150840#0" />
+            <element signature="e#150906#151544#0" />
+            <element signature="e#151609#152344#0" />
+            <element signature="e#152411#153676#0" />
+            <element signature="e#153759#155102#0" />
+            <element signature="e#155189#156001#0" />
+            <element signature="e#156068#156977#0" />
+            <element signature="e#157047#157933#0" />
+            <element signature="e#158016#158998#0" />
+            <element signature="e#159084#160285#0" />
+            <element signature="e#160450#161817#0" />
+            <element signature="e#161989#162924#0" />
+            <element signature="e#163085#164020#0" />
+            <element signature="e#164184#165122#0" />
+            <element signature="e#165285#166317#0" />
+            <element signature="e#166481#167513#0" />
+            <element signature="e#167680#168784#0" />
+            <element signature="e#168955#169977#0" />
+            <element signature="e#170079#171198#0" />
+            <element signature="e#171303#172610#0" />
+            <element signature="e#172703#174108#0" />
+            <element signature="e#174202#175649#0" />
+            <element signature="e#175743#177292#0" />
+            <element signature="e#177400#178808#0" />
+            <element signature="e#178931#180506#0" />
+            <element signature="e#180636#181774#0" />
+            <element signature="e#181895#183034#0" />
+            <element signature="e#183157#184302#0" />
+            <element signature="e#184423#185658#0" />
+            <element signature="e#185782#187018#0" />
+            <element signature="e#187144#188448#0" />
+            <element signature="e#188577#189756#0" />
+            <element signature="e#189845#191123#0" />
+            <element signature="e#191215#192526#0" />
+            <element signature="e#192606#194005#0" />
+            <element signature="e#194086#195527#0" />
+            <element signature="e#195608#197152#0" />
+            <element signature="e#197315#198688#0" />
+            <element signature="e#198776#200266#0" />
+            <element signature="e#200434#202309#0" />
+            <element signature="e#200434#202534#0" />
+            <element signature="e#202540#204529#0" />
+            <element signature="e#202540#204754#0" />
+            <element signature="e#204760#205847#0" />
+            <element signature="e#204760#206050#0" />
+            <element signature="e#206056#207254#0" />
+            <element signature="e#206056#207460#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/JSP/page-template.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="8" lean-forward="true" selection-end-line="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/net/ukr/dreamsicle/servlet/servletPage/ErrorController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="19" column="32" selection-start-line="19" selection-start-column="32" selection-end-line="19" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/net/ukr/dreamsicle/consts/Constants.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/net/ukr/dreamsicle/exception/ApplicationException.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/application.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="5" column="18" lean-forward="true" selection-start-line="5" selection-start-column="18" selection-end-line="5" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/net/ukr/dreamsicle/connection/DBConnection.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="308">
+          <caret line="28" column="26" lean-forward="true" selection-start-line="28" selection-start-column="26" selection-end-line="28" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/JSP/page/department.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="453">
+          <caret line="30" column="57" lean-forward="true" selection-start-line="30" selection-start-column="57" selection-end-line="30" selection-end-column="57" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/net/ukr/dreamsicle/connection/ReadDataFromResFileAppProp.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="16" selection-start-line="16" selection-end-line="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/JSP/fragment/add_new_employee.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="884">
+          <caret line="52" column="34" selection-start-line="52" selection-start-column="34" selection-end-line="52" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/net/ukr/dreamsicle/servlet/servletPage/employee/AddNewEmployeeControllerTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="391">
+          <caret line="27" column="1" lean-forward="true" selection-start-line="27" selection-start-column="1" selection-end-line="27" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/net/ukr/dreamsicle/listener/ApplicationListener.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="425">
+          <caret line="25" lean-forward="true" selection-start-line="25" selection-end-line="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/net/ukr/dreamsicle/servlet/servletPage/department/DepartmentController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="32" column="37" lean-forward="true" selection-start-line="32" selection-start-column="37" selection-end-line="32" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/net/ukr/dreamsicle/util/DBUtilsEmployeeTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="527">
+          <caret line="33" column="5" lean-forward="true" selection-start-line="25" selection-start-column="4" selection-end-line="33" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/net/ukr/dreamsicle/util/DBUtilsDepartmentTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="459">
+          <caret line="45" column="65" selection-start-line="45" selection-start-column="65" selection-end-line="45" selection-end-column="65" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/net/ukr/dreamsicle/servlet/servletPage/employee/EditEmployeeController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="79">
+          <caret line="28" column="64" selection-start-line="28" selection-start-column="64" selection-end-line="28" selection-end-column="64" />
+          <folding>
+            <element signature="method#doPost#0;class#EditEmployeeController#0" />
+            <element signature="method#getCorrectSurname#0;class#EditEmployeeController#0" />
+            <element signature="method#getCorrectName#0;class#EditEmployeeController#0" />
+            <element signature="method#getDateFormat#0;class#EditEmployeeController#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/net/ukr/dreamsicle/servlet/servletPage/employee/AddNewEmployeeController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-127">
+          <caret line="36" column="75" selection-start-line="36" selection-start-column="75" selection-end-line="36" selection-end-column="75" />
+          <folding>
+            <element signature="method#getDateFormat#0;class#AddNewEmployeeController#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/net/ukr/dreamsicle/servlet/servletPage/department/EditDepartmentController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="391">
+          <caret line="42" column="94" selection-start-line="42" selection-start-column="94" selection-end-line="42" selection-end-column="94" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/net/ukr/dreamsicle/servlet/servletPage/employee/EmployeeController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="391">
+          <caret line="36" lean-forward="true" selection-start-line="36" selection-end-line="36" />
+          <folding>
+            <element signature="method#doPost#0;class#EmployeeController#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/net/ukr/dreamsicle/servlet/servletPage/department/AddNewDepartmentController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="391">
+          <caret line="35" lean-forward="true" selection-start-line="35" selection-end-line="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/net/ukr/dreamsicle/beans/Employee.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="39">
+          <caret line="28" column="25" selection-start-line="28" selection-start-column="25" selection-end-line="28" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/net/ukr/dreamsicle/filter/Filter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="18" column="21" selection-start-line="18" selection-start-column="21" selection-end-line="18" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="15" column="4" selection-start-line="15" selection-start-column="4" selection-end-line="15" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/index.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="3" column="29" selection-start-line="3" selection-start-column="29" selection-end-line="3" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/net/ukr/dreamsicle/servlet/AbstractServlet.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/net/ukr/dreamsicle/servlet/servletPage/employee/RemoveEmployeeController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="322">
+          <caret line="29" column="65" lean-forward="true" selection-start-line="29" selection-start-column="65" selection-end-line="29" selection-end-column="65" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/net/ukr/dreamsicle/servlet/servletPage/department/RemoveDepartmentController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="357">
+          <caret line="31" column="57" selection-start-line="31" selection-start-column="57" selection-end-line="31" selection-end-column="57" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/net/ukr/dreamsicle/util/Actions.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="16" column="57" selection-start-line="16" selection-start-column="57" selection-end-line="16" selection-end-column="57" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/net/ukr/dreamsicle/util/DBUtilsDepartment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="425">
+          <caret line="103" column="62" selection-start-line="103" selection-start-column="62" selection-end-line="103" selection-end-column="62" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/net/ukr/dreamsicle/util/DBUtilsEmployee.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="67" column="17" lean-forward="true" selection-start-line="67" selection-start-column="17" selection-end-line="67" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+  </component>
+  <component name="ideajad">
+    <property name="annotate" value="false" />
+    <property name="annotateFully" value="false" />
+    <property name="braces" value="false" />
+    <property name="clear" value="false" />
+    <property name="confirmNavigationTriggeredDecompile" value="true" />
+    <property name="dead" value="true" />
+    <property name="defaultInitializers" value="false" />
+    <property name="dissassemblerOnly" value="false" />
+    <property name="fieldsFirst" value="true" />
+    <property name="fileExtension" value="java" />
+    <property name="fullyQualifiedNames" value="false" />
+    <property name="indentation" value="4" />
+    <property name="intRadix" value="10" />
+    <property name="lineNumbersAsComments" value="true" />
+    <property name="longRadix" value="10" />
+    <property name="maxStringLength" value="64" />
+    <property name="nocast" value="false" />
+    <property name="noclass" value="false" />
+    <property name="nocode" value="false" />
+    <property name="noconv" value="false" />
+    <property name="noctor" value="false" />
+    <property name="nodos" value="false" />
+    <property name="nofd" value="false" />
+    <property name="noinner" value="false" />
+    <property name="nolvt" value="false" />
+    <property name="nonlb" value="false" />
+    <property name="outputDirectory" value="" />
+    <property name="packFields" value="3" />
+    <property name="packImports" value="7" />
+    <property name="prefixNumericalClasses" value="_cls" />
+    <property name="prefixNumericalFields" value="_fld" />
+    <property name="prefixNumericalLocals" value="_lcl" />
+    <property name="prefixNumericalMethods" value="_mth" />
+    <property name="prefixNumericalParameters" value="_prm" />
+    <property name="prefixUnusedExceptions" value="_ex" />
+    <property name="readonly" value="false" />
+    <property name="safe" value="false" />
+    <property name="sort" value="false" />
+    <property name="spaceAfterKeyword" value="false" />
+    <property name="splitStringsAtNewline" value="false" />
+    <property name="useTabs" value="false" />
+  </component>
+  <component name="masterDetails">
+    <states>
+      <state key="ArtifactsStructureConfigurable.UI">
+        <settings>
+          <artifact-editor />
+          <last-edited>DepartmentsAndEmployees:war</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+                <option value="0.5" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="FacetStructureConfigurable.UI">
+        <settings>
+          <last-edited>Detection</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="GlobalLibrariesConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="JdkListConfigurable.UI">
+        <settings>
+          <last-edited>1.8</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ModuleStructureConfigurable.UI">
+        <settings>
+          <last-edited>DepartmentsAndEmployees</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ProjectJDKs.UI">
+        <settings>
+          <last-edited>1.8</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ProjectLibrariesConfigurable.UI">
+        <settings>
+          <last-edited>Maven: ch.qos.logback:logback-classic:1.2.3</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+    </states>
+  </component>
+</project>

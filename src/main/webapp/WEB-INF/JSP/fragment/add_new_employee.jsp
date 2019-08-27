@@ -16,7 +16,8 @@
             <td align="center">Name</td>
             <td align="center">
                 <input type="text" placeholder="Name"
-                       pattern=<%=REGEX_CHECK_VALID_NAME_SURNAME_EMPLOYEE%> name="nameEmployee"
+                       pattern="<%=REGEX_CHECK_VALID_NAME_SURNAME_EMPLOYEE%>"
+                       name="nameEmployee"
                        value="${employee.name}"
                        required>
             </td>

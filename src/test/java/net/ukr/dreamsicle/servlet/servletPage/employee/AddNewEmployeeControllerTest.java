@@ -12,13 +12,7 @@ public class AddNewEmployeeControllerTest {
         controller = new AddNewEmployeeController();
     }
 
-    @Test
-    public void doGet() {
-    }
 
-    @Test
-    public void doPost() {
-    }
 
     @Test
     public void getDateFormat() {

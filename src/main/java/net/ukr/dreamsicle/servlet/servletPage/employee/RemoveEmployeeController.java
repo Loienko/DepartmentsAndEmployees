@@ -19,10 +19,17 @@ public class RemoveEmployeeController extends AbstractServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String delete = req.getParameter("emailEmployee");
-        if (!delete.isEmpty()) {
-            DBUtilsEmployee dbUtilsEmployee = new DBUtilsEmployee();
+        DBUtilsEmployee dbUtilsEmployee = new DBUtilsEmployee();
+        String uniqueParameter = "";
+        try {
+            uniqueParameter = dbUtilsEmployee.uniqueParameter(delete);
+        } catch (SQLException e) {
+            LOGGER.error("error", e);
+            forwardToPage("error.jsp", req, resp);
+        }
+        if (!delete.isEmpty() && uniqueParameter.length() != 0) {
             try {
-                dbUtilsEmployee.removeEmployee(delete);
+                dbUtilsEmployee.remove(delete);
                 resp.sendRedirect(req.getContextPath() + "/employee");
 
             } catch (SQLException | ApplicationException e) {

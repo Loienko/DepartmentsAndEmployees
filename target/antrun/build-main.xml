@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<project name="maven-antrun-" default="main"  >
+<target name="main">
+  <delete dir="D:\Java\Task\DepartmentsAndEmployees/src/main/webapp/WEB-INF/lib"/>
+  <copy todir="D:\Java\Task\DepartmentsAndEmployees/src/main/webapp/WEB-INF/lib">
+    <fileset dir="D:\Java\Task\DepartmentsAndEmployees/target/DepartmentsAndEmployees/WEB-INF/lib"/>
+  </copy>
+</target>
+</project>

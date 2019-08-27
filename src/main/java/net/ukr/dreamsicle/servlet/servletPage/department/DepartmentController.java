@@ -24,6 +24,7 @@ public class DepartmentController extends AbstractServlet {
         HttpSession session = req.getSession();
         String errorDataDepartment = "";
         session.setAttribute("errorDataDepartment", errorDataDepartment);
+
         try {
             List<Department> departmentList = new DBUtilsDepartment().getListDepartment();
             req.setAttribute("depart", departmentList);
